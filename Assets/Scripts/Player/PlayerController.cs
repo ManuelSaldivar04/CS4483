@@ -4,11 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Player Speed")]
     public float moveSpeed;
+
+    [Header("Solid Objects")]
     public LayerMask solidObjectLayer;
+
+    
 
     private bool isMoving;
     private Vector2 input;
+    
 
     private Animator animator;
 
