@@ -5,27 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    //singleton instance
-    public static LevelLoader Instance { get; private set; }
-
+    
 
     [SerializeField] private Animator transition;
     [SerializeField] private float transitionTime = 1f;
 
     //static variable to carry spawn point name across scenes
     private static string nextSpawnPointName;
+    
 
-    private void Awake()
-    {
-        //singleton enforecment
-        if(Instance != null && Instance != this)
-        {
-            Destroy(gameObject);//destroy duplicate
-            return;
-        }
-        Instance = this;
-        DontDestroyOnLoad(gameObject);//this instance will persist
-    }
+
     private void Start()
     {
         //when this LevelLoader awakens in a new scene, check if we need to place the player
@@ -66,18 +55,6 @@ public class LevelLoader : MonoBehaviour
     }
 
 
-    //call this from a UI button to load a scene by name only
-    /*
-    public void LoadScene(string sceneName)
-    {
-        StartCoroutine(LoadLevelCoroutine(sceneName));
-    }
-
-    public void LoadScene(int sceneIndex)
-    {
-        StartCoroutine(LoadLevelCoroutine(sceneIndex));
-    }
-    */
     public void LoadScene(string sceneName)
     {
         LoadScene(sceneName, null);
