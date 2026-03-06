@@ -8,7 +8,18 @@ public class SceneTransitionTrigger : MonoBehaviour
     [SerializeField] private SpawnPointData targetSpawnPointData; //asset for target scene
     [SerializeField] private int selectedSpawnPointIndex; //index into the list
     [SerializeField] private string spawnPointName; //name of the spawn point in the target scene
-    [SerializeField] private LevelLoader levelLoader; //need to reference the LevelLoader script
+
+    private LevelLoader levelLoader; //need to reference the LevelLoader script
+   
+
+    private void Start()
+    {
+        levelLoader = FindObjectOfType<LevelLoader>();
+        if(levelLoader == null)
+        {
+            Debug.LogError("No LevelLoader found in the scene!", this);
+        }
+    }
 
     private void OnValidate()
     {
@@ -24,12 +35,12 @@ public class SceneTransitionTrigger : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+
         if(levelLoader != null)
         {
             if (other.CompareTag("Player"))
             {
-                levelLoader.LoadScene(sceneToLoad,spawnPointName); //load the appropriate scene when collide with Player tag
-                
+                levelLoader.LoadScene(sceneToLoad,spawnPointName); //load the appropriate scene when collide with Player tag   
             }
         }
     }
