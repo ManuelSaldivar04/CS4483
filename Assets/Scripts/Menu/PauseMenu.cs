@@ -5,8 +5,10 @@ using UnityEngine;
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
+    public InventoryMenu inventoryMenu;
 
     public static bool isPaused;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,10 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+
+        if (InventoryMenu.isInventoryOpen) {
+            inventoryMenu.CloseInventory();
+        }
     }
 
     public void ResumeGame() {
@@ -39,6 +45,8 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenInventory() {
         // Implement inventory opening logic here
+        ResumeGame();
+        inventoryMenu.OpenInventory();
     }
 
     public void GoToMainMenu() {
