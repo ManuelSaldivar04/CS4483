@@ -171,11 +171,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7224642962505757577, guid: c89ef7d35f314e543a50e7f8c6e663d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 7224642962505757577, guid: c89ef7d35f314e543a50e7f8c6e663d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7224642962505757577, guid: c89ef7d35f314e543a50e7f8c6e663d3, type: 3}
       propertyPath: m_LocalPosition.z
@@ -17675,10 +17675,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aef724bd89e00b4092c869b24ac8acf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: 
-  targetSpawnPointData: {fileID: 0}
+  sceneToLoad: BottomLeft
+  targetSpawnPointData: {fileID: 11400000, guid: fe4aaad36e7b091428e3d27ce1358ec3, type: 2}
   selectedSpawnPointIndex: 0
-  spawnPointName: 
+  spawnPointName: spawn1
 --- !u!61 &1078571398
 BoxCollider2D:
   m_ObjectHideFlags: 0
