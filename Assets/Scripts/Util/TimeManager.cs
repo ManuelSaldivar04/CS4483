@@ -13,12 +13,6 @@ public class TimeManager : MonoBehaviour
         isTimeStopped = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void StopTime() {
         Time.timeScale = 0f;
         isTimeStopped = true;
