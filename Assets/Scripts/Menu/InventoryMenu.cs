@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class InventoryMenu : MonoBehaviour
 {
-
-    public PauseMenu pauseMenu;
     public GameObject inventoryMenu;
-
-    public static bool isInventoryOpen;
-
+    public TimeManager timeManager;
     // Start is called before the first frame update
+    public static bool isInventoryOpen;
     void Start()
     {
-        inventoryMenu.SetActive(false);
         isInventoryOpen = false;
+        inventoryMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -30,15 +27,14 @@ public class InventoryMenu : MonoBehaviour
     }
 
     public void OpenInventory() {
-        if (PauseMenu.isPaused) {
-            return;
-        }
         inventoryMenu.SetActive(true);
+        timeManager.StopTime();
         isInventoryOpen = true;
     }
 
     public void CloseInventory() {
         inventoryMenu.SetActive(false);
+        timeManager.ResumeTime();
         isInventoryOpen = false;
     }
 
