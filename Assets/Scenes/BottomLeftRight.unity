@@ -11257,10 +11257,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aef724bd89e00b4092c869b24ac8acf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: BottomLeftRight
-  targetSpawnPointData: {fileID: 11400000, guid: 124fe12e487548a428f380da2646e428, type: 2}
-  selectedSpawnPointIndex: 0
-  spawnPointName: spawn1
+  sceneToLoad: CenterBottom
+  targetSpawnPointData: {fileID: 11400000, guid: 42fc440d2a609d9468f8907a69531736, type: 2}
+  selectedSpawnPointIndex: 1
+  spawnPointName: spawn2
 --- !u!61 &699253825
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -19327,11 +19327,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7224642962505757577, guid: c89ef7d35f314e543a50e7f8c6e663d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.5
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 7224642962505757577, guid: c89ef7d35f314e543a50e7f8c6e663d3, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 7224642962505757577, guid: c89ef7d35f314e543a50e7f8c6e663d3, type: 3}
       propertyPath: m_LocalPosition.z
