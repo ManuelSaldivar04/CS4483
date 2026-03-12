@@ -11856,7 +11856,7 @@ Tilemap:
       - {fileID: 2018384067, guid: 8d1382dec1b01504e9f637abbebbac24, type: 3}
       - {fileID: -900363572, guid: 8d1382dec1b01504e9f637abbebbac24, type: 3}
       - {fileID: 303757750, guid: 8d1382dec1b01504e9f637abbebbac24, type: 3}
-      m_AnimationSpeed: 7
+      m_AnimationSpeed: 7.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   m_TileAssetArray:
@@ -12165,7 +12165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8316695083683721597, guid: e2705189236c74248a2360f37e7bfb6a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -20583,7 +20583,7 @@ Tilemap:
       - {fileID: 2018384067, guid: 8d1382dec1b01504e9f637abbebbac24, type: 3}
       - {fileID: -900363572, guid: 8d1382dec1b01504e9f637abbebbac24, type: 3}
       - {fileID: 303757750, guid: 8d1382dec1b01504e9f637abbebbac24, type: 3}
-      m_AnimationSpeed: 7.0000005
+      m_AnimationSpeed: 7
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 1, y: -1, z: 0}
@@ -22349,7 +22349,7 @@ Tilemap:
       - {fileID: 728741095, guid: 8d6e416d33eac1946954baaf0321b93c, type: 3}
       - {fileID: 1038381505, guid: 8d6e416d33eac1946954baaf0321b93c, type: 3}
       - {fileID: 683015982, guid: 8d6e416d33eac1946954baaf0321b93c, type: 3}
-      m_AnimationSpeed: 7.0000005
+      m_AnimationSpeed: 7
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -2, y: -10, z: 0}
@@ -22601,7 +22601,7 @@ Tilemap:
       - {fileID: 634457241, guid: 68b35475af94a744b9cbf9c207a92ca4, type: 3}
       - {fileID: -2033913080, guid: 68b35475af94a744b9cbf9c207a92ca4, type: 3}
       - {fileID: -663673681, guid: 68b35475af94a744b9cbf9c207a92ca4, type: 3}
-      m_AnimationSpeed: 7.0000005
+      m_AnimationSpeed: 7
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -6, y: -8, z: 0}
@@ -22692,7 +22692,7 @@ Tilemap:
       - {fileID: 1261857992, guid: 831b2f95bd7a2e3499ef95b9403fc44e, type: 3}
       - {fileID: -265669204, guid: 831b2f95bd7a2e3499ef95b9403fc44e, type: 3}
       - {fileID: -1045819909, guid: 831b2f95bd7a2e3499ef95b9403fc44e, type: 3}
-      m_AnimationSpeed: 7
+      m_AnimationSpeed: 7.0000005
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: -9, y: -3, z: 0}
@@ -23037,7 +23037,7 @@ Tilemap:
       - {fileID: 728741095, guid: 8d6e416d33eac1946954baaf0321b93c, type: 3}
       - {fileID: 1038381505, guid: 8d6e416d33eac1946954baaf0321b93c, type: 3}
       - {fileID: 683015982, guid: 8d6e416d33eac1946954baaf0321b93c, type: 3}
-      m_AnimationSpeed: 7.0000005
+      m_AnimationSpeed: 7
       m_AnimationTimeOffset: 0
       m_Flags: 0
   - first: {x: 6, y: -3, z: 0}
@@ -23507,8 +23507,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aef724bd89e00b4092c869b24ac8acf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: BottomLeftRight
-  targetSpawnPointData: {fileID: 11400000, guid: 124fe12e487548a428f380da2646e428, type: 2}
+  sceneToLoad: BottomRight
+  targetSpawnPointData: {fileID: 11400000, guid: 97da40b80635bff4b88ebb235692d90f, type: 2}
   selectedSpawnPointIndex: 0
   spawnPointName: spawn1
 --- !u!61 &1565497591
