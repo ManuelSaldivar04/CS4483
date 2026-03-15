@@ -15410,7 +15410,7 @@ GameObject:
   - component: {fileID: 740524573}
   - component: {fileID: 740524572}
   m_Layer: 0
-  m_Name: EnterSpawnPointSceneTrigger
+  m_Name: TopLeftRightTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15428,10 +15428,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aef724bd89e00b4092c869b24ac8acf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: Center
-  targetSpawnPointData: {fileID: 11400000, guid: 8c625fc4e49bed04794b5f82a7fb22c1, type: 2}
-  selectedSpawnPointIndex: 0
-  spawnPointName: spawn1
+  sceneToLoad: TopLeftRight
+  targetSpawnPointData: {fileID: 11400000, guid: 7d81fcc0e5930c445aef6b0658f22e59, type: 2}
+  selectedSpawnPointIndex: 1
+  spawnPointName: spawn2
 --- !u!61 &740524573
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -20658,7 +20658,7 @@ GameObject:
   - component: {fileID: 1956380568}
   - component: {fileID: 1956380567}
   m_Layer: 0
-  m_Name: EnterSpawnPointSceneTrigger (1)
+  m_Name: 'TopLeftBottomTrigger '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20854,8 +20854,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 354130284}
   - {fileID: 1630184749}
+  - {fileID: 818640754}
   - {fileID: 1419654927}
   - {fileID: 9805278}
-  - {fileID: 818640754}
   - {fileID: 6587820}
   - {fileID: 1275944646}
