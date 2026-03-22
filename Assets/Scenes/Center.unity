@@ -2874,8 +2874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aef724bd89e00b4092c869b24ac8acf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: CenterLeft
-  targetSpawnPointData: {fileID: 11400000, guid: 96f04df5064151840900620798f8bb40, type: 2}
+  sceneToLoad: CenterTop
+  targetSpawnPointData: {fileID: 11400000, guid: d16e88376a5214f4ead30f3e5117ad76, type: 2}
   selectedSpawnPointIndex: 0
   spawnPointName: spawn1
 --- !u!1 &928160498
@@ -3202,10 +3202,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aef724bd89e00b4092c869b24ac8acf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: TopLeft
-  targetSpawnPointData: {fileID: 11400000, guid: e0139f04f47bbbc40801ae8acb724435, type: 2}
-  selectedSpawnPointIndex: 1
-  spawnPointName: Spawn2
+  sceneToLoad: CenterRight
+  targetSpawnPointData: {fileID: 11400000, guid: 39c4d4de390d8fb42b2b4966bcd7f137, type: 2}
+  selectedSpawnPointIndex: 0
+  spawnPointName: spawn1
 --- !u!61 &1334459500
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5222,10 +5222,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5aef724bd89e00b4092c869b24ac8acf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneToLoad: TopLeft
-  targetSpawnPointData: {fileID: 11400000, guid: e0139f04f47bbbc40801ae8acb724435, type: 2}
-  selectedSpawnPointIndex: 1
-  spawnPointName: Spawn2
+  sceneToLoad: CenterBottom
+  targetSpawnPointData: {fileID: 11400000, guid: 42fc440d2a609d9468f8907a69531736, type: 2}
+  selectedSpawnPointIndex: 0
+  spawnPointName: spawn1
 --- !u!61 &1806505258
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7458,8 +7458,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 1486551391}
   - {fileID: 88687229}
-  - {fileID: 1073546732}
   - {fileID: 1404692262}
+  - {fileID: 1073546732}
   - {fileID: 1739481538}
   - {fileID: 608889008}
   - {fileID: 258421155}
