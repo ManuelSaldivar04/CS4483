@@ -1,6 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,67 +10,73 @@ public class PlayerController : MonoBehaviour
     [Header("Solid Objects")]
     public LayerMask solidObjectLayer;
 
-    
-
     private bool isMoving;
     private Vector2 input;
-    
-
     private Animator animator;
+
+    // Grid position (in tile coordinates)
+    private Vector2Int gridPos;
 
     private void Awake()
     {
-           animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
+        // Initialize grid position from the starting world position
+        // World position should be (gridPos.x + 0.5f, gridPos.y + 0.5f)
+        gridPos.x = Mathf.RoundToInt(transform.position.x - 0.5f);
+        gridPos.y = Mathf.RoundToInt(transform.position.y - 0.5f);
+        transform.position = new Vector3(gridPos.x + 0.5f, gridPos.y + 0.5f, transform.position.z);
     }
 
     private void Update()
     {
         if (!isMoving)
         {
-            input.x = Input.GetAxisRaw("Horizontal");
-            input.y = Input.GetAxisRaw("Vertical");
-
-            //remove diagonal movement
+            // Remove diagonal movement
             if (input.x != 0) input.y = 0;
 
-            if(input != Vector2.zero)
+            if (input != Vector2.zero)
             {
                 animator.SetFloat("moveX", input.x);
                 animator.SetFloat("moveY", input.y);
 
-                var targetPos = transform.position;
-                targetPos.x += input.x;
-                targetPos.y += input.y;
+                Vector2Int targetGridPos = gridPos + new Vector2Int((int)input.x, (int)input.y);
+                Vector3 targetWorldPos = new Vector3(targetGridPos.x + 0.5f, targetGridPos.y + 0.5f, transform.position.z);
 
-                if (IsWalkable(targetPos))
+                if (IsWalkable(targetWorldPos))
                 {
-                    StartCoroutine(Move(targetPos));
+                    StartCoroutine(Move(targetWorldPos, targetGridPos));
                 }
-                
             }
         }
 
         animator.SetBool("isMoving", isMoving);
     }
 
-    IEnumerator Move(Vector3 targetPos)
+    IEnumerator Move(Vector3 targetWorldPos, Vector2Int targetGridPos)
     {
         isMoving = true;
 
-        while((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon){
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+        while ((targetWorldPos - transform.position).sqrMagnitude > Mathf.Epsilon)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetWorldPos, moveSpeed * Time.deltaTime);
             yield return null;
         }
-        transform.position = targetPos;
+
+        // Ensure exact final position
+        transform.position = targetWorldPos;
+        gridPos = targetGridPos;
 
         isMoving = false;
     }
 
-    private bool IsWalkable(Vector3 targetPos)
+    private bool IsWalkable(Vector3 targetWorldPos)
     {
-        if(Physics2D.OverlapCircle(targetPos,0.3f,solidObjectLayer) != null){
-            return false;
-        }
-        return true;
+        // Check collision at the target tile position
+        return Physics2D.OverlapCircle(targetWorldPos, 0.3f, solidObjectLayer) == null;
+    }
+
+    public void OnMove(InputAction.CallbackContext context)
+    {
+        input = context.ReadValue<Vector2>();
     }
 }
