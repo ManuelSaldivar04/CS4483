@@ -1,14 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour
 {
+
+    int MAX_EQUIPPED_ITEMS = 4;
     List<Item> items;
+    Item[] equippedItems;
 
     public void Start()
     {
         items = new List<Item>();
+        equippedItems = new Item[MAX_EQUIPPED_ITEMS];
     }
 
     public List<Item> GetItems()
@@ -16,9 +21,29 @@ public class PlayerInventory : MonoBehaviour
         return items;
     }
 
+    public Item[] GetEquippedItems()    
+    {
+        return equippedItems;
+    }
+
     public void AddItem(Item item)
     {
         items.Add(item);
+    }
+
+    public Boolean EquipItem(Item item)
+    {
+        for (int i = 0; i < MAX_EQUIPPED_ITEMS; i++)
+        {
+            if (equippedItems[i] == null)
+            {
+                equippedItems[i] = item;
+                return true;
+            }
+        }
+
+        Debug.Log("No available slots to equip item");
+        return false;
     }
 
     public bool HasItem(Item item)

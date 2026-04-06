@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour
+public class InventorySlot : MonoBehaviour, IPointerClickHandler
 {
 
     public GameObject itemSlot;
@@ -15,6 +16,7 @@ public class InventorySlot : MonoBehaviour
     {
         this.itemSlot = slot;
         this.itemIconSlot = slot.transform.GetChild(0).gameObject;
+        Debug.Log("Initialized inventory slot");
     }
 
     public void UpdateSlot(Item newItem, int newQuantity)
@@ -31,6 +33,27 @@ public class InventorySlot : MonoBehaviour
         else
         {
             itemIconSlot.SetActive(false);
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        /*
+            Uncomment after testing
+        if (item == null)
+        {
+            return;
+        }
+        */
+
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Debug.Log("Left clicked on menu item");
+
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.y -= 20;
+
+            ActionMenu.instance.Open(item, mousePosition);
         }
     }
 }

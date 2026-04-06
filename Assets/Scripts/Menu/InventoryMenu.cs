@@ -41,7 +41,7 @@ public class InventoryMenu : MonoBehaviour
     }
 
     private void SetupInventorySlots() {
-        Transform inventoryBox = inventoryMenu.transform.GetChild(0);
+        Transform inventoryBox = inventoryMenu.transform.Find("InventoryBox");
 
         inventorySlots = new InventorySlot[12];
 
