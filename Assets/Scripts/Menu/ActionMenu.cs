@@ -9,6 +9,11 @@ public class ActionMenu : MonoBehaviour
     private Item currentItem;
     private PlayerInventory playerInventory;
 
+    void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
     void Awake()
     {
         if (instance != null && instance != this)
@@ -19,18 +24,22 @@ public class ActionMenu : MonoBehaviour
         instance = this;
     }
 
-    public void Open(Item item, Vector3 position)
+    public void Open(Item item, Vector3 position, PlayerInventory inventory)
     {
         currentItem = item;
+        playerInventory = inventory;
         transform.position = position;
         gameObject.SetActive(true);
+        Debug.Log(item.itemName);
     }
 
     public void Equip()
     {
+        Debug.Log("Equipping item: " + currentItem.itemName);
         if (!playerInventory.EquipItem(currentItem))
         {
             Debug.Log("Failed to equip item");
         }
+        gameObject.SetActive(false);
     }
 }

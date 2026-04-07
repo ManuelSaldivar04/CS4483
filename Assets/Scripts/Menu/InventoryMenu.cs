@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class InventoryMenu : MonoBehaviour
@@ -9,17 +10,23 @@ public class InventoryMenu : MonoBehaviour
 
     public InventorySlot[] inventorySlots;
 
+    public EquipmentSlot[] equipmentSlots;
+
     public PlayerInventory playerInventory;
 
     public static bool isInventoryOpen;
+
+    private int NUM_INVENTORY_SLOTS = 12;
+    private int NUM_EQUIPMENT_SLOTS = 4;
 
     void Start()
     {
         isInventoryOpen = false;
         inventoryMenu.SetActive(false);
 
-        // Initialize inventory slots
+        // Initialize inventory & equipment slots
         SetupInventorySlots();
+        setupEquipmentSlots();
 
     }
 
@@ -29,6 +36,7 @@ public class InventoryMenu : MonoBehaviour
         if (isInventoryOpen)
         {
             UpdateInventoryUI();
+            UpdateEquipmentUI();
         }
 
         if(Input.GetKeyDown(KeyCode.I)) {
@@ -43,7 +51,7 @@ public class InventoryMenu : MonoBehaviour
     private void SetupInventorySlots() {
         Transform inventoryBox = inventoryMenu.transform.Find("InventoryBox");
 
-        inventorySlots = new InventorySlot[12];
+        inventorySlots = new InventorySlot[NUM_INVENTORY_SLOTS];
 
         foreach (Transform child in inventoryBox)
         {
@@ -64,18 +72,58 @@ public class InventoryMenu : MonoBehaviour
         }
     }
 
+    private void setupEquipmentSlots() {
+        Transform equipmentBox = inventoryMenu.transform.Find("CharacterBox");
+
+        equipmentSlots = new EquipmentSlot[NUM_EQUIPMENT_SLOTS];
+
+        foreach (Transform child in equipmentBox)
+        {
+            string name = child.name;
+            if (name.StartsWith("EquipmentBox"))
+            {
+                string numberPart = name.Substring("EquipmentBox".Length);
+                if (int.TryParse(numberPart, out int index))
+                {
+                    index -= 1;
+                    if (index >= 0 && index < equipmentSlots.Length)
+                    {
+                        equipmentSlots[index] = child.gameObject.AddComponent<EquipmentSlot>();
+                        equipmentSlots[index].Initalize(child.gameObject);
+                    }
+                }
+            }
+        }
+    }
+
     private void UpdateInventoryUI() {
         List<Item> items = playerInventory.GetItems();
 
-        for (int i = 0; i < 12; i++)
+        for (int i = 0; i < NUM_INVENTORY_SLOTS; i++)
         {
             if (i < items.Count)
             {
-                inventorySlots[i].UpdateSlot(items[i], 1);
+                inventorySlots[i].UpdateSlot(items[i], 1, playerInventory);
             }
             else
             {
-                inventorySlots[i].UpdateSlot(null, 0);
+                inventorySlots[i].UpdateSlot(null, 0, playerInventory);
+            }
+        }
+    }
+
+    private void UpdateEquipmentUI() {
+        List<Item> equippedItems = playerInventory.GetEquippedItems().ToList();
+
+        for (int i = 0; i < NUM_EQUIPMENT_SLOTS; i++)
+        {
+            if (i < equippedItems.Count)
+            {
+                equipmentSlots[i].UpdateSlot(equippedItems[i], playerInventory);
+            }
+            else
+            {
+                equipmentSlots[i].UpdateSlot(null, playerInventory);
             }
         }
     }

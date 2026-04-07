@@ -8,6 +8,11 @@ public class CharMenu : MonoBehaviour
     private Item currentItem;
     private PlayerInventory playerInventory;
 
+    void Start()
+    {
+        gameObject.SetActive(false);
+    }
+
     void Awake()
     {
         if (instance != null && instance != this)
@@ -18,15 +23,17 @@ public class CharMenu : MonoBehaviour
         instance = this;
     }
 
-    public void Open(Item item, Vector3 position)
+    public void Open(Item item, Vector3 position, PlayerInventory inventory)
     {
         currentItem = item;
+        playerInventory = inventory;
         transform.position = position;
         gameObject.SetActive(true);
     }
 
     public void Unequip()
     {
-        // Add unequip after making
+        playerInventory.UnequipItem(currentItem);
+        gameObject.SetActive(false);
     }
 }

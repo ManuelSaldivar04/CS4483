@@ -31,7 +31,7 @@ public class PlayerInventory : MonoBehaviour
         items.Add(item);
     }
 
-    public Boolean EquipItem(Item item)
+    public bool EquipItem(Item item)
     {
         for (int i = 0; i < MAX_EQUIPPED_ITEMS; i++)
         {
@@ -44,6 +44,20 @@ public class PlayerInventory : MonoBehaviour
 
         Debug.Log("No available slots to equip item");
         return false;
+    }
+
+    public void UnequipItem(Item item)
+    {
+        for (int i = 0; i < MAX_EQUIPPED_ITEMS; i++)
+        {
+            if (equippedItems[i] == item)
+            {
+                equippedItems[i] = null;
+                return;
+            }
+        }
+
+        Debug.Log("Item not found in equipped items");
     }
 
     public bool HasItem(Item item)

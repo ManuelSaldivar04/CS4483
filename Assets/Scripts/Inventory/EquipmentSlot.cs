@@ -4,25 +4,22 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class InventorySlot : MonoBehaviour, IPointerClickHandler
+public class EquipmentSlot : MonoBehaviour, IPointerClickHandler
 {
-
-    public GameObject itemSlot;
+    public GameObject equipmentSlot;
     public GameObject itemIconSlot;
     public Item item;
-    public int quantity;
     private PlayerInventory playerInventory;
 
     public void Initalize(GameObject slot)
     {
-        this.itemSlot = slot;
+        this.equipmentSlot = slot;
         this.itemIconSlot = slot.transform.GetChild(0).gameObject;
     }
 
-    public void UpdateSlot(Item newItem, int newQuantity, PlayerInventory inventory)
+    public void UpdateSlot(Item newItem, PlayerInventory inventory)
     {
         this.item = newItem;
-        this.quantity = newQuantity;
         this.playerInventory = inventory;
 
         if (item != null)
@@ -46,11 +43,12 @@ public class InventorySlot : MonoBehaviour, IPointerClickHandler
 
         if (eventData.button == PointerEventData.InputButton.Left)
         {
+            Debug.Log("Left clicked on menu item");
 
             Vector3 mousePosition = Input.mousePosition;
             mousePosition.y -= 20;
 
-            ActionMenu.instance.Open(item, mousePosition, playerInventory);
+            CharMenu.instance.Open(item, mousePosition, playerInventory);
         }
     }
 }
