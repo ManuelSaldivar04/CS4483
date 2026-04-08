@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
+  m_Name: RedGladiator-TopRight
+  m_EditorClassIdentifier: 
+  npcName: Warrior
+  npcPortrait: {fileID: 21300000, guid: 28a92c798390dbe4b94e4d1e47c401b0, type: 3}
+  dialogueLines:
+  - Too many limbs... Too many eyes... Living statues everywhere... none of it makes
+    sense
+  - ...Alright, i'll say it. This place is messed up
+  - Tch... doesn't matter how ugly they are. They'll fall like anything else
+  - ....Wait. Is that a pig?!
+  - You're telling me THAT THING made it all the way down here?
+  autoProgressLines: 0000000100
+  typingSpeed: 0.08
+  voiceSound: {fileID: 0}
+  voicePitch: 1
+  autoProgressDelay: 1.5
