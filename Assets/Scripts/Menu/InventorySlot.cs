@@ -1,0 +1,59 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+public class InventorySlot : MonoBehaviour, IPointerClickHandler
+{
+
+    public GameObject itemSlot;
+    public GameObject itemIconSlot;
+    public Item item;
+    public int quantity;
+    private PlayerInventory playerInventory;
+
+    public void Initalize(GameObject slot)
+    {
+        this.itemSlot = slot;
+        this.itemIconSlot = slot.transform.GetChild(0).gameObject;
+    }
+
+    public void UpdateSlot(Item newItem, int newQuantity, PlayerInventory inventory)
+    {
+        this.item = newItem;
+        this.quantity = newQuantity;
+        this.playerInventory = inventory;
+
+        if (item != null)
+        {
+            Image img = itemIconSlot.GetComponent<Image>();
+            img.sprite = item.icon;
+
+            img.preserveAspect = true;
+            
+            itemIconSlot.SetActive(true);
+        } 
+        else
+        {
+            itemIconSlot.SetActive(false);
+        }
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (item == null)
+        {
+            return;
+        }
+
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+
+            Vector3 mousePosition = Input.mousePosition;
+            mousePosition.y -= ItemMenu.instance.GetComponent<RectTransform>().rect.height / 2;
+
+            ItemMenu.instance.Open(item, mousePosition, playerInventory, true);
+        }
+    }
+}

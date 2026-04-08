@@ -42,7 +42,6 @@ public class CheatMenu : MonoBehaviour
         foreach (Item item in itemDatabase.allItems)
         {
             playerInventory.AddItem(item);
-            Debug.Log(playerInventory.GetItems());
         }
     }
 }
