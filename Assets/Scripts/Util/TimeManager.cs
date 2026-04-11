@@ -22,4 +22,15 @@ public class TimeManager : MonoBehaviour
         Time.timeScale = 1f;
         isTimeStopped = false;
     }
+
+    public static void PauseTime()
+    {
+        Time.timeScale = 0f;
+        isTimeStopped = true;
+    }
+    public static void StartTime()
+    {
+        Time.timeScale = 1f;
+        isTimeStopped = false;
+    }
 }

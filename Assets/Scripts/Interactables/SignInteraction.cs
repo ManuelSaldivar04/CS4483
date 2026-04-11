@@ -22,14 +22,14 @@ public class SignInteraction : MonoBehaviour, IInteractable
 
     void DisplayInformation()
     {
-        //TODO: pause game using the PauseGame script
+        TimeManager.PauseTime();
         informationPanel.SetActive(true);
         
     }
 
     public void EndDisplay()
     {
-        //TODO: unpause game using PauseGame script
+        TimeManager.StartTime();
         informationPanel.SetActive(false);
     }
   

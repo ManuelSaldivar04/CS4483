@@ -13,7 +13,8 @@ public class PlayerController : MonoBehaviour
     private bool isMoving;
     private Vector2 input;
     private Animator animator;
-
+    private bool playingFootsteps = false;
+    public float footStepSpeed = 0.5f;
     // Grid position (in tile coordinates)
     private Vector2Int gridPos;
 
@@ -29,6 +30,14 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (TimeManager.isTimeStopped)
+        {
+            //stop the player movement animation and footsteps while game is paused
+            animator.SetBool("isMoving", false);
+            StopFootSteps();
+            return;
+        }
+
         if (!isMoving)
         {
             // Remove diagonal movement
@@ -50,7 +59,17 @@ public class PlayerController : MonoBehaviour
         }
 
         animator.SetBool("isMoving", isMoving);
+
+        if(isMoving && !playingFootsteps)
+        {
+            StartFootSteps();
+        }
+        else if (!isMoving && playingFootsteps)
+        {
+            StopFootSteps();
+        }
     }
+
 
     IEnumerator Move(Vector3 targetWorldPos, Vector2Int targetGridPos)
     {
@@ -78,5 +97,21 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         input = context.ReadValue<Vector2>();
+    }
+    
+    void StartFootSteps()
+    {
+        playingFootsteps = true;
+        InvokeRepeating(nameof(PlayFootStep), 0f, footStepSpeed);
+    }
+
+    void StopFootSteps()
+    {
+        playingFootsteps = false;
+        CancelInvoke(nameof(PlayFootStep));
+    }
+    void PlayFootStep()
+    {
+        SoundEffectManager.Play("Footstep",true);
     }
 }

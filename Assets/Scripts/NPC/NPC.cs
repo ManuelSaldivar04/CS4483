@@ -22,7 +22,7 @@ public class NPC : MonoBehaviour, IInteractable
     public void Interact()
     {
         //if no dialogue data of the game is paused and no dialogue is active
-        if (dialogueData == null) //this should be edted to check whether game is paused AND !isDialogueActive
+        if (dialogueData == null || (TimeManager.isTimeStopped && !isDialogueActive)) 
             return;
 
         if (isDialogueActive)
@@ -45,6 +45,7 @@ public class NPC : MonoBehaviour, IInteractable
 
         dialoguePanel.SetActive(true);
         //pause game
+        TimeManager.PauseTime();
 
         StartCoroutine(TypeLine());
 
@@ -79,14 +80,15 @@ public class NPC : MonoBehaviour, IInteractable
         foreach(char letter in dialogueData.dialogueLines[dialogueIndex])
         {
             dialogueText.text += letter;
-            yield return new WaitForSeconds(dialogueData.typingSpeed);
+            SoundEffectManager.PlayVoice(dialogueData.voiceSound, dialogueData.voicePitch);
+            yield return new WaitForSecondsRealtime(dialogueData.typingSpeed);
         }
 
         isTyping = false;
 
         if (dialogueData.autoProgressLines.Length > dialogueIndex && dialogueData.autoProgressLines[dialogueIndex])
         {
-            yield return new WaitForSeconds(dialogueData.autoProgressDelay);
+            yield return new WaitForSecondsRealtime(dialogueData.autoProgressDelay);
             NextLine();
 
         }
@@ -99,5 +101,6 @@ public class NPC : MonoBehaviour, IInteractable
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
         //unpause the game ADD THIS LATER
+        TimeManager.StartTime();
     }
 }
