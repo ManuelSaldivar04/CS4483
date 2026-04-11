@@ -86,6 +86,7 @@ public class BJ : MonoBehaviour
 
     public void playerHit()
     {
+        UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
         card = getCard();
         playerCardsImage[numPlayerCards].sprite = cards[card];
         playerCardsObject[numPlayerCards].SetActive(true);
