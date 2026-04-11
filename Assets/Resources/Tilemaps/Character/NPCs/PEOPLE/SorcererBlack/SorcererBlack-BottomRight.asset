@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
   m_Name: SorcererBlack-BottomRight
   m_EditorClassIdentifier: 
-  npcName: '?'
+  npcName: Sorceress
   npcPortrait: {fileID: 21300000, guid: ff1747c70f4ebb6429f1690b3aea99d7, type: 3}
   dialogueLines:
   - The Light, YES the Light....
@@ -23,6 +23,6 @@ MonoBehaviour:
   - The Consequences would be DRASTIC
   autoProgressLines: 000000010001
   typingSpeed: 0.05
-  voiceSound: {fileID: 0}
-  voicePitch: 1
+  voiceSound: {fileID: 8300000, guid: e5dbc139c84e31f4f976a0ac7be3542b, type: 3}
+  voicePitch: 0.9
   autoProgressDelay: 1.5
