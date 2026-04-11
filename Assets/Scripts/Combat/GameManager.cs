@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+    public UIManager ui;
 
     public PlayerData player;
     public EnemyData enemy;
@@ -12,6 +16,12 @@ public class GameManager : MonoBehaviour
     public PlayerStatBars playerBars;
     public EnemyStatBars enemyBars;
     public EnemyIntent intent;
+
+    public TextMeshProUGUI enemyBattleText;
+    public GameObject enemyBattleTextObject;
+
+    public TextMeshProUGUI enemyShieldText;   
+    public TextMeshProUGUI playerShieldText;
 
     private int game;
     private int action;
@@ -41,6 +51,8 @@ public class GameManager : MonoBehaviour
         enemyBars.setHealth(enemy.currentHP, enemy.maxHP);
         enemyBars.setCombat(enemy.currentCombatChips, enemy.maxCombatChips);
         intent.declareIntent(enemy.currentCombatChips);
+        updateEnemyShield();
+        updatePlayerShield();
     }
 
     public void updatePlayerBars()
@@ -60,21 +72,44 @@ public class GameManager : MonoBehaviour
         intent.declareIntent(enemy.currentCombatChips);
     }
 
+    public void updatePlayerShield()
+    {
+       playerShieldText.text = player.shield.ToString();
+    }
+
+    public void updateEnemyShield()
+    {
+        enemyShieldText.text = enemy.shield.ToString();
+    }
+
     public void winHand(float mult)
     {
-        enemy.TakeDamage((int)(wager * mult));
-        updateEnemyBars();
+        if (action == 0)
+        {
+            enemy.TakeDamage((int)(wager * mult));
+            updateEnemyBars();
+            updateEnemyShield();
 
-        if (enemy.isDead())
-            defeat();
+            if (enemy.isDead())
+            {
+                victory();
+                return;
+            }
+        }
+
+        else
+        {
+            player.GainShield((int)(wager * mult));
+            updatePlayerShield();
+        }
 
         switch (game)
         {
             case 0:
-                enemyTurnBJ();
+                StartCoroutine(enemyTurnBJ());
                 break;
         }
-        
+
     }
 
     public void loseHand()
@@ -85,13 +120,18 @@ public class GameManager : MonoBehaviour
         switch (game)
         {
             case 0:
-                enemyTurnBJ();
+                StartCoroutine(enemyTurnBJ());
                 break;
         }
     }
 
-    public void enemyTurnBJ()
+    IEnumerator enemyTurnBJ()
     {
+        yield return new WaitForSeconds(1.5f);
+        enemyBattleText.text = "Enemy Playing Blackjack...";
+        enemyBattleTextObject.SetActive(true);
+        yield return new WaitForSeconds(2f);
+
         int result;
         float x = UnityEngine.Random.Range(1, 10001);
 
@@ -107,56 +147,93 @@ public class GameManager : MonoBehaviour
         switch (result)
         {
             case 1:
+                enemyBattleText.text = "Enemy Blackjack";
+
                 if (enemyAction == 0)
                 {
                     player.TakeDamage((int)(enemyWager * 1.5));
                     updatePlayerBars();
+                    updatePlayerShield();
+                    yield return new WaitForSeconds(2.5f);
+                    enemyBattleTextObject.SetActive(false);
                     if (player.isDead())
+                    {
                         defeat();
+                        break;
+                    }
+
+                    ui.newTurn();
                     break;
                 }
 
                 else
                 {
                     enemy.GainShield((int)(enemyWager * 1.5));
+                    updateEnemyShield();
+                    yield return new WaitForSeconds(2.5f);
+                    enemyBattleTextObject.SetActive(false);
+                    ui.newTurn();
                     break;
                 }
 
             case 2:
+                enemyBattleText.text = "Enemy Win";
+
                 if (enemyAction == 0)
                 {
                     player.TakeDamage(enemyWager);
                     updatePlayerBars();
+                    updatePlayerShield();
+                    yield return new WaitForSeconds(2.5f);
+                    enemyBattleTextObject.SetActive(false);
                     if (player.isDead())
+                    {
                         defeat();
+                        break;
+                    }
+
+                    ui.newTurn();
                     break;
                 }
 
                 else
                 {
                     enemy.GainShield(enemyWager);
-                    updateEnemyBars();
+                    updateEnemyShield();
+                    yield return new WaitForSeconds(2.5f);
+                    enemyBattleTextObject.SetActive(false);
+                    ui.newTurn();
                     break;
                 };
 
             case 3:
+                enemyBattleText.text = "Enemy Lose";
                 enemy.LoseCombatChips(enemyWager);
+                updateEnemyBars();
+                yield return new WaitForSeconds(2.5f);
+                enemyBattleTextObject.SetActive(false);
+                ui.newTurn();
                 break;
         }
 
-        intent.declareIntent(enemy.currentCombatChips);
-        player.GainCombatChips(10);
-        enemy.GainCombatChips(5);
+        if (player.currentHP > 0)
+        {
+            player.GainCombatChips(10);
+            enemy.GainCombatChips(5);
+            intent.declareIntent(enemy.currentCombatChips);
+            updateEnemyBars();
+            updatePlayerBars();
+        }
     }
 
     public void victory()
     {
-
+        Debug.Log("Victory");
     }
 
     public void defeat()
     {
-
+        Debug.Log("Defeat");
     }
 
     public void setGame(int g)

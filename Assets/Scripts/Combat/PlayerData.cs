@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerData
 {
+
     public int[] items;
     public int maxHP = 100;
     public int currentHP = 100;
@@ -18,6 +19,7 @@ public class PlayerData
 
     public int bonusMaxHP = 0;
     public int bonusMaxChips = 0;
+
 
     public void InitializeRun()
     {
@@ -34,6 +36,7 @@ public class PlayerData
     {
         // reset chips at the start of each fight
         currentCombatChips = maxCombatChips;
+        shield = 0;
     }
 
     public void TakeDamage(int amount)

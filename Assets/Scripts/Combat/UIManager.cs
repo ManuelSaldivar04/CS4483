@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
+using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     public TMP_InputField wagerInputField;
+
+    public GameObject errorObject;
 
     public GameObject gamePrompt;
     public GameObject actionPrompt;
@@ -20,6 +24,13 @@ public class UIManager : MonoBehaviour
     public GameObject slots;
     public GameObject dice;
 
+    public GameObject iconObject;
+    public Image icon;
+    public TextMeshProUGUI wagerText;
+    public GameObject wagerObject;
+    public Sprite attackSprite;
+    public Sprite blockSprite;
+
     public void Start()
     {
         gamePrompt.SetActive(true);
@@ -28,6 +39,7 @@ public class UIManager : MonoBehaviour
         actionButtons.SetActive(false);
         wagerPrompt.SetActive(false);
         wagerButtons.SetActive(false);
+        errorObject.SetActive(false);
         bj.SetActive(false);
         //roulette.SetActive(false);
         //slots.SetActive(false);
@@ -54,18 +66,34 @@ public class UIManager : MonoBehaviour
 
     public void getWager()
     {
-        if(int.TryParse(wagerInputField.text, out int x))
+        if (int.TryParse(wagerInputField.text, out int x))
         {
-            GameManager.Instance.setWager(x);
+            checkWager(x);
+        }
+          
+    }
+
+    public void checkWager(int wager)
+    {
+        if (wager > GameManager.Instance.player.currentCombatChips || wager < 0)
+        {
+            errorObject.SetActive(true);
+        }
+
+        else
+        {
+            errorObject.SetActive(false);
+            GameManager.Instance.setWager(wager);
             wagerPrompt.SetActive(false);
             wagerButtons.SetActive(false);
+
+            setPLayerIntent();
 
             switch (GameManager.Instance.getGame())
             {
                 case 0:
                     bj.SetActive(true);
-                    BJ z = new BJ();
-                    z.beginBJ();
+                    bj.GetComponent<BJ>().beginBJ();
                     break;
 
                 case 1:
@@ -81,7 +109,44 @@ public class UIManager : MonoBehaviour
                     break;
             }
         }
-          
+    }
+
+    public void hideGame()
+    {
+        bj.SetActive(false);
+        //roulette.SetActive(false);
+        //slots.SetActive(false);
+        //dice.SetActive(false);
+    }
+
+    public void newTurn()
+    {
+        gamePrompt.SetActive(true);
+        gameButtons.SetActive(true);
+        actionPrompt.SetActive(false);
+        actionButtons.SetActive(false);
+        wagerPrompt.SetActive(false);
+        wagerButtons.SetActive(false);
+        wagerObject.SetActive(false);
+        iconObject.SetActive(false);
+    }
+
+    public void setPLayerIntent()
+    {
+        if (GameManager.Instance.getAction() == 0)
+        {
+            icon.sprite = attackSprite;
+        }
+
+        else
+        {
+            icon.sprite = blockSprite;
+        }
+
+        wagerText.text = GameManager.Instance.getWager().ToString();
+        wagerObject.SetActive(true);
+        iconObject.SetActive(true);
+
     }
 
 }

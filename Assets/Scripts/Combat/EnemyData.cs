@@ -21,6 +21,10 @@ public class EnemyData : ScriptableObject
     {
         // reset chips at the start of each fight
         currentCombatChips = maxCombatChips;
+
+        currentHP = maxHP;
+
+        shield = 0;
     }
 
     public void TakeDamage(int amount)

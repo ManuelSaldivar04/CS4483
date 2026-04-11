@@ -14,7 +14,6 @@ public class PlayerStatBars : MonoBehaviour
     public void setHealth(int curr, int max)
     {
         float ratio = ((float)curr / (float)max) * 100;
-        Debug.Log(ratio);
         hSlider.value = ratio;
         hpText.text = curr + "/" + max;
     }
