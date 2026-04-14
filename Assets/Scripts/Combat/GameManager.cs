@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public UIManager ui;
 
+    public SlashAnimation slashAnim;
+    public MirrorSlashAnimation mirrorSlashAnim;
+
     public PlayerData player;
     public EnemyData enemy;
 
@@ -86,15 +89,18 @@ public class GameManager : MonoBehaviour
     {
         if (action == 0)
         {
-            enemy.TakeDamage((int)(wager * mult));
-            updateEnemyBars();
-            updateEnemyShield();
-
-            if (enemy.isDead())
+            slashAnim.PlaySlash(() =>
             {
-                victory();
-                return;
-            }
+                enemy.TakeDamage((int)(wager * mult));
+                updateEnemyBars();
+                updateEnemyShield();
+
+                if (enemy.isDead())
+                {
+                    victory();
+                    return;
+                }
+            });
         }
 
         else
@@ -103,7 +109,7 @@ public class GameManager : MonoBehaviour
             updatePlayerShield();
         }
 
-        switch (game)
+        switch (0)
         {
             case 0:
                 StartCoroutine(enemyTurnBJ());
@@ -117,7 +123,7 @@ public class GameManager : MonoBehaviour
         player.LoseCombatChips(wager);
         updatePlayerBars();
 
-        switch (game)
+        switch (0)
         {
             case 0:
                 StartCoroutine(enemyTurnBJ());
@@ -151,9 +157,13 @@ public class GameManager : MonoBehaviour
 
                 if (enemyAction == 0)
                 {
-                    player.TakeDamage((int)(enemyWager * 1.5));
-                    updatePlayerBars();
-                    updatePlayerShield();
+                    mirrorSlashAnim.PlaySlash( () =>
+                    {
+                        player.TakeDamage((int)(enemyWager * 1.5));
+                        updatePlayerBars();
+                        updatePlayerShield();
+                        
+                    });
                     yield return new WaitForSeconds(2.5f);
                     enemyBattleTextObject.SetActive(false);
                     if (player.isDead())
@@ -181,9 +191,13 @@ public class GameManager : MonoBehaviour
 
                 if (enemyAction == 0)
                 {
-                    player.TakeDamage(enemyWager);
-                    updatePlayerBars();
-                    updatePlayerShield();
+                    mirrorSlashAnim.PlaySlash( () =>
+                    {
+                        player.TakeDamage((int)(enemyWager));
+                        updatePlayerBars();
+                        updatePlayerShield();
+
+                    });
                     yield return new WaitForSeconds(2.5f);
                     enemyBattleTextObject.SetActive(false);
                     if (player.isDead())

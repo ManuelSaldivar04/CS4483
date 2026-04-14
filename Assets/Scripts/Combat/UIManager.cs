@@ -12,6 +12,9 @@ public class UIManager : MonoBehaviour
 
     public GameObject errorObject;
 
+    public GameObject enemySlash;
+    public GameObject playerSlash;
+
     public GameObject gamePrompt;
     public GameObject actionPrompt;
     public GameObject wagerPrompt;
@@ -21,7 +24,7 @@ public class UIManager : MonoBehaviour
 
     public GameObject bj;
     public GameObject roulette;
-    public GameObject slots;
+    public GameObject cursedCard;
     public GameObject dice;
 
     public GameObject iconObject;
@@ -42,8 +45,10 @@ public class UIManager : MonoBehaviour
         errorObject.SetActive(false);
         bj.SetActive(false);
         //roulette.SetActive(false);
-        //slots.SetActive(false);
-        //dice.SetActive(false);
+        cursedCard.SetActive(false);
+        dice.SetActive(false);
+        enemySlash.SetActive(false);
+        playerSlash.SetActive(false);
     }
 
     public void getGame(int x)
@@ -101,22 +106,32 @@ public class UIManager : MonoBehaviour
                     break;
 
                 case 2:
-                    slots.SetActive(true);
+                    cursedCard.SetActive(true);
+                    cursedCard.GetComponent<CursedCard>().beginCursedCard();
                     break;
 
                 case 3:
                     dice.SetActive(true);
+                    dice.GetComponent<Dice>().beginDice();
                     break;
             }
         }
+    }
+
+    public void backWager()
+    {
+        wagerPrompt.SetActive(false);
+        wagerButtons.SetActive(false);
+        actionPrompt.SetActive(true);
+        actionButtons.SetActive(true);
     }
 
     public void hideGame()
     {
         bj.SetActive(false);
         //roulette.SetActive(false);
-        //slots.SetActive(false);
-        //dice.SetActive(false);
+        cursedCard.SetActive(false);
+        dice.SetActive(false);
     }
 
     public void newTurn()
