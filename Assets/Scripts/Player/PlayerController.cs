@@ -23,9 +23,9 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         // Initialize grid position from the starting world position
         // World position should be (gridPos.x + 0.5f, gridPos.y + 0.5f)
-        gridPos.x = Mathf.RoundToInt(transform.position.x - 0.5f);
-        gridPos.y = Mathf.RoundToInt(transform.position.y - 0.5f);
-        transform.position = new Vector3(gridPos.x + 0.5f, gridPos.y + 0.5f, transform.position.z);
+        //gridPos.x = Mathf.RoundToInt(transform.position.x - 0.5f);
+        //gridPos.y = Mathf.RoundToInt(transform.position.y - 0.5f);
+        //transform.position = new Vector3(gridPos.x + 0.5f, gridPos.y + 0.5f, transform.position.z);
     }
 
     private void Update()
@@ -97,6 +97,13 @@ public class PlayerController : MonoBehaviour
     public void OnMove(InputAction.CallbackContext context)
     {
         input = context.ReadValue<Vector2>();
+    }
+
+    public void SetPosition(Vector2 newWorldPos)
+    {
+        gridPos.x = Mathf.RoundToInt(newWorldPos.x - 0.5f);
+        gridPos.y = Mathf.RoundToInt(newWorldPos.y - 0.5f);
+        transform.position = new Vector3(gridPos.x + 0.5f, gridPos.y + 0.5f, transform.position.z);
     }
     
     void StartFootSteps()

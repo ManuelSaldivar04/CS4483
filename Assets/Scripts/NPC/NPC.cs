@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class NPC : MonoBehaviour, IInteractable
@@ -12,11 +13,11 @@ public class NPC : MonoBehaviour, IInteractable
     public Image portraitImage;
 
     private int dialogueIndex;
-    private bool isTyping, isDialogueActive;
+    private bool isTyping, isDialogueActive, isLoadingCombat;
 
     public bool CanInteract()
     {
-        return !isDialogueActive;
+        return !isDialogueActive && !isLoadingCombat;
     }
 
     public void Interact()
@@ -101,6 +102,25 @@ public class NPC : MonoBehaviour, IInteractable
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
         //unpause the game ADD THIS LATER
-        TimeManager.StartTime();
+        if (!dialogueData.CombatEnemy)
+        {
+            TimeManager.StartTime(); //only unpasue for non-combat NPC's
+
+        }
+
+        if (dialogueData.CombatEnemy && !isLoadingCombat)
+        {
+            StartCoroutine(LoadCombatAfterDelay());
+        }
+    }
+
+    private IEnumerator LoadCombatAfterDelay()
+    {
+        isLoadingCombat = true;
+
+        //wait for configured delay (so player cna read the last line)
+        yield return new WaitForSecondsRealtime(dialogueData.combatTransitionDelay);
+
+        SceneManager.LoadScene(dialogueData.combatSceneName);
     }
 }

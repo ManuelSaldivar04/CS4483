@@ -34,6 +34,16 @@ public class SoundEffectLibrary : MonoBehaviour
         }
         return null;
     }
+
+    public string[] GetAllSoundGroupNames()
+    {
+        string[] names = new string[soundEffctGroups.Length];
+        for (int i = 0; i < soundEffctGroups.Length; i++)
+        {
+            names[i] = soundEffctGroups[i].name;
+        }
+        return names;
+    }
 }
 
 [System.Serializable]

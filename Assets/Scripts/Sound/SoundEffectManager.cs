@@ -9,7 +9,8 @@ public class SoundEffectManager : MonoBehaviour
 
     private static AudioSource audioSource;
     private static AudioSource randomPitchAudioSource;
-    private static AudioSource voiceAudioSource;
+    private static AudioSource voiceAudioSource; //NPC audio sound
+    private static AudioSource musicSource; //background music
     private static SoundEffectLibrary soundEffectLibrary;
     [SerializeField] private Slider sfxSlider;
 
@@ -22,6 +23,9 @@ public class SoundEffectManager : MonoBehaviour
             audioSource = audioSources[0];
             randomPitchAudioSource = audioSources[1];
             voiceAudioSource = audioSources[2];
+            voiceAudioSource.volume = 0.5f;
+            musicSource = audioSources[3];
+            musicSource.volume = 0.2f; 
             soundEffectLibrary = GetComponent<SoundEffectLibrary>();
             DontDestroyOnLoad(gameObject);
         }
@@ -29,6 +33,7 @@ public class SoundEffectManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
 
     private void Start()
@@ -63,9 +68,29 @@ public class SoundEffectManager : MonoBehaviour
         audioSource.volume = volume;
         randomPitchAudioSource.volume = volume;
         audioSource.volume = volume;
+        musicSource.volume = volume;
     }
     public void OnValueChanged()
     {
         SetVolume(sfxSlider.value);
+    }
+
+    public static void PlayLooping(string soundName)
+    {
+        AudioClip clip = soundEffectLibrary.GetRandomClip(soundName);
+        if(clip != null)
+        {
+            musicSource.loop = true;
+            musicSource.clip = clip;
+            musicSource.Play();
+        }
+    }
+
+    public static void StopLoopingMusic()
+    {
+        if(musicSource != null && musicSource.isPlaying)
+        {
+            musicSource.Stop();
+        }
     }
 }

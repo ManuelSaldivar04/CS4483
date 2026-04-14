@@ -38,8 +38,17 @@ public class LevelLoader : MonoBehaviour
             if (spawnPoint != null)
             {
                 //position player at new spawnpoint
-                player.transform.position = spawnPoint.transform.position;
+                //player.transform.position = spawnPoint.transform.position;
                 Debug.Log($"Player moved to spawn point {nextSpawnPointName}");
+                PlayerController controller = player.GetComponent<PlayerController>();
+                if(controller != null)
+                {
+                    controller.SetPosition(spawnPoint.transform.position);
+                }
+                else
+                {
+                    player.transform.position = spawnPoint.transform.position;
+                }
             }
             else
             {
