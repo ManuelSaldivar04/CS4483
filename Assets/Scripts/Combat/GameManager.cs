@@ -13,8 +13,12 @@ public class GameManager : MonoBehaviour
     public SlashAnimation slashAnim;
     public MirrorSlashAnimation mirrorSlashAnim;
 
+    public EnemyData[] enemies; 
+
     public PlayerData player;
     public EnemyData enemy;
+
+    public GameObject enemySprite;
 
     public PlayerStatBars playerBars;
     public EnemyStatBars enemyBars;
@@ -56,6 +60,12 @@ public class GameManager : MonoBehaviour
         intent.declareIntent(enemy.currentCombatChips);
         updateEnemyShield();
         updatePlayerShield();
+    }
+
+    public void getEnemy(int x)
+    {
+        enemy = enemies[x];
+        enemySprite.GetComponent<SpriteRenderer>().sprite = enemies[x].sprite;
     }
 
     public void updatePlayerBars()
