@@ -12,6 +12,11 @@ public class NPCDialogue : ScriptableObject
     public string[] dialogueLines;
     public bool[] autoProgressLines;
 
+    [Header("Combat Settings")]
+    public bool CombatEnemy;
+    public float combatTransitionDelay = 2f; //seconds to wait after dialogue ends
+    [SceneName] public string combatSceneName = "Combat";
+
     [Header("NPC Speaking Attributes")]
     public float typingSpeed = 0.05f;
     public AudioClip voiceSound;
