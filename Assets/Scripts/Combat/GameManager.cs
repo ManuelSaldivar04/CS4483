@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public EnemyData enemy;
 
     public GameObject enemySprite;
+    public GameObject playerSprite;
 
     public PlayerStatBars playerBars;
     public EnemyStatBars enemyBars;
@@ -29,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI enemyShieldText;   
     public TextMeshProUGUI playerShieldText;
+
+    public TextMeshProUGUI resultText;
 
     private int game;
     private int action;
@@ -99,8 +102,10 @@ public class GameManager : MonoBehaviour
     {
         if (action == 0)
         {
+            resultText.text = "Player Attacks For " + (int)(wager * mult);
             slashAnim.PlaySlash(() =>
             {
+                StartCoroutine(ShakeSprite(enemySprite));
                 enemy.TakeDamage((int)(wager * mult));
                 updateEnemyBars();
                 updateEnemyShield();
@@ -115,6 +120,8 @@ public class GameManager : MonoBehaviour
 
         else
         {
+            resultText.text = "Player Blocks For " + (int)(wager * mult);
+            ui.StartCoroutine(ui.ShieldBlockEffect(0));
             player.GainShield((int)(wager * mult));
             updatePlayerShield();
         }
@@ -130,6 +137,8 @@ public class GameManager : MonoBehaviour
 
     public void loseHand()
     {
+        resultText.text = "Player Loses " + wager + " Combat Chips";
+        resultText.gameObject.SetActive(true);
         player.LoseCombatChips(wager);
         updatePlayerBars();
 
@@ -143,7 +152,9 @@ public class GameManager : MonoBehaviour
 
     IEnumerator enemyTurnBJ()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
+        resultText.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
         enemyBattleText.text = "Enemy Playing Blackjack...";
         enemyBattleTextObject.SetActive(true);
         yield return new WaitForSeconds(2f);
@@ -169,6 +180,7 @@ public class GameManager : MonoBehaviour
                 {
                     mirrorSlashAnim.PlaySlash( () =>
                     {
+                        StartCoroutine(ShakeSprite(playerSprite));
                         player.TakeDamage((int)(enemyWager * 1.5));
                         updatePlayerBars();
                         updatePlayerShield();
@@ -188,6 +200,7 @@ public class GameManager : MonoBehaviour
 
                 else
                 {
+                    ui.StartCoroutine(ui.ShieldBlockEffect(1));
                     enemy.GainShield((int)(enemyWager * 1.5));
                     updateEnemyShield();
                     yield return new WaitForSeconds(2.5f);
@@ -203,6 +216,7 @@ public class GameManager : MonoBehaviour
                 {
                     mirrorSlashAnim.PlaySlash( () =>
                     {
+                        StartCoroutine(ShakeSprite(playerSprite));
                         player.TakeDamage((int)(enemyWager));
                         updatePlayerBars();
                         updatePlayerShield();
@@ -222,6 +236,7 @@ public class GameManager : MonoBehaviour
 
                 else
                 {
+                    ui.StartCoroutine(ui.ShieldBlockEffect(1));
                     enemy.GainShield(enemyWager);
                     updateEnemyShield();
                     yield return new WaitForSeconds(2.5f);
@@ -309,5 +324,30 @@ public class GameManager : MonoBehaviour
     {
         return enemyAction;
     }
-    
+
+    IEnumerator ShakeSprite(GameObject sprite, float duration = 0.4f, float magnitude = 0.3f)
+    {
+        Vector3 originalPos = sprite.transform.localPosition;
+        float elapsed = 0f;
+
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+
+            sprite.transform.localPosition = new Vector3(
+                originalPos.x + x,
+                originalPos.y + y,
+                originalPos.z
+            );
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        sprite.transform.localPosition = originalPos; // snap back
+        yield return new WaitForSeconds(1f);
+        resultText.gameObject.SetActive(false);
+    }
+
 }

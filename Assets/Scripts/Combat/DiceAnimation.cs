@@ -18,8 +18,7 @@ public class DiceAnimation : MonoBehaviour
         animator.enabled = true;
         animator.Play("DiceRoll");
 
-        // spin for 1 second
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1.5f);
 
         // stop animation
         animator.enabled = false;

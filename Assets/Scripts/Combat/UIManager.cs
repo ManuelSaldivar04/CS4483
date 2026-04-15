@@ -27,6 +27,11 @@ public class UIManager : MonoBehaviour
     public GameObject cursedCard;
     public GameObject dice;
 
+    public GameObject resultText;
+
+    public Image playerShield;
+    public Image enemyShield;
+
     public GameObject iconObject;
     public Image icon;
     public TextMeshProUGUI wagerText;
@@ -49,6 +54,9 @@ public class UIManager : MonoBehaviour
         dice.SetActive(false);
         enemySlash.SetActive(false);
         playerSlash.SetActive(false);
+        playerShield.gameObject.SetActive(false);
+        enemyShield.gameObject.SetActive(false);
+        resultText.SetActive(false);
     }
 
     public void getGame(int x)
@@ -162,6 +170,50 @@ public class UIManager : MonoBehaviour
         wagerObject.SetActive(true);
         iconObject.SetActive(true);
 
+    }
+
+    public IEnumerator ShieldBlockEffect(int x, float holdTime = 0.8f, float fadeTime = 0.8f, float fadeInTime = 0.4f)
+    {
+        resultText.SetActive(true);
+        Image shield = null;
+        switch (x)
+        {
+            case 0:
+                shield = playerShield;
+                break;
+
+            case 1:
+                shield = enemyShield;
+                break;
+
+        }
+        Color c = shield.color;
+        c.a = 1f;
+        shield.color = c;
+        shield.gameObject.SetActive(true);
+        float elapsed = 0f;
+
+        while (elapsed < fadeInTime)
+        {
+            elapsed += Time.deltaTime;
+            c.a = Mathf.Lerp(0f, 1f, elapsed / fadeInTime);
+            shield.color = c;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(holdTime);
+
+        elapsed = 0f;
+        while (elapsed < fadeTime)
+        {
+            elapsed += Time.deltaTime;
+            c.a = Mathf.Lerp(1f, 0f, elapsed / fadeTime);
+            shield.color = c;
+            yield return null;
+        }
+
+        shield.gameObject.SetActive(false);
+        resultText.SetActive(false);
     }
 
 }

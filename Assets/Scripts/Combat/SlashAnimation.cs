@@ -15,6 +15,7 @@ public class SlashAnimation : MonoBehaviour
 
     IEnumerator Play(System.Action onComplete)
     {
+        GameManager.Instance.resultText.gameObject.SetActive(true);
         animator.enabled = true;
         animator.Play("Slash");
 
@@ -22,6 +23,7 @@ public class SlashAnimation : MonoBehaviour
 
         animator.enabled = false;
         gameObject.SetActive(false);
+
 
         onComplete?.Invoke();
     }
