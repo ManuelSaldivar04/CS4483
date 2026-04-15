@@ -103,9 +103,14 @@ public class GameManager : MonoBehaviour
         if (action == 0)
         {
             resultText.text = "Player Attacks For " + (int)(wager * mult);
-            SoundEffectManager.Play("combathit");
+            
             slashAnim.PlaySlash(() =>
             {
+                if (enemy.shield >= wager * mult)
+                    SoundEffectManager.Play("CombatHitShield");
+                else
+                    SoundEffectManager.Play("CombatHit");
+
                 StartCoroutine(ShakeSprite(enemySprite));
                 enemy.TakeDamage((int)(wager * mult));
                 updateEnemyBars();
@@ -121,6 +126,7 @@ public class GameManager : MonoBehaviour
 
         else
         {
+            SoundEffectManager.Play("CombatGainShield");
             resultText.text = "Player Blocks For " + (int)(wager * mult);
             ui.StartCoroutine(ui.ShieldBlockEffect(0));
             player.GainShield((int)(wager * mult));

@@ -172,7 +172,7 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public IEnumerator ShieldBlockEffect(int x, float holdTime = 0.8f, float fadeTime = 0.8f, float fadeInTime = 0.4f)
+    public IEnumerator ShieldBlockEffect(int x, float holdTime = 0.3f, float fadeTime = 0.5f, float fadeInTime = 0.3f)
     {
         resultText.SetActive(true);
         Image shield = null;
