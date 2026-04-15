@@ -15,6 +15,7 @@ public class ItemMenu : MonoBehaviour
     private bool isInventoryMenu;
     void Start()
     {
+        gameObject.SetActive(false);
         ItemImage.SetActive(false);
     }
 
