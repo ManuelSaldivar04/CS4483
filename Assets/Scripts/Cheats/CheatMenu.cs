@@ -8,7 +8,7 @@ public class CheatMenu : MonoBehaviour
     public GameObject cheatMenu;
     public ItemDatabase itemDatabase;
     public PlayerInventory playerInventory;
-    public bool isCheatMenuOpen;
+    private bool isCheatMenuOpen;
     // Start is called before the first frame update
     void Start()
     {
