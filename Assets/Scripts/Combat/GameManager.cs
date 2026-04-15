@@ -103,6 +103,7 @@ public class GameManager : MonoBehaviour
         if (action == 0)
         {
             resultText.text = "Player Attacks For " + (int)(wager * mult);
+            SoundEffectManager.Play("combathit");
             slashAnim.PlaySlash(() =>
             {
                 StartCoroutine(ShakeSprite(enemySprite));
