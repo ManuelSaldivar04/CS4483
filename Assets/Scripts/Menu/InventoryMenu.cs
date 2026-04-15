@@ -16,13 +16,13 @@ public class InventoryMenu : MonoBehaviour
 
     public static bool isInventoryOpen;
 
+    private int currentPage = 0;
     private int NUM_INVENTORY_SLOTS = 12;
     private int NUM_EQUIPMENT_SLOTS = 4;
 
     void Start()
     {
         isInventoryOpen = false;
-        inventoryMenu.SetActive(false);
 
         // Initialize inventory & equipment slots
         SetupInventorySlots();
@@ -101,9 +101,9 @@ public class InventoryMenu : MonoBehaviour
 
         for (int i = 0; i < NUM_INVENTORY_SLOTS; i++)
         {
-            if (i < items.Count)
+            if (i + (currentPage * NUM_INVENTORY_SLOTS) < items.Count)
             {
-                inventorySlots[i].UpdateSlot(items[i], 1, playerInventory);
+                inventorySlots[i].UpdateSlot(items[i + currentPage * NUM_INVENTORY_SLOTS], 1, playerInventory);
             }
             else
             {
@@ -125,6 +125,24 @@ public class InventoryMenu : MonoBehaviour
             {
                 equipmentSlots[i].UpdateSlot(null, playerInventory);
             }
+        }
+    }
+
+    public void NextPage()
+    {
+        if (currentPage < playerInventory.GetItems().Count / NUM_INVENTORY_SLOTS)
+        {
+            currentPage++;
+            UpdateInventoryUI();
+        }
+    }
+
+    public void PreviousPage()
+    {
+        if (currentPage > 0)
+        {
+            currentPage--;
+            UpdateInventoryUI();
         }
     }
 
