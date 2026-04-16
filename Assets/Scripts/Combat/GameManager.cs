@@ -4,6 +4,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static EnemyData;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,11 @@ public class GameManager : MonoBehaviour
 
     public SlashAnimation slashAnim;
     public MirrorSlashAnimation mirrorSlashAnim;
+
+    public DiceAnimation anim;
+    public Image enemyDice;
+    public TextMeshProUGUI enemyDiceText;
+    public Sprite[] enemyDiceSprites;
 
     public EnemyData[] enemies; 
 
@@ -24,9 +30,6 @@ public class GameManager : MonoBehaviour
     public PlayerStatBars playerBars;
     public EnemyStatBars enemyBars;
     public EnemyIntent intent;
-
-    public TextMeshProUGUI enemyBattleText;
-    public GameObject enemyBattleTextObject;
 
     public TextMeshProUGUI enemyShieldText;   
     public TextMeshProUGUI playerShieldText;
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        getEnemy(0);
         player.InitializeBattle();
         enemy.InitializeBattle();
         playerBars.setHealth(player.currentHP, player.maxHP);
@@ -63,6 +67,8 @@ public class GameManager : MonoBehaviour
         intent.declareIntent(enemy.currentCombatChips);
         updateEnemyShield();
         updatePlayerShield();
+        enemyDice.gameObject.SetActive(false);
+        enemyDiceText.gameObject.SetActive(false);
     }
 
     public void getEnemy(int x)
@@ -103,9 +109,14 @@ public class GameManager : MonoBehaviour
         if (action == 0)
         {
             resultText.text = "Player Attacks For " + (int)(wager * mult);
-            SoundEffectManager.Play("combathit");
+            
             slashAnim.PlaySlash(() =>
             {
+                if (enemy.shield >= wager * mult)
+                    SoundEffectManager.Play("CombatHitShield");
+                else
+                    SoundEffectManager.Play("CombatHit");
+
                 StartCoroutine(ShakeSprite(enemySprite));
                 enemy.TakeDamage((int)(wager * mult));
                 updateEnemyBars();
@@ -121,7 +132,8 @@ public class GameManager : MonoBehaviour
 
         else
         {
-            resultText.text = "Player Blocks For " + (int)(wager * mult);
+            SoundEffectManager.Play("CombatGainShield");
+            resultText.text = "Player Gains " + (int)(wager * mult) + " Shield";
             ui.StartCoroutine(ui.ShieldBlockEffect(0));
             player.GainShield((int)(wager * mult));
             updatePlayerShield();
@@ -130,7 +142,7 @@ public class GameManager : MonoBehaviour
         switch (0)
         {
             case 0:
-                StartCoroutine(enemyTurnBJ());
+                StartCoroutine(enemyAttack());
                 break;
         }
 
@@ -138,6 +150,7 @@ public class GameManager : MonoBehaviour
 
     public void loseHand()
     {
+        SoundEffectManager.Play("CombatFail");
         resultText.text = "Player Loses " + wager + " Combat Chips";
         resultText.gameObject.SetActive(true);
         player.LoseCombatChips(wager);
@@ -146,124 +159,173 @@ public class GameManager : MonoBehaviour
         switch (0)
         {
             case 0:
-                StartCoroutine(enemyTurnBJ());
+                StartCoroutine(enemyAttack());
                 break;
         }
     }
 
-    IEnumerator enemyTurnBJ()
+    IEnumerator enemyAttack()
     {
         yield return new WaitForSeconds(2f);
         resultText.gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.5f);
-        enemyBattleText.text = "Enemy Playing Blackjack...";
-        enemyBattleTextObject.SetActive(true);
-        yield return new WaitForSeconds(2f);
 
-        int result;
-        float x = UnityEngine.Random.Range(1, 10001);
+        yield return new WaitForSeconds(1f);
+        resultText.gameObject.SetActive(true);
 
-        if (x <= 500)
-            result = 1;
+        bool attackSucceeds = false;
+        float mult = 0f;
+        int x;
 
-        else if (x > 500 && x <= 5000)
-            result = 2;
+        // Gets enemy mult
+        resultText.text = "Rolling For Enemy Mult";
+        x = UnityEngine.Random.Range(1, 101);
+        Debug.Log("mult: " + x);
+
+        for (int i = 0; i < enemy.stats.weight.Length; i++)
+        {
+            if (x <= enemy.stats.weight[i])
+            {
+                mult = enemy.stats.multiplier[i];
+                break;
+            }
+        }
+
+        enemyDice.gameObject.SetActive(true);
+        anim.RollDice(() =>
+        {
+            enemyDiceText.gameObject.SetActive(true);
+            enemyDice.sprite = enemyDiceSprites[2];
+            switch (mult)
+            {
+                case 0.5f:
+                    enemyDiceText.text = "0.5x";
+                    break;
+
+                case 1f:
+                    enemyDiceText.text = "1x";
+                    break;
+
+                case 1.5f:
+                    enemyDiceText.text = "1.5x";
+                    break;
+
+                case 2f:
+                    enemyDiceText.text = "2x";
+                    break;
+
+                case 2.5f:
+                    enemyDiceText.text = "2.5x";
+                    break;
+
+                case 3f:
+                    enemyDiceText.text = "3x";
+                    break;
+
+                case 4f:
+                    enemyDiceText.text = "4x";
+                    break;
+
+                case 5f:
+                    enemyDiceText.text = "5x";
+                    break;
+            }
+        });
+
+        yield return new WaitForSeconds(3.5f);
+
+        enemyDiceText.gameObject.SetActive(false);
+
+        // Checks if attack is successful
+        resultText.text = "Rolling For Enemy Success";
+        x = UnityEngine.Random.Range(1, 101);
+        Debug.Log("success: "+x);
+
+        anim.RollDice(() =>
+        {
+            if (x <= enemy.successChance)
+            {
+                enemyDice.sprite = enemyDiceSprites[0];
+                attackSucceeds = true;
+            }
+
+            else
+            {
+                enemyDice.sprite = enemyDiceSprites[1];
+                attackSucceeds = false;
+            }
+        });
+
+        yield return new WaitForSeconds(3.5f);
+        enemyDice.gameObject.SetActive(false);
+
+        // apply result
+        if (attackSucceeds)
+        {
+            int damage = (int)(enemyWager * mult);
+
+            if (enemyAction == 0)
+            {
+                resultText.text = "Enemy Attacks For " + damage;
+                resultText.gameObject.SetActive(true);
+
+                mirrorSlashAnim.PlaySlash(() =>
+                {
+                    if (player.shield >= damage)
+                        SoundEffectManager.Play("CombatHitShield");
+                    else
+                        SoundEffectManager.Play("CombatHit");
+
+                    StartCoroutine(ShakeSprite(playerSprite));
+                    player.TakeDamage(damage);
+                    updatePlayerBars();
+                    updatePlayerShield();
+                });
+
+                yield return new WaitForSeconds(2.5f);
+                resultText.gameObject.SetActive(false);
+
+                if (player.isDead())
+                {
+                    defeat();
+                    yield break;
+                }
+            }
+
+            else
+            {
+                SoundEffectManager.Play("CombatGainShield");
+                resultText.text = "Enemy Gains " + damage + " Shield";
+                resultText.gameObject.SetActive(true);
+                ui.StartCoroutine(ui.ShieldBlockEffect(1));
+                enemy.GainShield(damage);
+                updateEnemyShield();
+                yield return new WaitForSeconds(2.5f);
+                resultText.gameObject.SetActive(false);
+            }
+        }
 
         else
-            result = 3;
-
-        switch (result)
         {
-            case 1:
-                enemyBattleText.text = "Enemy Blackjack";
+            SoundEffectManager.Play("CombatFail");
+            resultText.text = "Enemy Loses " + enemyWager + " Combat Chips";
+            resultText.gameObject.SetActive(true);
+            enemy.LoseCombatChips(enemyWager);
+            updateEnemyBars();
 
-                if (enemyAction == 0)
-                {
-                    mirrorSlashAnim.PlaySlash( () =>
-                    {
-                        StartCoroutine(ShakeSprite(playerSprite));
-                        player.TakeDamage((int)(enemyWager * 1.5));
-                        updatePlayerBars();
-                        updatePlayerShield();
-                        
-                    });
-                    yield return new WaitForSeconds(2.5f);
-                    enemyBattleTextObject.SetActive(false);
-                    if (player.isDead())
-                    {
-                        defeat();
-                        break;
-                    }
-
-                    ui.newTurn();
-                    break;
-                }
-
-                else
-                {
-                    ui.StartCoroutine(ui.ShieldBlockEffect(1));
-                    enemy.GainShield((int)(enemyWager * 1.5));
-                    updateEnemyShield();
-                    yield return new WaitForSeconds(2.5f);
-                    enemyBattleTextObject.SetActive(false);
-                    ui.newTurn();
-                    break;
-                }
-
-            case 2:
-                enemyBattleText.text = "Enemy Win";
-
-                if (enemyAction == 0)
-                {
-                    mirrorSlashAnim.PlaySlash( () =>
-                    {
-                        StartCoroutine(ShakeSprite(playerSprite));
-                        player.TakeDamage((int)(enemyWager));
-                        updatePlayerBars();
-                        updatePlayerShield();
-
-                    });
-                    yield return new WaitForSeconds(2.5f);
-                    enemyBattleTextObject.SetActive(false);
-                    if (player.isDead())
-                    {
-                        defeat();
-                        break;
-                    }
-
-                    ui.newTurn();
-                    break;
-                }
-
-                else
-                {
-                    ui.StartCoroutine(ui.ShieldBlockEffect(1));
-                    enemy.GainShield(enemyWager);
-                    updateEnemyShield();
-                    yield return new WaitForSeconds(2.5f);
-                    enemyBattleTextObject.SetActive(false);
-                    ui.newTurn();
-                    break;
-                };
-
-            case 3:
-                enemyBattleText.text = "Enemy Lose";
-                enemy.LoseCombatChips(enemyWager);
-                updateEnemyBars();
-                yield return new WaitForSeconds(2.5f);
-                enemyBattleTextObject.SetActive(false);
-                ui.newTurn();
-                break;
+            yield return new WaitForSeconds(2.5f);
+            resultText.gameObject.SetActive(false);
         }
 
         if (player.currentHP > 0)
         {
+            ui.newTurn();
             player.GainCombatChips(10);
             enemy.GainCombatChips(5);
             intent.declareIntent(enemy.currentCombatChips);
             updateEnemyBars();
             updatePlayerBars();
         }
+        
     }
 
     public void victory()
@@ -347,8 +409,7 @@ public class GameManager : MonoBehaviour
         }
 
         sprite.transform.localPosition = originalPos; // snap back
-        yield return new WaitForSeconds(1f);
-        resultText.gameObject.SetActive(false);
+        
     }
 
 }

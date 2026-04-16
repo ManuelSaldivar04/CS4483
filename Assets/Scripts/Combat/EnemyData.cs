@@ -5,6 +5,17 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewEnemy", menuName = "Combat/Enemy")]
 public class EnemyData : ScriptableObject
 {
+    [System.Serializable]
+    public struct attackStats
+    {
+        public float[] multiplier;
+        public float[] weight;      
+    }
+
+    public attackStats stats;
+    [Range(1, 100)]
+    public int successChance;
+
     public Sprite sprite;
 
     public int maxHP;
@@ -14,8 +25,6 @@ public class EnemyData : ScriptableObject
     public int currentCombatChips;
 
     public int shield;
-
-    public int [] items;
 
     public void InitializeBattle()
     {
