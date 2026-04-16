@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
-  m_Name: Slime-BottomRightLeft
+  m_Name: Monk-TopLeftBottom
   m_EditorClassIdentifier: 
-  npcName: Slime
-  npcPortrait: {fileID: 21300000, guid: b4996e5c0fc14744da2b9b0b50f444d9, type: 3}
+  npcName: Monk
+  npcPortrait: {fileID: 21300000, guid: 743bcafbf40d43144a7a344a183ccd21, type: 3}
   dialogueLines:
-  - Blub... Blub... GLURP
+  - The cold preserves more than just the land... it preserves memory
+  - The one in red carries a heavy silence
+  - He speaks little... but his past speaks loudly
+  - Look beyond what is obvious...
   autoProgressLines: 
   CombatEnemy: 0
   combatTransitionDelay: 2
   combatSceneName: Combat
-  typingSpeed: 0.05
-  voiceSound: {fileID: 8300000, guid: f4d17be0c8dab5540b0b324be40fae7b, type: 3}
-  voicePitch: 1
-  autoProgressDelay: 1
+  typingSpeed: 0.07
+  voiceSound: {fileID: 8300000, guid: d18fb000299f836438a9a42c43b351f3, type: 3}
+  voicePitch: 0.4
+  autoProgressDelay: 1.5

@@ -10,17 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
-  m_Name: Slime-BottomRightLeft
+  m_Name: SamuraiRed-TopLeftBottom
   m_EditorClassIdentifier: 
-  npcName: Slime
-  npcPortrait: {fileID: 21300000, guid: b4996e5c0fc14744da2b9b0b50f444d9, type: 3}
+  npcName: Red Samurai
+  npcPortrait: {fileID: 21300000, guid: e171f76c5d3359542a085149a301baa3, type: 3}
   dialogueLines:
-  - Blub... Blub... GLURP
+  - Turn back. This path leads to nothing worth finding
+  - Stories travel fast... truth does not
+  - If you're looking for answers... you won't find them here
+  - Believe what you want. It changes nothing
   autoProgressLines: 
   CombatEnemy: 0
   combatTransitionDelay: 2
   combatSceneName: Combat
   typingSpeed: 0.05
-  voiceSound: {fileID: 8300000, guid: f4d17be0c8dab5540b0b324be40fae7b, type: 3}
-  voicePitch: 1
+  voiceSound: {fileID: 8300000, guid: bbd2ebb9e61724a47af8c46afb7ced44, type: 3}
+  voicePitch: 0.4
   autoProgressDelay: 1

@@ -47,13 +47,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneMusicArray:
   - sceneName: BottomLeft
-    musicSoundName: SandySandsMusic
+    musicSoundName: BottomLeftScenes
   - sceneName: BottomLeftTop
-    musicSoundName: SandySandsMusic
+    musicSoundName: BottomLeftScenes
   - sceneName: BottomLeftRight
-    musicSoundName: SandySandsMusic
-  - sceneName: Combat
-    musicSoundName: SandySandsMusic
+    musicSoundName: BottomLeftScenes
+  - sceneName: CenterLeft
+    musicSoundName: Center/DefaultScenes
+  - sceneName: CenterBottom
+    musicSoundName: Center/DefaultScenes
+  - sceneName: CenterRight
+    musicSoundName: Center/DefaultScenes
+  - sceneName: CenterTop
+    musicSoundName: Center/DefaultScenes
+  - sceneName: TopLeft
+    musicSoundName: TopLeftScenes
+  - sceneName: TopLeftBottom
+    musicSoundName: TopLeftScenes
+  - sceneName: TopLeftRight
+    musicSoundName: TopLeftScenes
+  - sceneName: Center
+    musicSoundName: Center/DefaultScenes
+  - sceneName: TopRight
+    musicSoundName: TopRightScenes
+  - sceneName: TopRightLeft
+    musicSoundName: TopRightScenes
+  - sceneName: TopRightBottom
+    musicSoundName: TopRightScenes
+  - sceneName: BottomRight
+    musicSoundName: BottomRightScenes
+  - sceneName: BottomRightTop
+    musicSoundName: BottomRightScenes
+  - sceneName: BottomRightLeft
+    musicSoundName: BottomRightScenes
   soundEffectLibrary: {fileID: 0}
 --- !u!82 &9207135174674580403
 AudioSource:
