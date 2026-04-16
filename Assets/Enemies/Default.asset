@@ -12,10 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
   m_Name: Default
   m_EditorClassIdentifier: 
-  sprite: {fileID: 1522351345, guid: 7910ff5926a39014389de424964cfab2, type: 3}
+  stats:
+    multiplier:
+    - 0.5
+    - 1
+    - 1.5
+    - 5
+    weight:
+    - 25
+    - 75
+    - 99
+    - 100
+  successChance: 75
+  sprite: {fileID: -2054001594, guid: fdbaf1c384d5f5c4fabccc324cf2774e, type: 3}
   maxHP: 250
-  currentHP: 250
+  currentHP: 230
   maxCombatChips: 40
   currentCombatChips: 40
-  shield: 0
-  items: 
+  shield: 40

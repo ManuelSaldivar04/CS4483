@@ -213,7 +213,6 @@ public class UIManager : MonoBehaviour
         }
 
         shield.gameObject.SetActive(false);
-        resultText.SetActive(false);
     }
 
 }
