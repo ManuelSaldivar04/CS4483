@@ -58,6 +58,11 @@ public class PlayerData
         currentHP = Mathf.Min(maxHP, currentHP + amount);
     }
 
+    public void gainMaxHP(int amount)
+    {
+        maxHP += amount;
+    }
+
     public void GainShield(int amount)
     {
         shield += amount;

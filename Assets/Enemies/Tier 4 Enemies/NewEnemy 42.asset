@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
+  m_Name: NewEnemy 42
+  m_EditorClassIdentifier: 
+  wagerStyle: 1
+  wagerAggression: 0.35
+  stats:
+    multiplier:
+    - 0.5
+    - 1
+    - 1.5
+    - 2
+    - 2.5
+    - 3
+    - 4
+    weight:
+    - 7
+    - 22
+    - 44
+    - 63
+    - 78
+    - 91
+    - 100
+  successChance: 72
+  actionPref: 42
+  sprite: {fileID: 0}
+  maxHP: 130
+  currentHP: 0
+  maxCombatChips: 120
+  currentCombatChips: 0
+  shield: 0

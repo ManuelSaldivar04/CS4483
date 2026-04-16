@@ -10,12 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: NewEnemy
+  m_Name: NewEnemy 26
   m_EditorClassIdentifier: 
+  wagerStyle: 1
+  wagerAggression: 0.4
+  stats:
+    multiplier:
+    - 1
+    - 1.5
+    - 2
+    - 2.5
+    weight:
+    - 28
+    - 58
+    - 82
+    - 100
+  successChance: 50
+  actionPref: 40
   sprite: {fileID: 0}
-  maxHP: 0
+  maxHP: 100
   currentHP: 0
-  maxCombatChips: 0
+  maxCombatChips: 65
   currentCombatChips: 0
   shield: 0
-  items: 

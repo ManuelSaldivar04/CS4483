@@ -10,23 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: Default
+  m_Name: NewEnemy 25
   m_EditorClassIdentifier: 
+  wagerStyle: 0
+  wagerAggression: 0.5
   stats:
     multiplier:
     - 0.5
     - 1
     - 1.5
-    - 5
+    - 2
+    - 2.5
     weight:
-    - 25
-    - 75
-    - 99
+    - 18
+    - 42
+    - 67
+    - 87
     - 100
-  successChance: 75
-  sprite: {fileID: -2054001594, guid: fdbaf1c384d5f5c4fabccc324cf2774e, type: 3}
-  maxHP: 250
-  currentHP: 230
-  maxCombatChips: 40
-  currentCombatChips: 40
-  shield: 40
+  successChance: 55
+  actionPref: 68
+  sprite: {fileID: 0}
+  maxHP: 80
+  currentHP: 0
+  maxCombatChips: 70
+  currentCombatChips: 0
+  shield: 0

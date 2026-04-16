@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        getEnemy(0);
+        getEnemy(61);
         player.InitializeBattle();
         enemy.InitializeBattle();
         playerBars.setHealth(player.currentHP, player.maxHP);
@@ -139,12 +139,8 @@ public class GameManager : MonoBehaviour
             updatePlayerShield();
         }
 
-        switch (0)
-        {
-            case 0:
-                StartCoroutine(enemyAttack());
-                break;
-        }
+        if (enemy.currentHP > 0)
+            StartCoroutine(enemyAttack());
 
     }
 
@@ -156,12 +152,7 @@ public class GameManager : MonoBehaviour
         player.LoseCombatChips(wager);
         updatePlayerBars();
 
-        switch (0)
-        {
-            case 0:
-                StartCoroutine(enemyAttack());
-                break;
-        }
+        StartCoroutine(enemyAttack());
     }
 
     IEnumerator enemyAttack()

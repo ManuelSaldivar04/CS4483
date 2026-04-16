@@ -435,8 +435,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1880629592}
     - target: {fileID: 5031729515913464367, guid: edd63936e190b2e43b469fb5acf5d8e2, type: 3}
+      propertyPath: sceneMusicArray.Array.size
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031729515913464367, guid: edd63936e190b2e43b469fb5acf5d8e2, type: 3}
+      propertyPath: sceneMusicArray.Array.data[17].sceneName
+      value: Combat
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031729515913464367, guid: edd63936e190b2e43b469fb5acf5d8e2, type: 3}
       propertyPath: sceneMusicArray.Array.data[3].musicSoundName
       value: CombatBackground
+      objectReference: {fileID: 0}
+    - target: {fileID: 5031729515913464367, guid: edd63936e190b2e43b469fb5acf5d8e2, type: 3}
+      propertyPath: sceneMusicArray.Array.data[17].musicSoundName
+      value: Combat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1078,13 +1090,73 @@ MonoBehaviour:
   - {fileID: 1473111557, guid: a65a35543b3e20943bf5fd3aecf1e9a4, type: 3}
   - {fileID: 100371015, guid: a65a35543b3e20943bf5fd3aecf1e9a4, type: 3}
   enemies:
-  - {fileID: 11400000, guid: 3439f9b54dae28245a5e24104fdefb6f, type: 2}
-  - {fileID: 11400000, guid: 592a085a5f3da7c418941801b43b9cba, type: 2}
+  - {fileID: 11400000, guid: 7884030489a33b940897295fe69dce69, type: 2}
+  - {fileID: 11400000, guid: fd077b64f9acb054f86546c97f2c7977, type: 2}
+  - {fileID: 11400000, guid: f11b255a32dc9d44eb6d2af665c7f44a, type: 2}
+  - {fileID: 11400000, guid: 62b98ea74e0161f4886ff3f9f59ad815, type: 2}
+  - {fileID: 11400000, guid: 67b0c86884785d5499407333a629f1ec, type: 2}
+  - {fileID: 11400000, guid: b080d8f2be9cb6e41b6fc7c3fcfec492, type: 2}
+  - {fileID: 11400000, guid: 52480e569ed51004eb6af151bbcb784d, type: 2}
+  - {fileID: 11400000, guid: 6a04d4dabb9cfac428977cfbbbb0585f, type: 2}
+  - {fileID: 11400000, guid: 416e5e07b1de90d45a71b2dca0e71e67, type: 2}
+  - {fileID: 11400000, guid: 4f35bc7f387947d43831faf9e83ba084, type: 2}
+  - {fileID: 11400000, guid: a56d6271df5321c468f220bdd213a6e3, type: 2}
+  - {fileID: 11400000, guid: 61e4c80d7e539074dac638ac03e7b272, type: 2}
+  - {fileID: 11400000, guid: c12f446982b1f4943ab86c5864dbc154, type: 2}
+  - {fileID: 11400000, guid: d62eac9c836a04a4eb860df31612f23f, type: 2}
+  - {fileID: 11400000, guid: 3acc3b608bd8b6049a80477b27017511, type: 2}
+  - {fileID: 11400000, guid: eb4b63f703434ce48978fd5a7dde5de3, type: 2}
+  - {fileID: 11400000, guid: 0c169804c218a5545b80cea0dc478afe, type: 2}
+  - {fileID: 11400000, guid: 5b16f91582980f24898b74f619499d88, type: 2}
+  - {fileID: 11400000, guid: a4cf66a1bf54f0a4aa8bdbcb45ea2d62, type: 2}
+  - {fileID: 11400000, guid: f8b8618b90208994fa615bb2479495fa, type: 2}
+  - {fileID: 11400000, guid: 03219764c7a855740991dd7cdee97ae1, type: 2}
+  - {fileID: 11400000, guid: ee9feaee90c77e44a8b6ff1bb0b4f74d, type: 2}
+  - {fileID: 11400000, guid: d48b18d6bc639584982567156dc11436, type: 2}
+  - {fileID: 11400000, guid: fdab0ab72fbe7f44a843054336707c05, type: 2}
+  - {fileID: 11400000, guid: cd722f70a028cc04e871262b8d56551d, type: 2}
+  - {fileID: 11400000, guid: 46d7d0dbb53d8a74580f0418e1c91699, type: 2}
+  - {fileID: 11400000, guid: 318b8e91ac8a2d24d894a882b37f0ffd, type: 2}
+  - {fileID: 11400000, guid: 2a51462f2280b7949bedbe1b014ce8bf, type: 2}
+  - {fileID: 11400000, guid: 4e229f03e66beb44f8d1bcc908c76e1d, type: 2}
+  - {fileID: 11400000, guid: 85b5a9b86379e0849859b64fd4ed6701, type: 2}
+  - {fileID: 11400000, guid: 190f4de63bfa01940846378943a9ef97, type: 2}
+  - {fileID: 11400000, guid: fc1cab7040a88e94785f745e558c06ca, type: 2}
+  - {fileID: 11400000, guid: 9597a80df02af6d43a18e76c2672369d, type: 2}
+  - {fileID: 11400000, guid: 931f305e84402a84eba125684c58b5a5, type: 2}
+  - {fileID: 11400000, guid: 46ffc3bb664ace04c842c22561ccb5d8, type: 2}
+  - {fileID: 11400000, guid: 008c3765826bf374ca14425f1c3212bc, type: 2}
+  - {fileID: 11400000, guid: 82aff83c32a30c64c9504dba595047f6, type: 2}
+  - {fileID: 11400000, guid: 4528c3e531ca42c4389504b53db55ae2, type: 2}
+  - {fileID: 11400000, guid: 4b04b82cdc7bf4e4faa7ffbe883d6486, type: 2}
+  - {fileID: 11400000, guid: 545f79da6818c1b4d858f975b4e2ce50, type: 2}
+  - {fileID: 11400000, guid: b6b3e6c038fa5304abd52ab31b30943c, type: 2}
+  - {fileID: 11400000, guid: cc738ee5f6485e84b8eed996903675eb, type: 2}
+  - {fileID: 11400000, guid: 0126bd5e0ea45ac42a303db57e14d5d5, type: 2}
+  - {fileID: 11400000, guid: 21241e9bec2ff2b4fa237dba34eb5d4d, type: 2}
+  - {fileID: 11400000, guid: 093925be0da3d7e42b74393ed5e263e0, type: 2}
+  - {fileID: 11400000, guid: 9bc1264e58233ee44b7b9a75deb9e834, type: 2}
+  - {fileID: 11400000, guid: 9eb995620205a94419c511206b27aaf7, type: 2}
+  - {fileID: 11400000, guid: d8a7c249100d1614f99e35d0d7fee4c0, type: 2}
+  - {fileID: 11400000, guid: d2842cbff4c836342baf934c20605e6a, type: 2}
+  - {fileID: 11400000, guid: bf7e1268881dc844f8f56456c948984a, type: 2}
+  - {fileID: 11400000, guid: bdfe6fb85a9c75a4ab0de46410646f40, type: 2}
+  - {fileID: 11400000, guid: a19454141a654bc41be1673bb4ad38bf, type: 2}
+  - {fileID: 11400000, guid: 690cdf97f43474f4badd79b44da20f9a, type: 2}
+  - {fileID: 11400000, guid: 034b14392554ba245b856f546fb5446f, type: 2}
+  - {fileID: 11400000, guid: d20a48cbc75f2ee429a05a824c666ce1, type: 2}
+  - {fileID: 11400000, guid: fff127b2b2f6d5f4aa8756fa54dcba5d, type: 2}
+  - {fileID: 11400000, guid: 5da60be1024662640adaf9822ed2fdee, type: 2}
+  - {fileID: 11400000, guid: 231926d796c19694fba6415c47fb77dc, type: 2}
+  - {fileID: 11400000, guid: 592f7ab1ac93d94498f3ee3539c00364, type: 2}
+  - {fileID: 11400000, guid: f8d2cd2ffa79d8e438a4f1e36ecc4b11, type: 2}
+  - {fileID: 11400000, guid: f094a8484ab26f54291cadfd394e06fd, type: 2}
+  - {fileID: 11400000, guid: 14d505cffd78a83408fe1be0d994cdd4, type: 2}
   player:
     items: 
     maxHP: 100
     currentHP: 100
-    maxCombatChips: 100
+    maxCombatChips: 50
     currentCombatChips: 100
     shield: 0
     coins: 0

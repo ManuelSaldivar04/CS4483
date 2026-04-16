@@ -68,6 +68,21 @@ MonoBehaviour:
   - name: BottomRightScenes
     audioClips:
     - {fileID: 8300000, guid: 4e746729c158e0e40a7224519efdab7f, type: 3}
+  - name: Combat
+    audioClips:
+    - {fileID: 8300000, guid: aa4ac52a5aa8ca44194f2f50a124083e, type: 3}
+  - name: CombatHit
+    audioClips:
+    - {fileID: 8300000, guid: 0de32b2e1925d2e4385cf0ef4611ce45, type: 3}
+  - name: CombatHitShield
+    audioClips:
+    - {fileID: 8300000, guid: 0d829950c20b7cf47915636df22c8613, type: 3}
+  - name: CombatFail
+    audioClips:
+    - {fileID: 8300000, guid: f12f8ab2d936053489c6c2b58af7767e, type: 3}
+  - name: CombatGainShield
+    audioClips:
+    - {fileID: 8300000, guid: fd602dc210d39c94299edbdb729e03dc, type: 3}
 --- !u!114 &3633822088904422853
 MonoBehaviour:
   m_ObjectHideFlags: 0

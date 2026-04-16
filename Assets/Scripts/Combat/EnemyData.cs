@@ -11,10 +11,23 @@ public class EnemyData : ScriptableObject
         public float[] multiplier;
         public float[] weight;      
     }
+    public enum WagerStyle
+    {
+        Aggressive,  
+        Cautious,    
+        Random        
+    }
+
+    public WagerStyle wagerStyle;
+    [Range(0f, 1f)]
+    public float wagerAggression;
 
     public attackStats stats;
     [Range(1, 100)]
     public int successChance;
+
+    [Range(1, 100)]
+    public int actionPref;
 
     public Sprite sprite;
 
