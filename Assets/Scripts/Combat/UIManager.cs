@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
         wagerButtons.SetActive(false);
         errorObject.SetActive(false);
         bj.SetActive(false);
-        //roulette.SetActive(false);
+        roulette.SetActive(false);
         cursedCard.SetActive(false);
         dice.SetActive(false);
         enemySlash.SetActive(false);
@@ -111,6 +111,7 @@ public class UIManager : MonoBehaviour
 
                 case 1:
                     roulette.SetActive(true);
+                    roulette.GetComponent<Roulette>().beginRoulette();
                     break;
 
                 case 2:
@@ -137,7 +138,7 @@ public class UIManager : MonoBehaviour
     public void hideGame()
     {
         bj.SetActive(false);
-        //roulette.SetActive(false);
+        roulette.SetActive(false);
         cursedCard.SetActive(false);
         dice.SetActive(false);
     }
