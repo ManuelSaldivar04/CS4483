@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
-  m_Name: Racoon-BottomRightLeft
+  m_Name: EggBoy-TopLeftRight
   m_EditorClassIdentifier: 
-  npcName: Racoon?
-  npcPortrait: {fileID: 21300000, guid: 45fe2f09947fe724485d3524f50959df, type: 3}
+  npcName: EggBoy
+  npcPortrait: {fileID: 21300000, guid: ff7da8a8589d491449a7ef66e649a2d4, type: 3}
   dialogueLines:
-  - I've escaped fifteen cages, don't think you can catch me!
-  - 'You wouldn''t want to meet my older brother '
-  autoProgressLines: 0100
+  - Oh! Snow walker! Crunch crunch!
+  - Pointy man angry! Always stomp stomp stomp
+  - He follows lines on the ground... we move the lines!
+  autoProgressLines: 
   CombatEnemy: 0
   combatTransitionDelay: 2
   combatSceneName: Combat
-  typingSpeed: 0.03
-  voiceSound: {fileID: 8300000, guid: 982fbf4c35afef148841dead14cf834a, type: 3}
-  voicePitch: 0.9
-  autoProgressDelay: 0.3
+  typingSpeed: 0.05
+  voiceSound: {fileID: 8300000, guid: 32263c3cc8910e04eb4aeaef56ffa64a, type: 3}
+  voicePitch: 0.8
+  autoProgressDelay: 1.5

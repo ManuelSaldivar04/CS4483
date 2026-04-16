@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
-  m_Name: Racoon-BottomRightLeft
+  m_Name: Villager4-TopLeft
   m_EditorClassIdentifier: 
-  npcName: Racoon?
-  npcPortrait: {fileID: 21300000, guid: 45fe2f09947fe724485d3524f50959df, type: 3}
+  npcName: boy
+  npcPortrait: {fileID: 21300000, guid: 94a2fcb6852e8f34ab843f23597dc981, type: 3}
   dialogueLines:
-  - I've escaped fifteen cages, don't think you can catch me!
-  - 'You wouldn''t want to meet my older brother '
-  autoProgressLines: 0100
+  - H-hi... have you seen my pig, Bacon?
+  - I really hope he's not out here... it's too cold for him...
+  - If you see him, can you tell him i'm looking for him?
+  autoProgressLines: 00010001
   CombatEnemy: 0
   combatTransitionDelay: 2
   combatSceneName: Combat
   typingSpeed: 0.03
-  voiceSound: {fileID: 8300000, guid: 982fbf4c35afef148841dead14cf834a, type: 3}
-  voicePitch: 0.9
-  autoProgressDelay: 0.3
+  voiceSound: {fileID: 8300000, guid: 32263c3cc8910e04eb4aeaef56ffa64a, type: 3}
+  voicePitch: 1.8
+  autoProgressDelay: 0.5

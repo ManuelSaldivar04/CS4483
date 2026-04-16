@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
-  m_Name: Racoon-BottomRightLeft
+  m_Name: Old Man3-TopLeft
   m_EditorClassIdentifier: 
-  npcName: Racoon?
-  npcPortrait: {fileID: 21300000, guid: 45fe2f09947fe724485d3524f50959df, type: 3}
+  npcName: Old Man
+  npcPortrait: {fileID: 21300000, guid: d952a851392a84c4a8a1ed51430131fd, type: 3}
   dialogueLines:
-  - I've escaped fifteen cages, don't think you can catch me!
-  - 'You wouldn''t want to meet my older brother '
-  autoProgressLines: 0100
+  - Used to walk through snow like this no problem... now? Hah
+  - Cold like this teaches you patience... rush, and you slip
+  - He'll let you think you're winning... then take it all back
+  autoProgressLines: 000100
   CombatEnemy: 0
   combatTransitionDelay: 2
   combatSceneName: Combat
-  typingSpeed: 0.03
-  voiceSound: {fileID: 8300000, guid: 982fbf4c35afef148841dead14cf834a, type: 3}
+  typingSpeed: 0.06
+  voiceSound: {fileID: 8300000, guid: f4d17be0c8dab5540b0b324be40fae7b, type: 3}
   voicePitch: 0.9
-  autoProgressDelay: 0.3
+  autoProgressDelay: 1.5

@@ -21,11 +21,12 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
-        // Initialize grid position from the starting world position
-        // World position should be (gridPos.x + 0.5f, gridPos.y + 0.5f)
-        //gridPos.x = Mathf.RoundToInt(transform.position.x - 0.5f);
-        //gridPos.y = Mathf.RoundToInt(transform.position.y - 0.5f);
-        //transform.position = new Vector3(gridPos.x + 0.5f, gridPos.y + 0.5f, transform.position.z);
+    }
+
+    private void Start()
+    {
+        gridPos.x = Mathf.RoundToInt(transform.position.x - 0.5f);
+        gridPos.y = Mathf.RoundToInt(transform.position.y - 0.5f);
     }
 
     private void Update()
