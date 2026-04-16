@@ -16,6 +16,7 @@ public class ItemMenu : MonoBehaviour
     void Start()
     {
         ItemImage.SetActive(false);
+        gameObject.SetActive(false);
     }
 
     void Awake()
