@@ -179,7 +179,6 @@ public class GameManager : MonoBehaviour
         // Gets enemy mult
         resultText.text = "Rolling For Enemy Mult";
         x = UnityEngine.Random.Range(1, 101);
-        Debug.Log("mult: " + x);
 
         for (int i = 0; i < enemy.stats.weight.Length; i++)
         {
@@ -238,7 +237,6 @@ public class GameManager : MonoBehaviour
         // Checks if attack is successful
         resultText.text = "Rolling For Enemy Success";
         x = UnityEngine.Random.Range(1, 101);
-        Debug.Log("success: "+x);
 
         anim.RollDice(() =>
         {
