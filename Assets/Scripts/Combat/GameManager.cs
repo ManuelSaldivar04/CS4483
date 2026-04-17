@@ -124,8 +124,12 @@ public class GameManager : MonoBehaviour
 
                 if (enemy.isDead())
                 {
-                    victory();
-                    return;
+                    StartCoroutine(victory());
+                }
+
+                else
+                {
+                    StartCoroutine(enemyAttack());
                 }
             });
         }
@@ -137,10 +141,8 @@ public class GameManager : MonoBehaviour
             ui.StartCoroutine(ui.ShieldBlockEffect(0));
             player.GainShield((int)(wager * mult));
             updatePlayerShield();
-        }
-
-        if (enemy.currentHP > 0)
             StartCoroutine(enemyAttack());
+        }
 
     }
 
@@ -275,7 +277,7 @@ public class GameManager : MonoBehaviour
 
                 if (player.isDead())
                 {
-                    defeat();
+                    StartCoroutine(defeat());
                     yield break;
                 }
             }
@@ -317,14 +319,20 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void victory()
+    IEnumerator victory()
     {
         Debug.Log("Victory");
+        resultText.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.75f);
+        enemySprite.transform.Rotate(0, 0, 270);
     }
 
-    public void defeat()
+    IEnumerator defeat()
     {
         Debug.Log("Defeat");
+        resultText.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.75f);
+        playerSprite.transform.Rotate(0, 0, 90);
     }
 
     public void setGame(int g)
