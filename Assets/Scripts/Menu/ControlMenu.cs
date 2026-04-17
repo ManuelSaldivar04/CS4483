@@ -9,7 +9,7 @@ public class ControlMenu : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (menuManager.menus["pausemenu"].isOpen) {
+            if (!menuManager.menus["pausemenu"].isOpen) {
                 if (menuManager.menus["controlmenu"].isOpen) {
                     ReturntoPauseMenu();
                 }

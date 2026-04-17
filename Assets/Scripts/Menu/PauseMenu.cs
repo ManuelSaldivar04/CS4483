@@ -14,6 +14,9 @@ public class PauseMenu : MonoBehaviour
             if (menuManager.menus["pausemenu"].isOpen) {
                 menuManager.CloseMenu("pausemenu", true);
             } else {
+                if (menuManager.menus["controlmenu"].isOpen) {
+                    return;
+                }
                 menuManager.OpenMenu("pausemenu", true);
             }
         }

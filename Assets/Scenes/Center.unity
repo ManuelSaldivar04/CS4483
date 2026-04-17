@@ -2502,6 +2502,17 @@ Transform:
   - {fileID: 928160499}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &284845654 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6259325240991123172, guid: 17371de3baa015440adf81ff5c782d42, type: 3}
+  m_PrefabInstance: {fileID: 8037052183060376152}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0af040cc19f5d64448721677e5135100, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &541272135 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3006031485221475638, guid: 17371de3baa015440adf81ff5c782d42, type: 3}
@@ -5342,11 +5353,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 608889008}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1787132642 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8316695083683721597, guid: e2705189236c74248a2360f37e7bfb6a, type: 3}
-  m_PrefabInstance: {fileID: 1486551391}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1806505256
 GameObject:
   m_ObjectHideFlags: 0
@@ -7613,7 +7619,11 @@ PrefabInstance:
     - target: {fileID: 3036050681314978988, guid: 17371de3baa015440adf81ff5c782d42, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1787132642}
+      objectReference: {fileID: 284845654}
+    - target: {fileID: 3036050681314978988, guid: 17371de3baa015440adf81ff5c782d42, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OpenControlMenu
+      objectReference: {fileID: 0}
     - target: {fileID: 4497581420377148481, guid: 17371de3baa015440adf81ff5c782d42, type: 3}
       propertyPath: playerInventory
       value: 
