@@ -1,80 +1,59 @@
-using System.Collections;
+// LevelLoader.cs (corrected version)
 
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-
-
     [SerializeField] private Animator transition;
     [SerializeField] private float transitionTime = 1f;
-    public string shouldseethis;
 
-    //static variable to carry spawn point name across scenes
+    // Return location storage (static)
+    private static string returnSceneName;
+    private static string returnSpawnPointName;  // store the ID string, not the ScriptableObject
+
+    // Static variable for next spawn point (used by LoadScene)
     private static string nextSpawnPointName;
-
 
     private void Start()
     {
-        //when this LevelLoader awakens in a new scene, check if we need to place the player
         if (!string.IsNullOrEmpty(nextSpawnPointName))
         {
             StartCoroutine(PlacePlayerAfterLoad());
         }
-
     }
 
     private IEnumerator PlacePlayerAfterLoad()
     {
         yield return null;
 
-        //find the player by tag
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
-            //find the spawn point by name
             GameObject spawnPoint = GameObject.Find(nextSpawnPointName);
             if (spawnPoint != null)
             {
-                //position player at new spawnpoint
-                //player.transform.position = spawnPoint.transform.position;
                 Debug.Log($"Player moved to spawn point {nextSpawnPointName}");
                 PlayerController controller = player.GetComponent<PlayerController>();
                 if (controller != null)
-                {
                     controller.SetPosition(spawnPoint.transform.position);
-                }
                 else
-                {
                     player.transform.position = spawnPoint.transform.position;
-                }
             }
             else
-            {
                 Debug.LogWarning($"Spawn Point '{nextSpawnPointName}' not found in scene {SceneManager.GetActiveScene().name}");
-            }
         }
         else
-        {
             Debug.LogWarning("Player not found in new scene!");
-        }
-        //clear the static variable to prevent accidental reuse
+
         nextSpawnPointName = null;
     }
 
-
-    public void LoadScene(string sceneName)
+    public void LoadScene(string sceneName, string spawnPointName = null)
     {
-        LoadScene(sceneName, null);
-    }
-    //overload that includes a spawn point name
-    public void LoadScene(string sceneName, string spawnPointName)
-    {
-        //store the spawn pint name statiically for the next scene LevelLoader
         nextSpawnPointName = spawnPointName;
         StartCoroutine(LoadLevelCoroutine(sceneName));
-
     }
 
     public void LoadScene(int sceneIndex, string spawnPointName = null)
@@ -83,30 +62,42 @@ public class LevelLoader : MonoBehaviour
         StartCoroutine(LoadLevelCoroutine(sceneIndex));
     }
 
-    //private coroutine that handles the transition animation
     private IEnumerator LoadLevelCoroutine(string sceneName)
     {
-        //trigger the trnasition animation
-        if (transition != null)
-        {
-            transition.SetTrigger("start");
-        }
-
-        //wait for the animation to finish
+        if (transition != null) transition.SetTrigger("start");
         yield return new WaitForSeconds(transitionTime);
-
-        //load the new scene
         SceneManager.LoadScene(sceneName);
     }
 
     private IEnumerator LoadLevelCoroutine(int sceneIndex)
     {
-        if (transition != null)
-        {
-            transition.SetTrigger("start");
-        }
+        if (transition != null) transition.SetTrigger("start");
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(sceneIndex);
     }
 
+    /// <summary>
+    /// Stores the scene and spawn point (by its ID) to return to later.
+    /// </summary>
+    public static void SetReturnLocation(string sceneName, string spawnPointID)
+    {
+        returnSceneName = sceneName;
+        returnSpawnPointName = spawnPointID;
+    }
+
+    /// <summary>
+    /// Loads the previously stored return scene and spawn point.
+    /// </summary>
+    public void LoadReturnScene()
+    {
+        if (!string.IsNullOrEmpty(returnSceneName))
+        {
+            LoadScene(returnSceneName, returnSpawnPointName);
+            // Clear after use
+            returnSceneName = null;
+            returnSpawnPointName = null;
+        }
+        else
+            Debug.LogWarning("No return scene stored. Can't go back.");
+    }
 }

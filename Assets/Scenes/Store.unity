@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 106454439}
   - component: {fileID: 106454440}
   m_Layer: 0
-  m_Name: CenterTrigger
+  m_Name: OverWorldTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -593,7 +593,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 106454436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2172967f502828444b23914666631d77, type: 3}
+  m_Script: {fileID: 11500000, guid: 9a9d91fbfda66564e8b7a94667ce30a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &151568562
@@ -2322,11 +2322,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2626566012854730981, guid: 25d456be28ce4544da264d870c51db15, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.5
+      value: -1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2626566012854730981, guid: 25d456be28ce4544da264d870c51db15, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.5
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 2626566012854730981, guid: 25d456be28ce4544da264d870c51db15, type: 3}
       propertyPath: m_LocalPosition.z
