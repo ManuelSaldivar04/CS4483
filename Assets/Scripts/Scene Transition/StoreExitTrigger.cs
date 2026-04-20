@@ -1,4 +1,3 @@
-// StoreExitTrigger.cs
 using UnityEngine;
 
 public class StoreExitTrigger : MonoBehaviour

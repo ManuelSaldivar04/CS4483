@@ -1,4 +1,3 @@
-// LevelLoader.cs (corrected version)
 
 using System.Collections;
 using UnityEngine;

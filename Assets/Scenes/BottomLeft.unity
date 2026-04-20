@@ -12977,7 +12977,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: store
+  m_text: 'Sunscorch Trading '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f81412d934a90a94396dfcb4889c6343, type: 2}
   m_sharedMaterial: {fileID: -8523166982073212304, guid: f81412d934a90a94396dfcb4889c6343, type: 2}
@@ -16912,6 +16912,10 @@ PrefabInstance:
     - target: {fileID: 2953405817880383351, guid: edd63936e190b2e43b469fb5acf5d8e2, type: 3}
       propertyPath: m_Name
       value: MUSICMANAGER
+      objectReference: {fileID: 0}
+    - target: {fileID: 2953405817880383351, guid: edd63936e190b2e43b469fb5acf5d8e2, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -23434,7 +23438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4794197622582281258, guid: fb56c133414d17a41a9bb72ac2f17643, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5824042331768963776, guid: fb56c133414d17a41a9bb72ac2f17643, type: 3}
       propertyPath: soundEffctGroups.Array.data[1].name
