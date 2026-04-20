@@ -5,14 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    
+
 
     [SerializeField] private Animator transition;
     [SerializeField] private float transitionTime = 1f;
+    public string shouldseethis;
 
     //static variable to carry spawn point name across scenes
     private static string nextSpawnPointName;
-    
 
 
     private void Start()
@@ -22,7 +22,7 @@ public class LevelLoader : MonoBehaviour
         {
             StartCoroutine(PlacePlayerAfterLoad());
         }
-        
+
     }
 
     private IEnumerator PlacePlayerAfterLoad()
@@ -41,7 +41,7 @@ public class LevelLoader : MonoBehaviour
                 //player.transform.position = spawnPoint.transform.position;
                 Debug.Log($"Player moved to spawn point {nextSpawnPointName}");
                 PlayerController controller = player.GetComponent<PlayerController>();
-                if(controller != null)
+                if (controller != null)
                 {
                     controller.SetPosition(spawnPoint.transform.position);
                 }
@@ -69,7 +69,7 @@ public class LevelLoader : MonoBehaviour
         LoadScene(sceneName, null);
     }
     //overload that includes a spawn point name
-    public void LoadScene(string sceneName,string spawnPointName)
+    public void LoadScene(string sceneName, string spawnPointName)
     {
         //store the spawn pint name statiically for the next scene LevelLoader
         nextSpawnPointName = spawnPointName;
@@ -87,7 +87,7 @@ public class LevelLoader : MonoBehaviour
     private IEnumerator LoadLevelCoroutine(string sceneName)
     {
         //trigger the trnasition animation
-        if(transition != null)
+        if (transition != null)
         {
             transition.SetTrigger("start");
         }
@@ -101,11 +101,12 @@ public class LevelLoader : MonoBehaviour
 
     private IEnumerator LoadLevelCoroutine(int sceneIndex)
     {
-        if(transition != null)
+        if (transition != null)
         {
             transition.SetTrigger("start");
         }
         yield return new WaitForSeconds(transitionTime);
         SceneManager.LoadScene(sceneIndex);
     }
+
 }

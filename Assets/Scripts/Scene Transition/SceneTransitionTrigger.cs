@@ -4,18 +4,23 @@ using UnityEngine;
 
 public class SceneTransitionTrigger : MonoBehaviour
 {
+    [Header("the original script")]
     [SerializeField] private string sceneToLoad; //name of the scene to load
     [SerializeField] private SpawnPointData targetSpawnPointData; //asset for target scene
     [SerializeField] private int selectedSpawnPointIndex; //index into the list
     [SerializeField] private string spawnPointName; //name of the spawn point in the target scene
+    public string hello;
+
+    //[Header("For Scene's with multiple potential scene transitions")]
+    //[SerializeField] private SpawnPointData[] multieSpawnPoints; //array with all the 
 
     private LevelLoader levelLoader; //need to reference the LevelLoader script
-   
+
 
     private void Start()
     {
         levelLoader = FindObjectOfType<LevelLoader>();
-        if(levelLoader == null)
+        if (levelLoader == null)
         {
             Debug.LogError("No LevelLoader found in the scene!", this);
         }
@@ -24,7 +29,7 @@ public class SceneTransitionTrigger : MonoBehaviour
     private void OnValidate()
     {
         //update spawnPointName when the index or data changes
-        if(targetSpawnPointData != null && targetSpawnPointData.spawnPointIDs != null && selectedSpawnPointIndex >= 0 && selectedSpawnPointIndex < targetSpawnPointData.spawnPointIDs.Count)
+        if (targetSpawnPointData != null && targetSpawnPointData.spawnPointIDs != null && selectedSpawnPointIndex >= 0 && selectedSpawnPointIndex < targetSpawnPointData.spawnPointIDs.Count)
         {
             spawnPointName = targetSpawnPointData.spawnPointIDs[selectedSpawnPointIndex];
         }
@@ -36,11 +41,11 @@ public class SceneTransitionTrigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
 
-        if(levelLoader != null)
+        if (levelLoader != null)
         {
             if (other.CompareTag("Player"))
             {
-                levelLoader.LoadScene(sceneToLoad,spawnPointName); //load the appropriate scene when collide with Player tag   
+                levelLoader.LoadScene(sceneToLoad, spawnPointName); //load the appropriate scene when collide with Player tag   
             }
         }
     }
