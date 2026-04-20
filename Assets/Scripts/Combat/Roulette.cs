@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 
 public class Roulette : MonoBehaviour
 {
+    public WheelAnimation anim;
     public UIManager ui;
 
     public Button but_0;
@@ -85,10 +86,15 @@ public class Roulette : MonoBehaviour
 
         RegisterButtons();
         SetBoardInteractable(true);
-        spin.interactable = false;
+
+        if (spin != null)
+            spin.interactable = false;
 
         if (selected != null)
             selected.SetText("Select a bet");
+
+        if (anim != null)
+            anim.ResetToIdle();
     }
 
     private void RegisterButtons()
@@ -179,45 +185,53 @@ public class Roulette : MonoBehaviour
 
     public void SpinRoulette()
     {
-        if (spinning || string.IsNullOrEmpty(currentBet))
+        Debug.Log("[Roulette] SpinRoulette() clicked");
+
+        if (spinning)
+        {
+            Debug.Log("[Roulette] Already spinning, returning");
             return;
+        }
 
-        StartCoroutine(SpinRoutine());
-    }
+        if (string.IsNullOrEmpty(currentBet))
+        {
+            Debug.Log("[Roulette] No bet selected, returning");
+            return;
+        }
 
-    private IEnumerator SpinRoutine()
-    {
         spinning = true;
         SetBoardInteractable(false);
+
+        ///////////////////////////////////////////////////////////
+        SoundEffectManager.Play("WheelSpin");
+        Debug.Log("ANIMATION!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         if (selected != null)
             selected.SetText("Spinning...");
 
-        yield return new WaitForSeconds(1.25f);
+        if (anim != null)
+        {
+            Debug.Log("[Roulette] Calling anim.SpinWheel()");
+            anim.SpinWheel(ResolveSpin);
+        }
+        else
+        {
+            Debug.LogError("[Roulette] anim is NULL");
+            ResolveSpin();
+        }
+    }
+
+    private void ResolveSpin()
+    {
+        Debug.Log("[Roulette] ResolveSpin() called");
 
         int roll = Random.Range(0, 38);
         string landedPocket = roll == 37 ? "00" : roll.ToString();
         bool won = BetWins(currentBet, landedPocket);
         float payout = GetPayoutMultiplier(currentBet);
-
         string colorText = GetPocketColorText(landedPocket);
 
-        if (selected != null)
-        {
-            selected.SetText(
-                "Selected: " + currentBet +
-                "\nResult: " + landedPocket + " " + colorText +
-                "\n" + (won ? "YOU WIN" : "YOU LOSE"));
-        }
-
-        yield return new WaitForSeconds(2f);
-
-        ui.hideGame();
-
-        if (won)
-            GameManager.Instance.winHand(payout);
-        else
-            GameManager.Instance.loseHand();
+        StartCoroutine(ShowSpinOutcome(landedPocket, colorText, won, payout));
     }
 
     private void SetBoardInteractable(bool value)
@@ -381,4 +395,28 @@ public class Roulette : MonoBehaviour
 
         return "";
     }
+
+    private IEnumerator ShowSpinOutcome(string landedPocket, string colorText, bool won, float payout)
+    {
+        if (selected != null)
+            selected.SetText("Result: " + landedPocket + " " + colorText);
+
+        yield return new WaitForSeconds(3.5f);
+
+        if (selected != null)
+            selected.SetText(won ? "YOU WIN" : "YOU LOSE");
+
+        yield return new WaitForSeconds(3.5f);
+
+        spinning = false;
+
+        if (ui != null)
+            ui.hideGame();
+
+        if (won)
+            GameManager.Instance.winHand(payout);
+        else
+            GameManager.Instance.loseHand();
+    }
+
 }
