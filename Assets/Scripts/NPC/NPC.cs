@@ -162,7 +162,8 @@ public class NPC : MonoBehaviour, IInteractable
 
         //store the enemy data statically
         CombatData.pendingEnemy = dialogueData.enemyData;
-        
+        if(GameManager.Instance)
+            GameManager.Instance.StartCombat();
         SceneManager.LoadScene(dialogueData.combatSceneName);
     }
 }

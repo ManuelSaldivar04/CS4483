@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -55,9 +55,34 @@ public class GameManager : MonoBehaviour
         }
     }
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         if(CombatData.pendingEnemy != null)
+        {
+            Debug.Log($"Using pending enemy: {CombatData.pendingEnemy.name}");
+            SetEnemy(CombatData.pendingEnemy);
+            CombatData.pendingEnemy = null;
+        }
+        else
+        {
+            getEnemy(61);
+        }
+        player.InitializeBattle();
+        enemy.InitializeBattle();
+        playerBars.setHealth(player.currentHP, player.maxHP);
+        playerBars.setCombat(player.currentCombatChips, player.maxCombatChips);
+        enemyBars.setHealth(enemy.currentHP, enemy.maxHP);
+        enemyBars.setCombat(enemy.currentCombatChips, enemy.maxCombatChips);
+        intent.declareIntent(enemy.currentCombatChips);
+        updateEnemyShield();
+        updatePlayerShield();
+        enemyDice.gameObject.SetActive(false);
+        enemyDiceText.gameObject.SetActive(false);
+    }
+
+    public void StartCombat()
+    {
+        if (CombatData.pendingEnemy != null)
         {
             Debug.Log($"Using pending enemy: {CombatData.pendingEnemy.name}");
             SetEnemy(CombatData.pendingEnemy);
