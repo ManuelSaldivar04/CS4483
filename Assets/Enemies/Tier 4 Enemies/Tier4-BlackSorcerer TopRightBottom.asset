@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: NewEnemy 44
+  m_Name: Tier4-BlackSorcerer TopRightBottom
   m_EditorClassIdentifier: 
   wagerStyle: 0
-  wagerAggression: 0.7
+  wagerAggression: 0.54
   stats:
     multiplier:
+    - 0.5
     - 1
     - 1.5
     - 2
@@ -23,17 +24,18 @@ MonoBehaviour:
     - 3
     - 4
     weight:
-    - 15
-    - 35
-    - 57
-    - 75
-    - 90
+    - 8
+    - 25
+    - 47
+    - 65
+    - 80
+    - 92
     - 100
   successChance: 62
-  actionPref: 75
-  sprite: {fileID: 0}
-  maxHP: 170
-  currentHP: 0
-  maxCombatChips: 105
-  currentCombatChips: 0
-  shield: 0
+  actionPref: 56
+  sprite: {fileID: 791498979, guid: 143a6b3fadbd7694b90a87bbc2382f50, type: 3}
+  maxHP: 160
+  currentHP: 160
+  maxCombatChips: 120
+  currentCombatChips: 120
+  shield: 154

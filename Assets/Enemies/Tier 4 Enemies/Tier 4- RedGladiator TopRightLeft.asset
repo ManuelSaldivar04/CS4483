@@ -10,34 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: Minion 2
+  m_Name: Tier 4- RedGladiator TopRightLeft
   m_EditorClassIdentifier: 
-  wagerStyle: 1
-  wagerAggression: 0.4
+  wagerStyle: 0
+  wagerAggression: 0.341
   stats:
     multiplier:
-    - 0.5
     - 1
     - 1.5
     - 2
     - 2.5
     - 3
     - 4
-    - 5
     weight:
-    - 4
     - 15
-    - 33
-    - 52
-    - 68
-    - 82
-    - 93
+    - 35
+    - 57
+    - 75
+    - 90
     - 100
-  successChance: 76
-  actionPref: 50
-  sprite: {fileID: 0}
-  maxHP: 200
-  currentHP: 0
-  maxCombatChips: 150
-  currentCombatChips: 0
-  shield: 0
+  successChance: 62
+  actionPref: 58
+  sprite: {fileID: -1467773100, guid: 8ba0ec3e252d8854498f5a075eacaf9b, type: 3}
+  maxHP: 170
+  currentHP: 170
+  maxCombatChips: 105
+  currentCombatChips: 10
+  shield: 104

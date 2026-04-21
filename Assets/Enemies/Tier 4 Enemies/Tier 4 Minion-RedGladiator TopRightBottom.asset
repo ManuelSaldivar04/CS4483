@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: NewEnemy 49
+  m_Name: Tier 4 Minion-RedGladiator TopRightBottom
   m_EditorClassIdentifier: 
   wagerStyle: 0
-  wagerAggression: 0.75
+  wagerAggression: 0.8
   stats:
     multiplier:
     - 0.5
@@ -25,19 +25,19 @@ MonoBehaviour:
     - 4
     - 5
     weight:
-    - 5
-    - 18
-    - 38
-    - 56
-    - 71
-    - 83
+    - 4
+    - 15
+    - 33
+    - 52
+    - 68
+    - 82
     - 93
     - 100
-  successChance: 65
-  actionPref: 75
-  sprite: {fileID: 0}
-  maxHP: 190
+  successChance: 72
+  actionPref: 73
+  sprite: {fileID: -1467773100, guid: 8ba0ec3e252d8854498f5a075eacaf9b, type: 3}
+  maxHP: 220
   currentHP: 0
-  maxCombatChips: 110
+  maxCombatChips: 140
   currentCombatChips: 0
   shield: 0

@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
-  m_Name: SorcererBlack-TopRightBottom
+  m_Name: TenguRed-TopRight Gym
   m_EditorClassIdentifier: 
-  npcName: Sorceress
-  npcPortrait: {fileID: 21300000, guid: ff1747c70f4ebb6429f1690b3aea99d7, type: 3}
+  npcName: Boss
+  npcPortrait: {fileID: 21300000, guid: 0b1f5e9f06467ad4aa3733edf548dd44, type: 3}
   dialogueLines:
-  - Yes...YES
-  - These specimens will do just fine
-  - HEY YOU
-  - Join me in my expirim... I mean work
-  autoProgressLines: 00000101
+  - You dare enter my domain?!
+  - All have failed to defeat me
+  - What difference could YOU make??
+  - Theirs no turning back from ME!!
+  autoProgressLines: 
   CombatEnemy: 1
   combatTransitionDelay: 1
   combatSceneName: Combat
-  enemyData: {fileID: 11400000, guid: d8a7c249100d1614f99e35d0d7fee4c0, type: 2}
+  enemyData: {fileID: 0}
   typingSpeed: 0.05
-  voiceSound: {fileID: 8300000, guid: e5dbc139c84e31f4f976a0ac7be3542b, type: 3}
-  voicePitch: 0.9
+  voiceSound: {fileID: 8300000, guid: 5644c1802ec129949b69cebf9e0914b8, type: 3}
+  voicePitch: 0.1
   autoProgressDelay: 1.5

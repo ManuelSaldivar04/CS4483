@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: Minion 1
+  m_Name: Tier4 Minion-SkeletonDemon TopRightLeft
   m_EditorClassIdentifier: 
-  wagerStyle: 0
-  wagerAggression: 0.8
+  wagerStyle: 2
+  wagerAggression: 0.4
   stats:
     multiplier:
     - 0.5
@@ -33,11 +33,11 @@ MonoBehaviour:
     - 82
     - 93
     - 100
-  successChance: 72
-  actionPref: 73
-  sprite: {fileID: 0}
-  maxHP: 220
+  successChance: 70
+  actionPref: 50
+  sprite: {fileID: 2027675694, guid: fa41e3b90a067a141baea6881b1cf706, type: 3}
+  maxHP: 250
   currentHP: 0
-  maxCombatChips: 140
+  maxCombatChips: 150
   currentCombatChips: 0
   shield: 0

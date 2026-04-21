@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: NewEnemy 39
+  m_Name: Tier 4- Hunter TopRightLeft
   m_EditorClassIdentifier: 
   wagerStyle: 0
-  wagerAggression: 0.7
+  wagerAggression: 0.5
   stats:
     multiplier:
     - 0.5
@@ -23,19 +23,21 @@ MonoBehaviour:
     - 2.5
     - 3
     - 4
+    - 5
     weight:
-    - 8
-    - 25
-    - 47
-    - 65
-    - 80
-    - 92
+    - 5
+    - 18
+    - 38
+    - 56
+    - 71
+    - 83
+    - 93
     - 100
-  successChance: 62
-  actionPref: 75
-  sprite: {fileID: 0}
-  maxHP: 145
+  successChance: 65
+  actionPref: 55
+  sprite: {fileID: -1416576059, guid: 4aff46d97772cc34b821729e6812a864, type: 3}
+  maxHP: 190
   currentHP: 0
-  maxCombatChips: 105
+  maxCombatChips: 130
   currentCombatChips: 0
   shield: 0
