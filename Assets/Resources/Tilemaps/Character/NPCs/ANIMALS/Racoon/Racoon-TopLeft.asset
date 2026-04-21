@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
   m_Name: Racoon-TopLeft
   m_EditorClassIdentifier: 
-  npcName: Racoon?
+  npcName: Racoon
   npcPortrait: {fileID: 21300000, guid: 45fe2f09947fe724485d3524f50959df, type: 3}
   dialogueLines:
   - why would anyone live here?! Explain yourself!
@@ -23,6 +23,7 @@ MonoBehaviour:
   CombatEnemy: 0
   combatTransitionDelay: 2
   combatSceneName: Combat
+  enemyData: {fileID: 0}
   typingSpeed: 0.03
   voiceSound: {fileID: 8300000, guid: 982fbf4c35afef148841dead14cf834a, type: 3}
   voicePitch: 0.9

@@ -57,7 +57,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        getEnemy(0);
+        if(CombatData.pendingEnemy != null)
+        {
+            Debug.Log($"Using pending enemy: {CombatData.pendingEnemy.name}");
+            SetEnemy(CombatData.pendingEnemy);
+            CombatData.pendingEnemy = null;
+        }
+        else
+        {
+            getEnemy(61);
+        }
         player.InitializeBattle();
         enemy.InitializeBattle();
         playerBars.setHealth(player.currentHP, player.maxHP);
@@ -75,6 +84,12 @@ public class GameManager : MonoBehaviour
     {
         enemy = enemies[x];
         enemySprite.GetComponent<SpriteRenderer>().sprite = enemies[x].sprite;
+    }
+    //set the enemy through EnemyData
+    public void SetEnemy(EnemyData enemy)
+    {
+        this.enemy = enemy;
+        enemySprite.GetComponent<SpriteRenderer>().sprite = this.enemy.sprite;
     }
 
     public void updatePlayerBars()
@@ -321,20 +336,18 @@ public class GameManager : MonoBehaviour
 
     IEnumerator victory()
     {
+        Debug.Log("Victory");
         resultText.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.75f);
         enemySprite.transform.Rotate(0, 0, 270);
-        yield return new WaitForSeconds(1f);
-        ui.victoryScreen();
     }
 
     IEnumerator defeat()
     {
+        Debug.Log("Defeat");
         resultText.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.75f);
         playerSprite.transform.Rotate(0, 0, 90);
-        yield return new WaitForSeconds(1f);
-        ui.defeatScreen();
     }
 
     public void setGame(int g)

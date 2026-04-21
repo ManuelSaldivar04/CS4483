@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
+  m_Name: Tier 2-Villager BottomLeftRight
+  m_EditorClassIdentifier: 
+  wagerStyle: 2
+  wagerAggression: 0.5
+  stats:
+    multiplier:
+    - 0.5
+    - 1
+    - 1.5
+    - 2
+    - 2.5
+    weight:
+    - 18
+    - 45
+    - 72
+    - 90
+    - 100
+  successChance: 80
+  actionPref: 50
+  sprite: {fileID: 803556153, guid: 3688b67b6865c1549b538278a7b8f3d6, type: 3}
+  maxHP: 30
+  currentHP: 15
+  maxCombatChips: 50
+  currentCombatChips: 40
+  shield: 57

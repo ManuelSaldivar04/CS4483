@@ -19,7 +19,12 @@ MonoBehaviour:
   - He looks like me, but is dressed in red
   - He killed our father, I MUST avenge him!
   - I will search everywhere for HIM
+  - If you know something... you'll tell me one way or another!
   autoProgressLines: 01000100
+  CombatEnemy: 1
+  combatTransitionDelay: 1
+  combatSceneName: Combat
+  enemyData: {fileID: 11400000, guid: 0126bd5e0ea45ac42a303db57e14d5d5, type: 2}
   typingSpeed: 0.05
   voiceSound: {fileID: 8300000, guid: bbd2ebb9e61724a47af8c46afb7ced44, type: 3}
   voicePitch: 0.4

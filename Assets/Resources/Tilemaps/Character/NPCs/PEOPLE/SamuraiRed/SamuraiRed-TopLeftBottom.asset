@@ -19,10 +19,12 @@ MonoBehaviour:
   - Stories travel fast... truth does not
   - If you're looking for answers... you won't find them here
   - Believe what you want. It changes nothing
-  autoProgressLines: 
-  CombatEnemy: 0
+  - Unless He sent you after ME!?
+  autoProgressLines: 0100010000
+  CombatEnemy: 1
   combatTransitionDelay: 2
   combatSceneName: Combat
+  enemyData: {fileID: 11400000, guid: d62eac9c836a04a4eb860df31612f23f, type: 2}
   typingSpeed: 0.05
   voiceSound: {fileID: 8300000, guid: bbd2ebb9e61724a47af8c46afb7ced44, type: 3}
   voicePitch: 0.4

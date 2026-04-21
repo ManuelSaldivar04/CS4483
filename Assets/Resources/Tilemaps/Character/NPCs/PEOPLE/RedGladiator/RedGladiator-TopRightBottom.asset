@@ -17,8 +17,12 @@ MonoBehaviour:
   dialogueLines:
   - You?! ...No way. You actually made it this far?
   - Don't get ahead of yourself-i've still been one step ahead this whole time
-  - ....Stay sharp. We're not out yet
+  - Always gotta be ready for the unexpected....
   autoProgressLines: 01
+  CombatEnemy: 1
+  combatTransitionDelay: 1
+  combatSceneName: Combat
+  enemyData: {fileID: 11400000, guid: f8d2cd2ffa79d8e438a4f1e36ecc4b11, type: 2}
   typingSpeed: 0.05
   voiceSound: {fileID: 8300000, guid: bbd2ebb9e61724a47af8c46afb7ced44, type: 3}
   voicePitch: 0.2

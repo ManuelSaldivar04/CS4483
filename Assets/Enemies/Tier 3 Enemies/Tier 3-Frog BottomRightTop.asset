@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
+  m_Name: Tier 3-Frog BottomRightTop
+  m_EditorClassIdentifier: 
+  wagerStyle: 2
+  wagerAggression: 0.3
+  stats:
+    multiplier:
+    - 0.5
+    - 1
+    - 1.5
+    - 2
+    - 2.5
+    - 3
+    weight:
+    - 12
+    - 32
+    - 55
+    - 75
+    - 90
+    - 100
+  successChance: 65
+  actionPref: 52
+  sprite: {fileID: -62049626, guid: 3a935506b6b42db4ea338fad0d9b0108, type: 3}
+  maxHP: 70
+  currentHP: 0
+  maxCombatChips: 85
+  currentCombatChips: 0
+  shield: 0

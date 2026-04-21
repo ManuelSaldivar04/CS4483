@@ -16,6 +16,7 @@ public class NPCDialogue : ScriptableObject
     public bool CombatEnemy;
     public float combatTransitionDelay = 2f; //seconds to wait after dialogue ends
     [SceneName] public string combatSceneName = "Combat";
+    public EnemyData enemyData;
 
     [Header("NPC Speaking Attributes")]
     public float typingSpeed = 0.05f;
