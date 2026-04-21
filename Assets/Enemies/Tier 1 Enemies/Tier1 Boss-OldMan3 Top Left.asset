@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
+  m_Name: Tier1 Boss-OldMan3 Top Left
+  m_EditorClassIdentifier: 
+  wagerStyle: 0
+  wagerAggression: 0.6
+  stats:
+    multiplier:
+    - 0.5
+    - 1
+    - 1.5
+    - 2
+    - 2.5
+    weight:
+    - 10
+    - 35
+    - 65
+    - 88
+    - 100
+  successChance: 60
+  actionPref: 65
+  sprite: {fileID: 331419626, guid: 853b5060b335eab46b0ec7ea94fcac27, type: 3}
+  maxHP: 120
+  currentHP: 0
+  maxCombatChips: 60
+  currentCombatChips: 0
+  shield: 0

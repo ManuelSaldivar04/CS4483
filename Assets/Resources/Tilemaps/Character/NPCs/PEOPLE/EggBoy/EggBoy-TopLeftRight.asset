@@ -18,10 +18,12 @@ MonoBehaviour:
   - Oh! Snow walker! Crunch crunch!
   - Pointy man angry! Always stomp stomp stomp
   - He follows lines on the ground... we move the lines!
+  - .....Angry man send YOU after US?!
   autoProgressLines: 
-  CombatEnemy: 0
-  combatTransitionDelay: 2
+  CombatEnemy: 1
+  combatTransitionDelay: 0.5
   combatSceneName: Combat
+  enemyData: {fileID: 11400000, guid: 61e4c80d7e539074dac638ac03e7b272, type: 2}
   typingSpeed: 0.05
   voiceSound: {fileID: 8300000, guid: 32263c3cc8910e04eb4aeaef56ffa64a, type: 3}
   voicePitch: 0.8

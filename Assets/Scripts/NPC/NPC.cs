@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class NPC : MonoBehaviour, IInteractable
 {
+    [Header("NPC Information/display info")]
     public NPCDialogue dialogueData;
     public GameObject dialoguePanel;
     public TMP_Text dialogueText, nameText;
@@ -101,7 +102,6 @@ public class NPC : MonoBehaviour, IInteractable
         isDialogueActive = false;
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
-        //unpause the game ADD THIS LATER
         if (!dialogueData.CombatEnemy)
         {
             TimeManager.StartTime(); //only unpasue for non-combat NPC's
@@ -121,6 +121,12 @@ public class NPC : MonoBehaviour, IInteractable
         //wait for configured delay (so player cna read the last line)
         yield return new WaitForSecondsRealtime(dialogueData.combatTransitionDelay);
 
+        Time.timeScale = 1f;
+        TimeManager.StartTime();
+
+        //store the enemy data statically
+        CombatData.pendingEnemy = dialogueData.enemyData;
+        
         SceneManager.LoadScene(dialogueData.combatSceneName);
     }
 }

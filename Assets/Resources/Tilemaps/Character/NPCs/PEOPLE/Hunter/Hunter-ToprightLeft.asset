@@ -20,7 +20,12 @@ MonoBehaviour:
   - I'm tracking... something. Small. Shouldn't be here
   - Yeah... no. Definitely not here. I must've read the trail wrong
   - I swear something just moved... and it wasn't us
+  - Maybe you're just leading me to danger!?....
   autoProgressLines: 0000010000
+  CombatEnemy: 1
+  combatTransitionDelay: 1
+  combatSceneName: Combat
+  enemyData: {fileID: 11400000, guid: 231926d796c19694fba6415c47fb77dc, type: 2}
   typingSpeed: 0.05
   voiceSound: {fileID: 8300000, guid: d18fb000299f836438a9a42c43b351f3, type: 3}
   voicePitch: 0.6

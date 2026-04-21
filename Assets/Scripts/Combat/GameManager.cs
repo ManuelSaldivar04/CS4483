@@ -57,7 +57,16 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        getEnemy(61);
+        if(CombatData.pendingEnemy != null)
+        {
+            Debug.Log($"Using pending enemy: {CombatData.pendingEnemy.name}");
+            SetEnemy(CombatData.pendingEnemy);
+            CombatData.pendingEnemy = null;
+        }
+        else
+        {
+            getEnemy(61);
+        }
         player.InitializeBattle();
         enemy.InitializeBattle();
         playerBars.setHealth(player.currentHP, player.maxHP);
@@ -75,6 +84,12 @@ public class GameManager : MonoBehaviour
     {
         enemy = enemies[x];
         enemySprite.GetComponent<SpriteRenderer>().sprite = enemies[x].sprite;
+    }
+    //set the enemy through EnemyData
+    public void SetEnemy(EnemyData enemy)
+    {
+        this.enemy = enemy;
+        enemySprite.GetComponent<SpriteRenderer>().sprite = this.enemy.sprite;
     }
 
     public void updatePlayerBars()

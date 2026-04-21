@@ -17,6 +17,10 @@ MonoBehaviour:
   dialogueLines:
   - Ribbit
   autoProgressLines: 
+  CombatEnemy: 1
+  combatTransitionDelay: 0.5
+  combatSceneName: Combat
+  enemyData: {fileID: 11400000, guid: 008c3765826bf374ca14425f1c3212bc, type: 2}
   typingSpeed: 0.05
   voiceSound: {fileID: 8300000, guid: 5644c1802ec129949b69cebf9e0914b8, type: 3}
   voicePitch: 0.1

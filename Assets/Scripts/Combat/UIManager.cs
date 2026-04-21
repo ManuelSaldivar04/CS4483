@@ -15,6 +15,9 @@ public class UIManager : MonoBehaviour
     public GameObject enemySlash;
     public GameObject playerSlash;
 
+    public GameObject victory;
+    public GameObject defeat;
+
     public GameObject gamePrompt;
     public GameObject actionPrompt;
     public GameObject wagerPrompt;
@@ -57,6 +60,8 @@ public class UIManager : MonoBehaviour
         playerShield.gameObject.SetActive(false);
         enemyShield.gameObject.SetActive(false);
         resultText.SetActive(false);
+        victory.SetActive(false);
+        defeat.SetActive(false);
     }
 
     public void getGame(int x)
@@ -171,6 +176,16 @@ public class UIManager : MonoBehaviour
         wagerObject.SetActive(true);
         iconObject.SetActive(true);
 
+    }
+
+    public void victoryScreen()
+    {
+        victory.SetActive(true);
+    }
+
+    public void defeatScreen()
+    {
+        defeat.SetActive(true);
     }
 
     public IEnumerator ShieldBlockEffect(int x, float holdTime = 0.3f, float fadeTime = 0.5f, float fadeInTime = 0.3f)

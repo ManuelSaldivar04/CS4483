@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
+  m_Name: TenguRed-TopRight Gym
+  m_EditorClassIdentifier: 
+  npcName: Boss
+  npcPortrait: {fileID: 21300000, guid: 0b1f5e9f06467ad4aa3733edf548dd44, type: 3}
+  dialogueLines:
+  - You dare enter my domain?!
+  - All have failed to defeat me
+  - What difference could YOU make??
+  - Theirs no turning back from ME!!
+  autoProgressLines: 
+  CombatEnemy: 1
+  combatTransitionDelay: 1
+  combatSceneName: Combat
+  enemyData: {fileID: 0}
+  typingSpeed: 0.05
+  voiceSound: {fileID: 8300000, guid: 5644c1802ec129949b69cebf9e0914b8, type: 3}
+  voicePitch: 0.1
+  autoProgressDelay: 1.5

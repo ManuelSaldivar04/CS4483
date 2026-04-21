@@ -16,7 +16,12 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 743bcafbf40d43144a7a344a183ccd21, type: 3}
   dialogueLines:
   - When the sun meets the horizon, truth reveals itself...
+  - What does your hand reveal about you?...
   autoProgressLines: 
+  CombatEnemy: 1
+  combatTransitionDelay: 1
+  combatSceneName: Combat
+  enemyData: {fileID: 11400000, guid: 21241e9bec2ff2b4fa237dba34eb5d4d, type: 2}
   typingSpeed: 0.07
   voiceSound: {fileID: 8300000, guid: d18fb000299f836438a9a42c43b351f3, type: 3}
   voicePitch: 0.4

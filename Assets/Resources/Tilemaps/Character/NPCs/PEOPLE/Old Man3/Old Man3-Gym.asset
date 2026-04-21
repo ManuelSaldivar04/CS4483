@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
+  m_Name: Old Man3-Gym
+  m_EditorClassIdentifier: 
+  npcName: Old Man
+  npcPortrait: {fileID: 21300000, guid: d952a851392a84c4a8a1ed51430131fd, type: 3}
+  dialogueLines:
+  - Don't take it personal
+  - You're not ready for the outside world
+  - The House always wins!!
+  autoProgressLines: 000100
+  CombatEnemy: 1
+  combatTransitionDelay: 2
+  combatSceneName: Combat
+  enemyData: {fileID: 11400000, guid: 3acc3b608bd8b6049a80477b27017511, type: 2}
+  typingSpeed: 0.06
+  voiceSound: {fileID: 8300000, guid: f4d17be0c8dab5540b0b324be40fae7b, type: 3}
+  voicePitch: 0.9
+  autoProgressDelay: 1.5

@@ -16,7 +16,13 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: 4a19f442b2ba38e408347fc2bb4c8141, type: 3}
   dialogueLines:
   - We sell FISH!
-  autoProgressLines: 00
+  - And dish out BEATINGS!
+  - And dish out BEATINGS!
+  autoProgressLines: 0001
+  CombatEnemy: 1
+  combatTransitionDelay: 1
+  combatSceneName: Combat
+  enemyData: {fileID: 11400000, guid: a4cf66a1bf54f0a4aa8bdbcb45ea2d62, type: 2}
   typingSpeed: 0.03
   voiceSound: {fileID: 8300000, guid: 73a0a6c6ae4b4fa40b7e21e1f8c83d30, type: 3}
   voicePitch: 1

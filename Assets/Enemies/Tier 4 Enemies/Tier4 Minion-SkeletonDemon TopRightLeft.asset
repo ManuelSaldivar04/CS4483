@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
+  m_Name: Tier4 Minion-SkeletonDemon TopRightLeft
+  m_EditorClassIdentifier: 
+  wagerStyle: 2
+  wagerAggression: 0.4
+  stats:
+    multiplier:
+    - 0.5
+    - 1
+    - 1.5
+    - 2
+    - 2.5
+    - 3
+    - 4
+    - 5
+    weight:
+    - 4
+    - 15
+    - 33
+    - 52
+    - 68
+    - 82
+    - 93
+    - 100
+  successChance: 70
+  actionPref: 50
+  sprite: {fileID: 2027675694, guid: fa41e3b90a067a141baea6881b1cf706, type: 3}
+  maxHP: 250
+  currentHP: 0
+  maxCombatChips: 150
+  currentCombatChips: 0
+  shield: 0

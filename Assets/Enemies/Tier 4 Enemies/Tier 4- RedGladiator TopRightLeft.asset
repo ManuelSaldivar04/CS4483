@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
+  m_Name: Tier 4- RedGladiator TopRightLeft
+  m_EditorClassIdentifier: 
+  wagerStyle: 0
+  wagerAggression: 0.341
+  stats:
+    multiplier:
+    - 1
+    - 1.5
+    - 2
+    - 2.5
+    - 3
+    - 4
+    weight:
+    - 15
+    - 35
+    - 57
+    - 75
+    - 90
+    - 100
+  successChance: 62
+  actionPref: 58
+  sprite: {fileID: -1467773100, guid: 8ba0ec3e252d8854498f5a075eacaf9b, type: 3}
+  maxHP: 170
+  currentHP: 170
+  maxCombatChips: 105
+  currentCombatChips: 10
+  shield: 104

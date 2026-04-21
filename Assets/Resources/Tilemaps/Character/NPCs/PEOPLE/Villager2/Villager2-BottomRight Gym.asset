@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
+  m_Name: Villager2-BottomRight Gym
+  m_EditorClassIdentifier: 
+  npcName: Boss
+  npcPortrait: {fileID: 21300000, guid: 34adf22d56f37614ca3dc9343b1d7b9a, type: 3}
+  dialogueLines:
+  - ...Well I'll be. The customer from my shop.
+  - Told you to stay out of the forest... but you didn't listen
+  - That 'mad bear' I mentioned... wasn't a lie
+  - Every step you took was a gamble...
+  - ...now let's see if you can win!
+  autoProgressLines: 
+  CombatEnemy: 1
+  combatTransitionDelay: 1
+  combatSceneName: Combat
+  enemyData: {fileID: 11400000, guid: 093925be0da3d7e42b74393ed5e263e0, type: 2}
+  typingSpeed: 0.05
+  voiceSound: {fileID: 8300000, guid: d18fb000299f836438a9a42c43b351f3, type: 3}
+  voicePitch: 0.5
+  autoProgressDelay: 1

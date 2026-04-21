@@ -20,11 +20,12 @@ MonoBehaviour:
   - Chips are not mere tokens... they are fragments of victory
   - The more you hold, the more the world bends around you
   - Lose them... and you lose your place in the game
-  - If you wish to stand among true players... you must prove it.
+  - If you wish to stand among true players... you must prove it in the gym.
   autoProgressLines: 0100010100
-  CombatEnemy: 1
+  CombatEnemy: 0
   combatTransitionDelay: 1
   combatSceneName: Combat
+  enemyData: {fileID: 0}
   typingSpeed: 0.05
   voiceSound: {fileID: 8300000, guid: d18fb000299f836438a9a42c43b351f3, type: 3}
   voicePitch: 0.4

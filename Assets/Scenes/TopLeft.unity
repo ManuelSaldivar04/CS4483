@@ -1103,7 +1103,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4794197622582281258, guid: fb56c133414d17a41a9bb72ac2f17643, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8751005154826790409, guid: fb56c133414d17a41a9bb72ac2f17643, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1522,7 +1522,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 24
-      m_TileSpriteIndex: 51
+      m_TileSpriteIndex: 34
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1602,7 +1602,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 23
-      m_TileSpriteIndex: 49
+      m_TileSpriteIndex: 23
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -3135,18 +3135,18 @@ Tilemap:
     m_Data: {fileID: 1626270696, guid: 7b7dcac063c7f4741b8c24cc476efa1b, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: -1499729204, guid: 7b7dcac063c7f4741b8c24cc476efa1b, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -5046842985024631517, guid: c85f308747dfb324fac9af35f96c16a9, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 602715079, guid: a0ce4fc108114b04381187ec1f1bb52b, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -4096452330895718885, guid: c85f308747dfb324fac9af35f96c16a9, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 1855894895, guid: b8c9f9c578ec8224e971d155daa73fd9, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -339096889, guid: b8c9f9c578ec8224e971d155daa73fd9, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -1974898522, guid: b8c9f9c578ec8224e971d155daa73fd9, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 441166113, guid: c85f308747dfb324fac9af35f96c16a9, type: 3}
   - m_RefCount: 2
@@ -3156,9 +3156,9 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 1738368695, guid: c85f308747dfb324fac9af35f96c16a9, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 266165972, guid: c85f308747dfb324fac9af35f96c16a9, type: 3}
+    m_Data: {fileID: 584671989827584178, guid: c85f308747dfb324fac9af35f96c16a9, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: -1974898522, guid: b8c9f9c578ec8224e971d155daa73fd9, type: 3}
+    m_Data: {fileID: -608305279955048471, guid: c85f308747dfb324fac9af35f96c16a9, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: -1949874305, guid: b8c9f9c578ec8224e971d155daa73fd9, type: 3}
   - m_RefCount: 1
@@ -23489,7 +23489,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2953405817880383351, guid: edd63936e190b2e43b469fb5acf5d8e2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5031729515913464367, guid: edd63936e190b2e43b469fb5acf5d8e2, type: 3}
       propertyPath: soundEffectLibrary
