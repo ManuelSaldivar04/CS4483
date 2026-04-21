@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: NewEnemy 27
+  m_Name: Tier3 Minion-Blue Samurai BottomRight
   m_EditorClassIdentifier: 
   wagerStyle: 0
-  wagerAggression: 0.6
+  wagerAggression: 0.72
   stats:
     multiplier:
     - 0.5
@@ -21,17 +21,19 @@ MonoBehaviour:
     - 1.5
     - 2
     - 2.5
+    - 3
     weight:
-    - 15
-    - 38
-    - 63
-    - 85
+    - 8
+    - 25
+    - 50
+    - 72
+    - 88
     - 100
-  successChance: 58
+  successChance: 65
   actionPref: 72
-  sprite: {fileID: 0}
-  maxHP: 75
+  sprite: {fileID: -2088011804, guid: 93d7bd947bb3ae54fa53375af763293c, type: 3}
+  maxHP: 150
   currentHP: 0
-  maxCombatChips: 75
+  maxCombatChips: 100
   currentCombatChips: 0
   shield: 0

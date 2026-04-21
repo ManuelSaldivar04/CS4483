@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
-  m_Name: Hunter-BottomRightTop
+  m_Name: Villager2-BottomRight Gym
   m_EditorClassIdentifier: 
-  npcName: Hunter
-  npcPortrait: {fileID: 21300000, guid: bff513e9a16e7fc4a90351bd098a6f78, type: 3}
+  npcName: Boss
+  npcPortrait: {fileID: 21300000, guid: 34adf22d56f37614ca3dc9343b1d7b9a, type: 3}
   dialogueLines:
-  - HEY YOU!!!
-  - You don't happen to have seen a pig around these parts?
-  - I'm hunting.... I MEAN LOOKING for a very specific pig!
-  - It's uhhhhh very personal to me
-  - How dare you doubt me!
-  autoProgressLines: 01000100
+  - ...Well I'll be. The customer from my shop.
+  - Told you to stay out of the forest... but you didn't listen
+  - That 'mad bear' I mentioned... wasn't a lie
+  - Every step you took was a gamble...
+  - ...now let's see if you can win!
+  autoProgressLines: 
   CombatEnemy: 1
   combatTransitionDelay: 1
   combatSceneName: Combat
-  enemyData: {fileID: 11400000, guid: 9597a80df02af6d43a18e76c2672369d, type: 2}
+  enemyData: {fileID: 11400000, guid: 093925be0da3d7e42b74393ed5e263e0, type: 2}
   typingSpeed: 0.05
   voiceSound: {fileID: 8300000, guid: d18fb000299f836438a9a42c43b351f3, type: 3}
-  voicePitch: 0.6
-  autoProgressDelay: 1.3
+  voicePitch: 0.5
+  autoProgressDelay: 1

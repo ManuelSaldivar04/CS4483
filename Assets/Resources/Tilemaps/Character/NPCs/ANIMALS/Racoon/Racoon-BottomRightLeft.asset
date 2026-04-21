@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
   m_Name: Racoon-BottomRightLeft
   m_EditorClassIdentifier: 
-  npcName: Racoon?
+  npcName: Racoon
   npcPortrait: {fileID: 21300000, guid: 45fe2f09947fe724485d3524f50959df, type: 3}
   dialogueLines:
   - I've escaped fifteen cages, don't think you can catch me!
@@ -22,7 +22,7 @@ MonoBehaviour:
   CombatEnemy: 1
   combatTransitionDelay: 1
   combatSceneName: Combat
-  enemyData: {fileID: 0}
+  enemyData: {fileID: 11400000, guid: cc738ee5f6485e84b8eed996903675eb, type: 2}
   typingSpeed: 0.03
   voiceSound: {fileID: 8300000, guid: 982fbf4c35afef148841dead14cf834a, type: 3}
   voicePitch: 0.9

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Tier3 Minion-Monk BottomRightLeft
   m_EditorClassIdentifier: 
   wagerStyle: 2
-  wagerAggression: 0.72
+  wagerAggression: 0.4
   stats:
     multiplier:
     - 0.5
@@ -29,11 +29,11 @@ MonoBehaviour:
     - 73
     - 88
     - 100
-  successChance: 70
-  actionPref: 53
+  successChance: 71
+  actionPref: 57
   sprite: {fileID: -538467748, guid: 7910ff5926a39014389de424964cfab2, type: 3}
   maxHP: 130
-  currentHP: 0
+  currentHP: 70
   maxCombatChips: 105
-  currentCombatChips: 0
-  shield: 0
+  currentCombatChips: 14
+  shield: 20

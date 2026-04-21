@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: Minion 1
+  m_Name: Tier 3-Hunter BottomRightTop
   m_EditorClassIdentifier: 
   wagerStyle: 0
-  wagerAggression: 0.72
+  wagerAggression: 0.4
   stats:
     multiplier:
     - 0.5
@@ -21,19 +21,17 @@ MonoBehaviour:
     - 1.5
     - 2
     - 2.5
-    - 3
     weight:
-    - 8
-    - 25
-    - 50
-    - 72
-    - 88
+    - 15
+    - 38
+    - 63
+    - 85
     - 100
-  successChance: 65
-  actionPref: 72
-  sprite: {fileID: 0}
-  maxHP: 150
-  currentHP: 0
-  maxCombatChips: 100
-  currentCombatChips: 0
-  shield: 0
+  successChance: 58
+  actionPref: 62
+  sprite: {fileID: -1416576059, guid: 4aff46d97772cc34b821729e6812a864, type: 3}
+  maxHP: 130
+  currentHP: 130
+  maxCombatChips: 90
+  currentCombatChips: 90
+  shield: 5
