@@ -11022,7 +11022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2626566012854730981, guid: 25d456be28ce4544da264d870c51db15, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.94
+      value: -4.5
       objectReference: {fileID: 0}
     - target: {fileID: 2626566012854730981, guid: 25d456be28ce4544da264d870c51db15, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11790,6 +11790,7 @@ MonoBehaviour:
   dialogueText: {fileID: 450787655}
   nameText: {fileID: 1309652230}
   portraitImage: {fileID: 354355192}
+  npcID: 
 --- !u!212 &1053902710
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -16683,6 +16684,7 @@ MonoBehaviour:
   dialogueText: {fileID: 660548452}
   nameText: {fileID: 758786436}
   portraitImage: {fileID: 813489764}
+  npcID: SamuraiRed-TopLeftBottom
 --- !u!212 &1409218275
 SpriteRenderer:
   m_ObjectHideFlags: 0

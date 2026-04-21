@@ -16,11 +16,26 @@ public class NPC : MonoBehaviour, IInteractable
     private int dialogueIndex;
     private bool isTyping, isDialogueActive, isLoadingCombat;
 
+    private static HashSet<string> defeatedNPCs = new HashSet<string>();//keep list of all defeated NPCs
+    public string npcID; //
+
+
+    private void Awake()
+    {
+        if(string.IsNullOrEmpty(npcID))
+            npcID = gameObject.name;
+    }
     public bool CanInteract()
     {
         return !isDialogueActive && !isLoadingCombat;
     }
 
+    public static void MarkDefeated(string id)
+    {
+        if (!defeatedNPCs.Contains(id))
+            defeatedNPCs.Add(id);
+        Debug.Log($"NPC {id} marked as defeated");
+    }
     public void Interact()
     {
         //if no dialogue data of the game is paused and no dialogue is active
@@ -108,9 +123,15 @@ public class NPC : MonoBehaviour, IInteractable
 
         }
 
-        if (dialogueData.CombatEnemy && !isLoadingCombat)
+        if (dialogueData.CombatEnemy && !isLoadingCombat && !defeatedNPCs.Contains(npcID))
         {
             StartCoroutine(LoadCombatAfterDelay());
+        }
+        else if(dialogueData.CombatEnemy && defeatedNPCs.Contains(npcID))
+        {
+            //already defeated - just unpause and do nothing else
+            TimeManager.StartTime();
+            Debug.Log($"{npcID} already defeated -  no combat triggered");
         }
     }
 
@@ -121,6 +142,21 @@ public class NPC : MonoBehaviour, IInteractable
         //wait for configured delay (so player cna read the last line)
         yield return new WaitForSecondsRealtime(dialogueData.combatTransitionDelay);
 
+        //store current scene and player position BEFORE leaving
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if(player != null)
+        {
+            string currentScene = SceneManager.GetActiveScene().name;
+            Vector3 PlayerPos = player.transform.position;
+            LevelLoader.SetReturnLocation(currentScene, PlayerPos);
+            Debug.Log($"Stored return: scene={currentScene}, pos={PlayerPos}");
+        }
+        else
+        {
+            Debug.LogError("Player not found when trying to store return location");
+        }
+
+        CombatData.sourceNPCID = npcID;
         Time.timeScale = 1f;
         TimeManager.StartTime();
 
