@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: NewEnemy 16
+  m_Name: Tier2-Sultan BottomLeftTop
   m_EditorClassIdentifier: 
-  wagerStyle: 0
+  wagerStyle: 2
   wagerAggression: 0.5
   stats:
     multiplier:
@@ -21,15 +21,15 @@ MonoBehaviour:
     - 1.5
     - 2
     weight:
-    - 15
-    - 45
-    - 78
+    - 20
+    - 52
+    - 80
     - 100
-  successChance: 50
-  actionPref: 70
-  sprite: {fileID: 0}
-  maxHP: 65
+  successChance: 60
+  actionPref: 49
+  sprite: {fileID: 791077775, guid: 89cfbf7046661a44da24c136913e4a72, type: 3}
+  maxHP: 100
   currentHP: 0
-  maxCombatChips: 50
-  currentCombatChips: 0
+  maxCombatChips: 60
+  currentCombatChips: 6
   shield: 0

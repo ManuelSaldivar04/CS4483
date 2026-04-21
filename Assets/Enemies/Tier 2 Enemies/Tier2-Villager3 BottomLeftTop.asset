@@ -10,28 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: Minion 1
+  m_Name: Tier2-Villager3 BottomLeftTop
   m_EditorClassIdentifier: 
   wagerStyle: 0
-  wagerAggression: 0.6
+  wagerAggression: 0.728
   stats:
     multiplier:
     - 0.5
     - 1
     - 1.5
     - 2
-    - 2.5
     weight:
-    - 12
-    - 38
-    - 65
-    - 87
+    - 15
+    - 45
+    - 78
     - 100
-  successChance: 58
-  actionPref: 70
-  sprite: {fileID: 0}
-  maxHP: 105
+  successChance: 70
+  actionPref: 65
+  sprite: {fileID: -1646808764, guid: 23c1623d2794f614781ab5252273e961, type: 3}
+  maxHP: 65
   currentHP: 0
-  maxCombatChips: 70
-  currentCombatChips: 0
+  maxCombatChips: 30
+  currentCombatChips: 13
   shield: 0

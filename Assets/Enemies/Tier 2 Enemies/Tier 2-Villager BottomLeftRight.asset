@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: Boss
+  m_Name: Tier 2-Villager BottomLeftRight
   m_EditorClassIdentifier: 
-  wagerStyle: 0
-  wagerAggression: 0.7
+  wagerStyle: 2
+  wagerAggression: 0.5
   stats:
     multiplier:
     - 0.5
@@ -21,19 +21,17 @@ MonoBehaviour:
     - 1.5
     - 2
     - 2.5
-    - 3
     weight:
-    - 8
-    - 28
-    - 53
-    - 75
+    - 18
+    - 45
+    - 72
     - 90
     - 100
-  successChance: 65
-  actionPref: 68
-  sprite: {fileID: 0}
-  maxHP: 200
-  currentHP: 0
-  maxCombatChips: 90
-  currentCombatChips: 0
-  shield: 0
+  successChance: 80
+  actionPref: 50
+  sprite: {fileID: 803556153, guid: 3688b67b6865c1549b538278a7b8f3d6, type: 3}
+  maxHP: 30
+  currentHP: 15
+  maxCombatChips: 50
+  currentCombatChips: 40
+  shield: 57
