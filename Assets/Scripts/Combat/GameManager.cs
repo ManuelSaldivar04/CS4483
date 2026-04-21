@@ -342,6 +342,7 @@ public class GameManager : MonoBehaviour
         enemySprite.transform.Rotate(0, 0, 270);
 
         ///////////return to overworld here///////////
+        //ADD SOME DELAY OR ELSE IT IMMEDIATLY CLOSES SCENE
 
         //Mark the NPC as defeated
         if (!string.IsNullOrEmpty(CombatData.sourceNPCID))
@@ -361,10 +362,20 @@ public class GameManager : MonoBehaviour
 
     IEnumerator defeat()
     {
-        Debug.Log("Defeat");
+        print("Defeat");
         resultText.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.75f);
         playerSprite.transform.Rotate(0, 0, 90);
+
+        ////// SPAWN PLAYER BACK TO SCENE WHEN LOSE-DON'T MARK ENEMY AS DEFEATED /////
+        //ADD SOME DELAY OR ELSE IT IMMEDIATLY CLOSES SCENE
+
+        //return to overworld
+        LevelLoader ll = FindObjectOfType<LevelLoader>();
+        if (ll != null)
+            ll.LoadReturnScene();
+        else
+            Debug.LogError("No LevelLoader found to return to overworld");
     }
 
     public void setGame(int g)
