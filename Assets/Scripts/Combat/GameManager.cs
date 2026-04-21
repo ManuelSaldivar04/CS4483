@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        getEnemy(61);
+        getEnemy(0);
         player.InitializeBattle();
         enemy.InitializeBattle();
         playerBars.setHealth(player.currentHP, player.maxHP);
@@ -321,18 +321,20 @@ public class GameManager : MonoBehaviour
 
     IEnumerator victory()
     {
-        Debug.Log("Victory");
         resultText.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.75f);
         enemySprite.transform.Rotate(0, 0, 270);
+        yield return new WaitForSeconds(1f);
+        ui.victoryScreen();
     }
 
     IEnumerator defeat()
     {
-        Debug.Log("Defeat");
         resultText.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.75f);
         playerSprite.transform.Rotate(0, 0, 90);
+        yield return new WaitForSeconds(1f);
+        ui.defeatScreen();
     }
 
     public void setGame(int g)
