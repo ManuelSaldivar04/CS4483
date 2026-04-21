@@ -10,30 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: Tier2-Sultan2 BottomLeft
+  m_Name: Tier1 minion-RedSamurai TopLeftBottom
   m_EditorClassIdentifier: 
   wagerStyle: 0
-  wagerAggression: 0.7
+  wagerAggression: 0.5
   stats:
     multiplier:
     - 0.5
     - 1
     - 1.5
     - 2
-    - 2.5
-    - 3
     weight:
-    - 8
-    - 28
-    - 53
-    - 75
-    - 90
+    - 20
+    - 50
+    - 82
     - 100
-  successChance: 65
-  actionPref: 68
-  sprite: {fileID: 1347077883, guid: ae342d44550938746ba301b69aed7010, type: 3}
-  maxHP: 200
-  currentHP: 0
-  maxCombatChips: 90
-  currentCombatChips: 0
-  shield: 0
+  successChance: 60
+  actionPref: 50
+  sprite: {fileID: 101726602, guid: a8bff843dd77390499f8ade29e35344d, type: 3}
+  maxHP: 75
+  currentHP: 18
+  maxCombatChips: 50
+  currentCombatChips: 13
+  shield: 10

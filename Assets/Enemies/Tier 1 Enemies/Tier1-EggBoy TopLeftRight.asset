@@ -10,30 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: Minion 2
+  m_Name: Tier1-EggBoy TopLeftRight
   m_EditorClassIdentifier: 
   wagerStyle: 2
-  wagerAggression: 0.72
+  wagerAggression: 0.4
   stats:
     multiplier:
     - 0.5
     - 1
     - 1.5
     - 2
-    - 2.5
-    - 3
     weight:
-    - 10
-    - 28
-    - 52
-    - 73
-    - 88
+    - 25
+    - 60
+    - 85
     - 100
-  successChance: 70
-  actionPref: 53
-  sprite: {fileID: 0}
-  maxHP: 130
+  successChance: 50
+  actionPref: 55
+  sprite: {fileID: -2054001594, guid: fdbaf1c384d5f5c4fabccc324cf2774e, type: 3}
+  maxHP: 38
   currentHP: 0
-  maxCombatChips: 105
-  currentCombatChips: 0
+  maxCombatChips: 40
+  currentCombatChips: 9
   shield: 0

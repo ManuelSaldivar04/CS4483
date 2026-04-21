@@ -17,10 +17,12 @@ MonoBehaviour:
   dialogueLines:
   - I've escaped fifteen cages, don't think you can catch me!
   - 'You wouldn''t want to meet my older brother '
+  - He'll hurt you more than ME!!
   autoProgressLines: 0100
-  CombatEnemy: 0
-  combatTransitionDelay: 2
+  CombatEnemy: 1
+  combatTransitionDelay: 1
   combatSceneName: Combat
+  enemyData: {fileID: 0}
   typingSpeed: 0.03
   voiceSound: {fileID: 8300000, guid: 982fbf4c35afef148841dead14cf834a, type: 3}
   voicePitch: 0.9

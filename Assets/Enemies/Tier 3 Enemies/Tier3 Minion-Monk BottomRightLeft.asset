@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: Boss
+  m_Name: Tier3 Minion-Monk BottomRightLeft
   m_EditorClassIdentifier: 
-  wagerStyle: 0
-  wagerAggression: 0.6
+  wagerStyle: 2
+  wagerAggression: 0.72
   stats:
     multiplier:
     - 0.5
@@ -21,17 +21,19 @@ MonoBehaviour:
     - 1.5
     - 2
     - 2.5
+    - 3
     weight:
     - 10
-    - 35
-    - 65
+    - 28
+    - 52
+    - 73
     - 88
     - 100
-  successChance: 60
-  actionPref: 65
-  sprite: {fileID: 0}
-  maxHP: 120
+  successChance: 70
+  actionPref: 53
+  sprite: {fileID: -538467748, guid: 7910ff5926a39014389de424964cfab2, type: 3}
+  maxHP: 130
   currentHP: 0
-  maxCombatChips: 60
+  maxCombatChips: 105
   currentCombatChips: 0
   shield: 0

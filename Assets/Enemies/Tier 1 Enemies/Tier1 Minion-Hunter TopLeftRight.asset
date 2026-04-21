@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: Minion 2
+  m_Name: Tier1 Minion-Hunter TopLeftRight
   m_EditorClassIdentifier: 
-  wagerStyle: 2
+  wagerStyle: 0
   wagerAggression: 0.5
   stats:
     multiplier:
@@ -21,15 +21,15 @@ MonoBehaviour:
     - 1.5
     - 2
     weight:
-    - 20
-    - 50
-    - 82
+    - 15
+    - 45
+    - 80
     - 100
-  successChance: 55
-  actionPref: 50
-  sprite: {fileID: 1995121529, guid: 5fe13e12f4de8a2488e90d603015ba07, type: 3}
+  successChance: 50
+  actionPref: 65
+  sprite: {fileID: -1416576059, guid: 4aff46d97772cc34b821729e6812a864, type: 3}
   maxHP: 75
   currentHP: 18
   maxCombatChips: 50
   currentCombatChips: 13
-  shield: 50
+  shield: 10

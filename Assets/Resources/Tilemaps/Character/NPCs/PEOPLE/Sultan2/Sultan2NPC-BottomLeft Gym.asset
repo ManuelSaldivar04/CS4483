@@ -10,19 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a72174094dc80443abeca9f180de317, type: 3}
-  m_Name: Monk-BottomRightLeft
+  m_Name: Sultan2NPC-BottomLeft Gym
   m_EditorClassIdentifier: 
-  npcName: Monk
-  npcPortrait: {fileID: 21300000, guid: 743bcafbf40d43144a7a344a183ccd21, type: 3}
+  npcName: Sultan
+  npcPortrait: {fileID: 21300000, guid: a7a0b34313469b64a8a0475cea72d3b9, type: 3}
   dialogueLines:
-  - When the sun meets the horizon, truth reveals itself...
-  - What does your hand reveal about you?...
+  - So you've come after all
+  - Do you really have what it takes?
+  - Prove it...
   autoProgressLines: 
   CombatEnemy: 1
   combatTransitionDelay: 1
   combatSceneName: Combat
-  enemyData: {fileID: 11400000, guid: 21241e9bec2ff2b4fa237dba34eb5d4d, type: 2}
-  typingSpeed: 0.07
+  enemyData: {fileID: 11400000, guid: 85b5a9b86379e0849859b64fd4ed6701, type: 2}
+  typingSpeed: 0.05
   voiceSound: {fileID: 8300000, guid: d18fb000299f836438a9a42c43b351f3, type: 3}
   voicePitch: 0.4
   autoProgressDelay: 1.5

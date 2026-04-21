@@ -10,26 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e8fd517bbacef434c8e3de9abc9a8511, type: 3}
-  m_Name: NewEnemy 12
+  m_Name: Tier3-Racoon BottomRightLeft
   m_EditorClassIdentifier: 
-  wagerStyle: 2
-  wagerAggression: 0.4
+  wagerStyle: 0
+  wagerAggression: 0.309
   stats:
     multiplier:
     - 0.5
     - 1
     - 1.5
     - 2
+    - 2.5
+    - 3
     weight:
-    - 25
-    - 60
-    - 85
+    - 10
+    - 30
+    - 55
+    - 75
+    - 90
     - 100
-  successChance: 50
-  actionPref: 55
+  successChance: 68
+  actionPref: 50
   sprite: {fileID: 0}
-  maxHP: 38
+  maxHP: 95
   currentHP: 0
-  maxCombatChips: 40
+  maxCombatChips: 90
   currentCombatChips: 0
   shield: 0
