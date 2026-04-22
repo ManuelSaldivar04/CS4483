@@ -44,6 +44,10 @@ public class NPC : MonoBehaviour, IInteractable
             defeatedNPCs.Add(id);
         Debug.Log($"NPC {id} marked as defeated");
     }
+    public static void ResetDefeatedNPC()
+    {
+        defeatedNPCs.Clear();
+    }
     public void Interact()
     {
         //if no dialogue data of the game is paused and no dialogue is active
@@ -136,13 +140,7 @@ public class NPC : MonoBehaviour, IInteractable
 
         if (isTutorialNPC)
         {
-            if (PlayerData.Instance == null)
-            {
-                GameObject go = new GameObject("PlayerData");
-                go.AddComponent<PlayerData>();
-                
-            }
-            PlayerData.Instance.InitializeRun();
+            ResetDefeatedNPC(); //reset the combat NPCs if lose game and brought back to spawn
             SceneManager.LoadScene("Center");
         }
 
