@@ -71,7 +71,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            getEnemy(0);
+            getEnemy(61);
         }
         PlayerData.Instance.InitializeBattle();
         enemy.InitializeBattle();
