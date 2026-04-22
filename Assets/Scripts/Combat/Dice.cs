@@ -26,14 +26,17 @@ public class Dice : MonoBehaviour
     public TextMeshProUGUI multText;
 
     public int playerDiceAmount;
+    public int playerDiceAmountItem;
     public int [] playerNum;
     public int dealerNum;
     public float mult;
     public int dieNum;
     public float [] multValues;
+    bool retry;
 
     public void beginDice()
     {
+        retry = true;
         anim.enabled = false;
         roll.interactable = false;
         stop.interactable = false;
@@ -46,6 +49,7 @@ public class Dice : MonoBehaviour
 
         dealerDiceObject.SetActive(false);
         playerDiceAmount = 0;
+        playerDiceAmountItem = 0;
         mult = 0;
         multText.text = "";
 
@@ -60,6 +64,7 @@ public class Dice : MonoBehaviour
             playerDiceImage[playerDiceAmount].sprite = diceFaces[playerNum[playerDiceAmount]];
             playerDiceObject[playerDiceAmount].SetActive(true);
             playerDiceAmount++;
+            playerDiceAmountItem++;
             StartCoroutine(getDealerNum());
 
 
@@ -84,14 +89,25 @@ public class Dice : MonoBehaviour
 
             if (num == dealerNum)
             {
+                for (int i = 0; i < PlayerData.Instance.items.Length; i++)
+                {
+                    if (PlayerData.Instance.items[i] == 18 && retry)
+                    {
+                        retry = false;
+                        resultText.text = "Iron Dice\nRoll Or Stop";
+                        roll.interactable = true;
+                        stop.interactable = true;
+                        return;
+                    }
+                }
                 StartCoroutine(lose());
                 return;
             }
 
             if (playerNum.Contains(num))
             {
-                mult += multValues[playerDiceAmount - 1];
-                resultText.text = "+" + multValues[playerDiceAmount - 1] + "X\nRoll Or Stop";
+                mult += multValues[playerDiceAmountItem - 1];
+                resultText.text = "+" + multValues[playerDiceAmountItem - 1] + "X\nRoll Or Stop";
                 multText.text = mult + "X";
                 roll.interactable = true;
                 stop.interactable = true;
@@ -169,7 +185,18 @@ public class Dice : MonoBehaviour
         playerNum[playerDiceAmount] = dieNum;
         playerDiceImage[playerDiceAmount].sprite = diceFaces[playerNum[playerDiceAmount]];
         playerDiceObject[playerDiceAmount].SetActive(true);
+
+        for (int i = 0; i < PlayerData.Instance.items.Length; i++)
+        {
+            if (PlayerData.Instance.items[i] == 17)
+            {
+                playerDiceAmount++;
+                rollDie();
+                return;
+            }
+        }
         playerDiceAmount++;
+        playerDiceAmountItem++;
         rollDie();
     }
 }

@@ -29,6 +29,7 @@ public class BJ : MonoBehaviour
     int card;
     int playerAces;
     int dealerAces;
+    bool retry;
 
     public void beginBJ()
     {
@@ -41,6 +42,8 @@ public class BJ : MonoBehaviour
         dealerTotal = 0;
         playerAces = 0;
         dealerAces = 0;
+        retry = true;
+        card = -1;
 
         for (int i = 0; i < 12; i++)
         {
@@ -52,7 +55,21 @@ public class BJ : MonoBehaviour
             dealerCardsObject[i].SetActive(false);
         }
 
-        card = getCard();
+        for (int i = 0; i < PlayerData.Instance.items.Length; i++)
+        {
+            if (PlayerData.Instance.items[i] == 23)
+            {
+                card = getCardInitial();
+            }
+
+            else if (PlayerData.Instance.items[i] == 16)
+            {
+                card = 33;
+                break;
+            }
+        }
+        if (card == -1)
+            card = getCard();
         playerCardsImage[numPlayerCards].sprite = cards[card];
         playerCardsObject[numPlayerCards].SetActive(true);
         updatePLayerTotal(card);
@@ -64,7 +81,17 @@ public class BJ : MonoBehaviour
         updateDealerTotal(card);
         numDealerCards++;
 
-        card = getCard();
+        for (int i = 0; i < PlayerData.Instance.items.Length; i++)
+        {
+            if (PlayerData.Instance.items[i] == 23)
+            {
+                card = getCardInitial();
+                break;
+            }
+
+            else
+                card = getCard();
+        }
         playerCardsImage[numPlayerCards].sprite = cards[card];
         playerCardsObject[numPlayerCards].SetActive(true);
         updatePLayerTotal(card);
@@ -84,8 +111,19 @@ public class BJ : MonoBehaviour
         return UnityEngine.Random.Range(0, 52);
     }
 
+    public int getCardInitial()
+    {
+        int x = UnityEngine.Random.Range(0, 68);
+
+        if (x > 51)
+            x = 51;
+
+        return x;
+    }
+
     public void playerHit()
     {
+        resultObject.SetActive(false);
         UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(null);
         card = getCard();
         playerCardsImage[numPlayerCards].sprite = cards[card];
@@ -95,6 +133,20 @@ public class BJ : MonoBehaviour
 
         if (playerBust())
         {
+            for (int i = 0; i < PlayerData.Instance.items.Length; i++)
+            {
+                if (PlayerData.Instance.items[i] == 25 && retry)
+                {
+                    revertPLayerTotal(card);
+                    result.text = "Angel Card Activated";
+                    resultObject.SetActive(true);
+                    retry = false;
+                    numPlayerCards--;
+                    playerCardsObject[numPlayerCards].SetActive(false);
+                    return;
+                }
+            }
+
             hit.interactable = false;
             stand.interactable = false;
             StartCoroutine(lose());
@@ -106,6 +158,7 @@ public class BJ : MonoBehaviour
 
     public void playerStand()
     {
+        resultObject.SetActive(false);
         hit.interactable = false;
         stand.interactable = false;
         playerScore.SetText(playerTotal.ToString());
@@ -146,6 +199,55 @@ public class BJ : MonoBehaviour
 
         else if (card >= 36)
             playerTotal += 10;
+
+        while (playerTotal > 21 && playerAces > 0)
+        {
+            playerTotal -= 10;
+            playerAces--;
+        }
+
+        if (playerAces > 0)
+            playerScore.SetText((playerTotal - 10).ToString() + " " + playerTotal.ToString());
+
+        else
+            playerScore.SetText(playerTotal.ToString());
+
+    }
+
+    public void revertPLayerTotal(int card)
+    {
+        if (card >= 0 && card < 4)
+            playerTotal -= 2;
+
+        else if (card >= 4 && card < 8)
+            playerTotal -= 3;
+
+        else if (card >= 8 && card < 12)
+            playerTotal -= 4;
+
+        else if (card >= 12 && card < 16)
+            playerTotal -= 5;
+
+        else if (card >= 16 && card < 20)
+            playerTotal -= 6;
+
+        else if (card >= 20 && card < 24)
+            playerTotal -= 7;
+
+        else if (card >= 24 && card < 28)
+            playerTotal -= 8;
+
+        else if (card >= 28 && card < 32)
+            playerTotal -= 9;
+
+        else if (card >= 32 && card < 36)
+        {
+            playerTotal -= 11;
+            playerAces--;
+        }
+
+        else if (card >= 36)
+            playerTotal -= 10;
 
         while (playerTotal > 21 && playerAces > 0)
         {
