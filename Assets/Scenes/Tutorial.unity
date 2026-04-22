@@ -7757,6 +7757,9 @@ MonoBehaviour:
   dialogueText: {fileID: 1543221633}
   nameText: {fileID: 1091313924}
   portraitImage: {fileID: 1981307143}
+  isShop: 0
+  shopData: {fileID: 0}
+  isTutorialNPC: 1
 --- !u!1001 &453453792
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8120,6 +8123,9 @@ MonoBehaviour:
   targetSpawnPointData: {fileID: 11400000, guid: 6d646c84ca09d79438c6426e12e6c8d6, type: 2}
   selectedSpawnPointIndex: 1
   spawnPointName: spawn2
+  returnSpawnPointData: {fileID: 0}
+  returnSpawnPointIndex: 0
+  returnSpawnPointName: 
 --- !u!61 &660276580
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -21725,6 +21731,9 @@ MonoBehaviour:
   targetSpawnPointData: {fileID: 11400000, guid: 0a0b72b0638c8ff4ba670ff94819de00, type: 2}
   selectedSpawnPointIndex: 0
   spawnPointName: spawn1
+  returnSpawnPointData: {fileID: 0}
+  returnSpawnPointIndex: 0
+  returnSpawnPointName: 
 --- !u!61 &1791209144
 BoxCollider2D:
   m_ObjectHideFlags: 0

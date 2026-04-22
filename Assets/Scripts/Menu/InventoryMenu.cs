@@ -22,8 +22,6 @@ public class InventoryMenu : MonoBehaviour
 
     void Start()
     {
-        isInventoryOpen = false;
-
         // Initialize inventory & equipment slots
         SetupInventorySlots();
         setupEquipmentSlots();
@@ -33,17 +31,17 @@ public class InventoryMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isInventoryOpen)
+        if (MenuManager.Instance.CheckOpen("inventorymenu"))
         {
             UpdateInventoryUI();
             UpdateEquipmentUI();
         }
 
         if(Input.GetKeyDown(KeyCode.I)) {
-            if(isInventoryOpen) {
-                CloseInventory();
+            if(MenuManager.Instance.CheckOpen("inventorymenu")) {
+                MenuManager.Instance.CloseMenu("inventorymenu", true);
             } else {
-                OpenInventory();
+                MenuManager.Instance.OpenMenu("inventorymenu", true);
             }
         }
     }
@@ -144,16 +142,6 @@ public class InventoryMenu : MonoBehaviour
             currentPage--;
             UpdateInventoryUI();
         }
-    }
-
-    public void OpenInventory() {
-        inventoryMenu.SetActive(true);
-        isInventoryOpen = true;
-    }
-
-    public void CloseInventory() {
-        inventoryMenu.SetActive(false);
-        isInventoryOpen = false;
     }
 
 }

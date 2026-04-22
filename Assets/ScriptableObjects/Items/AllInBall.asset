@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 21
   itemName: All-In Ball
   icon: {fileID: 1699505118, guid: 0a58e47bf45c39a43b12aa7bde1a7754, type: 3}
-  maxStackSize: 0
   equippable: 1
-  description: 
-  healthChipGain: 0
-  betChipGain: 0
+  description: Bet all in one 1 number/colour and if it hits deal 3x damage, but
+    if it misses do as much damage to yourself as your bet.
+  bonusHealthChip: 0
+  bonusAttackChip: 0
+  regenAttackChip: 0
+  dmgReduction: 0

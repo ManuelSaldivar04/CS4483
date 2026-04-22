@@ -6,41 +6,40 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public MenuManager menuManager;
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape)) {
-            if (menuManager.menus["pausemenu"].isOpen) {
-                menuManager.CloseMenu("pausemenu", true);
+            if (MenuManager.Instance.menus["pausemenu"].isOpen) {
+                MenuManager.Instance.CloseMenu("pausemenu", true);
             } else {
-                if (menuManager.menus["controlmenu"].isOpen) {
+                if (MenuManager.Instance.menus["controlmenu"].isOpen) {
                     return;
                 }
-                menuManager.OpenMenu("pausemenu", true);
+                MenuManager.Instance.OpenMenu("pausemenu", true);
             }
         }
     }
 
     public void PauseGame() 
     {
-        menuManager.OpenMenu("pausemenu", true);
+        MenuManager.Instance.OpenMenu("pausemenu", true);
     }
 
     public void ResumeGame()
     {
-        menuManager.CloseMenu("pausemenu", true);
+        MenuManager.Instance.CloseMenu("pausemenu", true);
     }
 
     public void OpenControlMenu()
     {
-        menuManager.CloseMenu("pausemenu", true);
-        menuManager.OpenMenu("controlmenu", true);
+        MenuManager.Instance.CloseMenu("pausemenu", true);
+        MenuManager.Instance.OpenMenu("controlmenu", true);
     }
 
     public void GoToMainMenu() 
     {
-        menuManager.CloseMenu("pausemenu", true);
+        MenuManager.Instance.CloseMenu("pausemenu", true);
         SceneManager.LoadScene("MainMenu");
     }
 }

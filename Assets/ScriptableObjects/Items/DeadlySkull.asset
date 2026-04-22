@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 26
   itemName: Deadly Skull
   icon: {fileID: -1836391015, guid: 0a58e47bf45c39a43b12aa7bde1a7754, type: 3}
-  maxStackSize: 0
-  equippable: 0
-  description: 
-  healthChipGain: 0
-  betChipGain: 0
+  equippable: 1
+  description: Increase the numbeer of cursed cards in the deck but deal increased
+    damage
+  bonusHealthChip: 0
+  bonusAttackChip: 0
+  regenAttackChip: 0
+  dmgReduction: 0

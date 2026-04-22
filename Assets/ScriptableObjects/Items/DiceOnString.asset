@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 22
   itemName: Dice On A String
   icon: {fileID: 1268425537, guid: a97d22ad447f34e4c955581404776fc1, type: 3}
-  maxStackSize: 0
-  equippable: 0
-  description: 
-  healthChipGain: 0
-  betChipGain: 0
+  equippable: 1
+  description: Change one of your selected rolls to any value you don't currently
+    have
+  bonusHealthChip: 0
+  bonusAttackChip: 0
+  regenAttackChip: 0
+  dmgReduction: 0

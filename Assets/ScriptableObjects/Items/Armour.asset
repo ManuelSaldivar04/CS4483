@@ -15,8 +15,9 @@ MonoBehaviour:
   id: 0
   itemName: Armour
   icon: {fileID: -2112818390, guid: 0a58e47bf45c39a43b12aa7bde1a7754, type: 3}
-  maxStackSize: 0
   equippable: 1
-  description: 
-  healthChipGain: 0
-  betChipGain: 0
+  description: Armour that prevents you from taking damage. 10% dmg reduction.
+  bonusHealthChip: 0
+  bonusAttackChip: 0
+  regenAttackChip: 0
+  dmgReduction: 1.1

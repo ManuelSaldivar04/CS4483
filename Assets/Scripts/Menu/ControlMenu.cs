@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class ControlMenu : MonoBehaviour
 {
-    public MenuManager menuManager;
-
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape)) {
-            if (!menuManager.menus["pausemenu"].isOpen) {
-                if (menuManager.menus["controlmenu"].isOpen) {
+            if (!MenuManager.Instance.menus["pausemenu"].isOpen) {
+                if (MenuManager.Instance.menus["controlmenu"].isOpen) {
                     ReturntoPauseMenu();
                 }
             }
@@ -18,12 +16,12 @@ public class ControlMenu : MonoBehaviour
     }
     public void OpenControlMenu()
     {
-        menuManager.OpenMenu("controlmenu", true);
+        MenuManager.Instance.OpenMenu("controlmenu", true);
     }
 
     public void ReturntoPauseMenu()
     {
-        menuManager.CloseMenu("controlmenu", false);
-        menuManager.OpenMenu("pausemenu", true);
+        MenuManager.Instance.CloseMenu("controlmenu", false);
+        MenuManager.Instance.OpenMenu("pausemenu", true);
     }
 }

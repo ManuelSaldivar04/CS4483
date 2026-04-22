@@ -15,8 +15,9 @@ MonoBehaviour:
   id: 16
   itemName: Wildcard
   icon: {fileID: 21300000, guid: 9ed8d8d9e6257664793519b21288b8e3, type: 3}
-  maxStackSize: 1
   equippable: 1
-  description: 
-  healthChipGain: 0
-  betChipGain: 0
+  description: Change one of the initial starting 2 cards to any card in the deck
+  bonusHealthChip: 0
+  bonusAttackChip: 0
+  regenAttackChip: 0
+  dmgReduction: 0

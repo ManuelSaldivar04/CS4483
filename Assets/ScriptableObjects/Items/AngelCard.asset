@@ -15,8 +15,9 @@ MonoBehaviour:
   id: 25
   itemName: 
   icon: {fileID: 0}
-  maxStackSize: 0
-  equippable: 0
-  description: 
-  healthChipGain: 0
-  betChipGain: 0
+  equippable: 1
+  description: Save yourself from going over 21 once in blackjack.
+  bonusHealthChip: 0
+  bonusAttackChip: 0
+  regenAttackChip: 0
+  dmgReduction: 0

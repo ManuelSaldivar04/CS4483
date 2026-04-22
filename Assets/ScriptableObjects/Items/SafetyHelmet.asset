@@ -15,8 +15,9 @@ MonoBehaviour:
   id: 28
   itemName: Safety Helmet
   icon: {fileID: 0}
-  maxStackSize: 0
-  equippable: 0
-  description: 
-  healthChipGain: 0
-  betChipGain: 0
+  equippable: 1
+  description: Lower dealer stand value but deal damage to yourself going over 21
+  bonusHealthChip: 0
+  bonusAttackChip: 0
+  regenAttackChip: 0
+  dmgReduction: 0

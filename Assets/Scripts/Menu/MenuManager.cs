@@ -6,12 +6,23 @@ using UnityEngine;
 
 public class MenuManager : MonoBehaviour
 {
+
+    public static MenuManager Instance { get; private set; }
     [SerializeField] private List<MenuEntry> menuList = new List<MenuEntry>();
     public Dictionary<string, MenuData> menus = new Dictionary<string, MenuData>();
     public TimeManager timeManager;
+    public ShopMenu shopMenu;
 
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
         foreach (var entry in menuList)
         {
             menus[entry.key] = entry.value;
@@ -26,12 +37,18 @@ public class MenuManager : MonoBehaviour
         }    
     }
 
-    public void OpenMenu(string menuName, bool stopTime)
+    public void OpenMenu(string menuName, bool stopTime, NPC shopNPC = null)
     {
         if (menus.TryGetValue(menuName, out MenuData menuData))
         {
+            CloseAllMenus();
             menuData.menu.SetActive(true);
             menuData.isOpen = true;
+
+            if(menuName == "shopmenu")
+            {
+                OpenShopMenu(shopNPC);
+            }
 
             if (stopTime)
             {
@@ -43,6 +60,12 @@ public class MenuManager : MonoBehaviour
             Debug.LogWarning("Menu not found: " + menuName);
         }
     }
+
+    public void OpenShopMenu(NPC shopNPC)
+    {
+        shopMenu.Initalize(shopNPC);
+    }
+
     public void CloseMenu(string menuName, bool resumeTime)
     {
         if (menus.ContainsKey(menuName))
@@ -56,11 +79,22 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    public void CheckOpen(string menuName)
+    public void CloseAllMenus()
+    {
+        foreach (var menuData in menus.Values)
+        {
+            menuData.menu.SetActive(false);
+            menuData.isOpen = false;
+        }
+        timeManager.ResumeTime();
+    }
+
+    public bool CheckOpen(string menuName)
     {
         if (menus.ContainsKey(menuName))
         {
-            menus[menuName].isOpen = true;
+            return menus[menuName].isOpen;
         }
+        return false;
     }
 }

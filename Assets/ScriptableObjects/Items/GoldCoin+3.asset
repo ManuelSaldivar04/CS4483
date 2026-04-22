@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 11
   itemName: Gold Coin +3
   icon: {fileID: 21300000, guid: c184f0812b0a80a45accd4ed4645ac8f, type: 3}
-  maxStackSize: 1
   equippable: 1
-  description: 
-  healthChipGain: 0
-  betChipGain: 0
+  description: A golden coin which increases your health. Increase health chips by
+    300.
+  bonusHealthChip: 300
+  bonusAttackChip: 0
+  regenAttackChip: 0
+  dmgReduction: 0

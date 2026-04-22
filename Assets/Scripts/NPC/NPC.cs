@@ -16,6 +16,13 @@ public class NPC : MonoBehaviour, IInteractable
     private int dialogueIndex;
     private bool isTyping, isDialogueActive, isLoadingCombat;
 
+    [Header("Shop info")]
+    public bool isShop;
+    public Shop shopData;
+
+    [Header("Tutorial Info")]
+    public bool isTutorialNPC;
+
     public bool CanInteract()
     {
         return !isDialogueActive && !isLoadingCombat;
@@ -104,8 +111,16 @@ public class NPC : MonoBehaviour, IInteractable
         dialoguePanel.SetActive(false);
         if (!dialogueData.CombatEnemy)
         {
-            TimeManager.StartTime(); //only unpasue for non-combat NPC's
+            TimeManager.StartTime(); //only unpause for non-combat NPC's
+            if (isShop)
+            {
+                MenuManager.Instance.OpenMenu("shopmenu", true, this);
+            }
+        }
 
+        if (isTutorialNPC)
+        {
+            SceneManager.LoadScene("Center");
         }
 
         if (dialogueData.CombatEnemy && !isLoadingCombat)

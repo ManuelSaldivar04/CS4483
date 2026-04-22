@@ -16,15 +16,20 @@ MonoBehaviour:
   npcPortrait: {fileID: 21300000, guid: d952a851392a84c4a8a1ed51430131fd, type: 3}
   dialogueLines:
   - Come here young man....
-  - Long have I watched this land, and long have I waited for someone like you
-  - This world is not as simple as it seems. Creatures roam, trainers rise and fall,
-    and only those with courage carve their path.
+  - Long have I watched this land, and long have I waited for someone who can gamble
+    like you
+  - This world is not as simple as it seems. Where money talks, only those smart
+    enough to gamble their way to the top can survive
   - Take this moment, young one-this is where your journey begins.
   - But words alone mean little
-  - A true trainer proves their worth in battle
   - Show me....do you have the strength to walk this path?
-  - LET US DUAL!!
+  - Defeat the gyms and prove your gambling powers and claim your place as the Casino
+    King!
   autoProgressLines: 01000001000100
+  CombatEnemy: 0
+  combatTransitionDelay: 2.02
+  combatSceneName: Center
+  enemyData: {fileID: 0}
   typingSpeed: 0.06
   voiceSound: {fileID: 8300000, guid: f4d17be0c8dab5540b0b324be40fae7b, type: 3}
   voicePitch: 0.9

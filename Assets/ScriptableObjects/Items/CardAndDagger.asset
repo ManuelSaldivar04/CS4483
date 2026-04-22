@@ -15,8 +15,9 @@ MonoBehaviour:
   id: 24
   itemName: Card & Dagger
   icon: {fileID: -611647758, guid: ea24267c0f5443844a9bab353c96e3be, type: 3}
-  maxStackSize: 0
-  equippable: 0
-  description: 
-  healthChipGain: 0
-  betChipGain: 0
+  equippable: 1
+  description: Deal an additional 10% damage over the next 2 rounds.
+  bonusHealthChip: 0
+  bonusAttackChip: 0
+  regenAttackChip: 0
+  dmgReduction: 0

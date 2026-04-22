@@ -8,9 +8,10 @@ public class Item : ScriptableObject
     public int id;
     public string itemName;
     public Sprite icon;
-    public int maxStackSize;
     public bool equippable;
     public string description;
-    public int healthChipGain;
-    public int betChipGain;
+    public int bonusHealthChip;
+    public int bonusAttackChip;
+    public float regenAttackChip;
+    public float dmgReduction;
 }

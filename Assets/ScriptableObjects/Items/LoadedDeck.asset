@@ -15,8 +15,10 @@ MonoBehaviour:
   id: 23
   itemName: Loaded Deck
   icon: {fileID: -1090274521, guid: 4b0ffeefce4f00f48bd211c959875bc1, type: 3}
-  maxStackSize: 0
-  equippable: 0
-  description: 
-  healthChipGain: 0
-  betChipGain: 0
+  equippable: 1
+  description: Increase the chances of getting a card value of 10 or higher on the
+    first 2 cards
+  bonusHealthChip: 0
+  bonusAttackChip: 0
+  regenAttackChip: 0
+  dmgReduction: 0
