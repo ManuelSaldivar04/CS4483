@@ -93,7 +93,7 @@ public class UIManager : MonoBehaviour
 
     public void checkWager(int wager)
     {
-        if (wager > GameManager.Instance.player.currentCombatChips || wager < 0)
+        if (wager > PlayerData.Instance.currentCombatChips || wager < 0)
         {
             errorObject.SetActive(true);
         }

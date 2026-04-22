@@ -2,30 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class PlayerData
+public class PlayerData : MonoBehaviour
 {
+    public static PlayerData Instance;
+
 
     public int[] items;
-    public int maxHP = 100;
-    public int currentHP = 100;
+    public int maxHP;
+    public int currentHP;
 
-    public int maxCombatChips = 100;
-    public int currentCombatChips = 100;
+    public int maxCombatChips;
+    public int currentCombatChips;
 
     public int shield;
 
-    public int coins = 0;
+    public int coins;
 
     public int bonusMaxHP = 0;
     public int bonusMaxChips = 0;
 
 
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     public void InitializeRun()
     {
         // apply any permanent upgrades at the start of a run
         maxHP = 100 + bonusMaxHP;
-        maxCombatChips = 100 + bonusMaxChips;
+        maxCombatChips = 50 + bonusMaxChips;
 
         // reset to full for new run
         currentHP = maxHP;

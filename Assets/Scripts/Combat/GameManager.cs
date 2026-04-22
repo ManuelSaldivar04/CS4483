@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static EnemyData;
 
@@ -21,7 +22,6 @@ public class GameManager : MonoBehaviour
 
     public EnemyData[] enemies; 
 
-    public PlayerData player;
     public EnemyData enemy;
 
     public GameObject enemySprite;
@@ -47,7 +47,6 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -57,7 +56,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        if(CombatData.pendingEnemy != null)
+        if (PlayerData.Instance == null)
+        {
+            GameObject go = new GameObject("PlayerData");
+            go.AddComponent<PlayerData>();
+        }
+
+        if (CombatData.pendingEnemy != null)
         {
             Debug.Log($"Using pending enemy: {CombatData.pendingEnemy.name}");
             SetEnemy(CombatData.pendingEnemy);
@@ -67,10 +72,11 @@ public class GameManager : MonoBehaviour
         {
             getEnemy(61);
         }
-        player.InitializeBattle();
+        PlayerData.Instance.InitializeRun();
+        PlayerData.Instance.InitializeBattle();
         enemy.InitializeBattle();
-        playerBars.setHealth(player.currentHP, player.maxHP);
-        playerBars.setCombat(player.currentCombatChips, player.maxCombatChips);
+        playerBars.setHealth(PlayerData.Instance.currentHP, PlayerData.Instance.maxHP);
+        playerBars.setCombat(PlayerData.Instance.currentCombatChips, PlayerData.Instance.maxCombatChips);
         enemyBars.setHealth(enemy.currentHP, enemy.maxHP);
         enemyBars.setCombat(enemy.currentCombatChips, enemy.maxCombatChips);
         intent.declareIntent(enemy.currentCombatChips);
@@ -90,12 +96,12 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            getEnemy(61);
+            getEnemy(0);
         }
-        player.InitializeBattle();
+        PlayerData.Instance.InitializeBattle();
         enemy.InitializeBattle();
-        playerBars.setHealth(player.currentHP, player.maxHP);
-        playerBars.setCombat(player.currentCombatChips, player.maxCombatChips);
+        playerBars.setHealth(PlayerData.Instance.currentHP, PlayerData.Instance.maxHP);
+        playerBars.setCombat(PlayerData.Instance.currentCombatChips, PlayerData.Instance.maxCombatChips);
         enemyBars.setHealth(enemy.currentHP, enemy.maxHP);
         enemyBars.setCombat(enemy.currentCombatChips, enemy.maxCombatChips);
         intent.declareIntent(enemy.currentCombatChips);
@@ -119,8 +125,8 @@ public class GameManager : MonoBehaviour
 
     public void updatePlayerBars()
     {
-        playerBars.setHealth(player.currentHP, player.maxHP);
-        playerBars.setCombat(player.currentCombatChips, player.maxCombatChips);
+        playerBars.setHealth(PlayerData.Instance.currentHP, PlayerData.Instance.maxHP);
+        playerBars.setCombat(PlayerData.Instance.currentCombatChips, PlayerData.Instance.maxCombatChips);
     }
 
     public void updateEnemyBars()
@@ -136,7 +142,7 @@ public class GameManager : MonoBehaviour
 
     public void updatePlayerShield()
     {
-       playerShieldText.text = player.shield.ToString();
+       playerShieldText.text = PlayerData.Instance.shield.ToString();
     }
 
     public void updateEnemyShield()
@@ -179,7 +185,7 @@ public class GameManager : MonoBehaviour
             SoundEffectManager.Play("CombatGainShield");
             resultText.text = "Player Gains " + (int)(wager * mult) + " Shield";
             ui.StartCoroutine(ui.ShieldBlockEffect(0));
-            player.GainShield((int)(wager * mult));
+            PlayerData.Instance.GainShield((int)(wager * mult));
             updatePlayerShield();
             StartCoroutine(enemyAttack());
         }
@@ -191,7 +197,7 @@ public class GameManager : MonoBehaviour
         SoundEffectManager.Play("CombatFail");
         resultText.text = "Player Loses " + wager + " Combat Chips";
         resultText.gameObject.SetActive(true);
-        player.LoseCombatChips(wager);
+        PlayerData.Instance.LoseCombatChips(wager);
         updatePlayerBars();
 
         StartCoroutine(enemyAttack());
@@ -301,21 +307,21 @@ public class GameManager : MonoBehaviour
 
                 mirrorSlashAnim.PlaySlash(() =>
                 {
-                    if (player.shield >= damage)
+                    if (PlayerData.Instance.shield >= damage)
                         SoundEffectManager.Play("CombatHitShield");
                     else
                         SoundEffectManager.Play("CombatHit");
 
                     StartCoroutine(ShakeSprite(playerSprite));
-                    player.TakeDamage(damage);
+                    PlayerData.Instance.TakeDamage(damage);
                     updatePlayerBars();
                     updatePlayerShield();
                 });
 
-                yield return new WaitForSeconds(2.5f);
+                yield return new WaitForSeconds(1f);
                 resultText.gameObject.SetActive(false);
 
-                if (player.isDead())
+                if (PlayerData.Instance.isDead())
                 {
                     StartCoroutine(defeat());
                     yield break;
@@ -347,10 +353,10 @@ public class GameManager : MonoBehaviour
             resultText.gameObject.SetActive(false);
         }
 
-        if (player.currentHP > 0)
+        if (PlayerData.Instance.currentHP > 0)
         {
             ui.newTurn();
-            player.GainCombatChips(10);
+            PlayerData.Instance.GainCombatChips(10);
             enemy.GainCombatChips(5);
             intent.declareIntent(enemy.currentCombatChips);
             updateEnemyBars();
@@ -361,14 +367,26 @@ public class GameManager : MonoBehaviour
 
     IEnumerator victory()
     {
-        Debug.Log("Victory");
         resultText.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.75f);
         enemySprite.transform.Rotate(0, 0, 270);
+        yield return new WaitForSeconds(2f);
+        ui.victoryScreen();
+        
+    }
 
-        ///////////return to overworld here///////////
-        //ADD SOME DELAY OR ELSE IT IMMEDIATLY CLOSES SCENE
+    IEnumerator defeat()
+    {
+        resultText.gameObject.SetActive(false);
+        yield return new WaitForSeconds(0.75f);
+        playerSprite.transform.Rotate(0, 0, 90);
+        yield return new WaitForSeconds(2f);
+        ui.defeatScreen();
 
+    }
+
+    public void returnToOverworld()
+    {
         //Mark the NPC as defeated
         if (!string.IsNullOrEmpty(CombatData.sourceNPCID))
         {
@@ -381,26 +399,11 @@ public class GameManager : MonoBehaviour
             ll.LoadReturnScene();
         else
             Debug.LogError("No LevelLoader found to return to overworld!");
-
-       /////////// END OF STUFF ///////////////
     }
 
-    IEnumerator defeat()
+    public void returnHome()
     {
-        print("Defeat");
-        resultText.gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.75f);
-        playerSprite.transform.Rotate(0, 0, 90);
-
-        ////// SPAWN PLAYER BACK TO SCENE WHEN LOSE-DON'T MARK ENEMY AS DEFEATED /////
-        //ADD SOME DELAY OR ELSE IT IMMEDIATLY CLOSES SCENE
-
-        //return to overworld
-        LevelLoader ll = FindObjectOfType<LevelLoader>();
-        if (ll != null)
-            ll.LoadReturnScene();
-        else
-            Debug.LogError("No LevelLoader found to return to overworld");
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void setGame(int g)
