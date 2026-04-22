@@ -12,8 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b637f7fc862584444a683dd81ba90fc0, type: 3}
   m_Name: ShopDialogue
   m_EditorClassIdentifier: 
-  basicLines: []
-  buyLines: []
-  typingSpeed: 0.05
-  voiceSound: {fileID: 0}
-  voicePitch: 1
+  basicLines:
+  - You know I'm something of a gambler myself.
+  - My friend Sam is really bad at gambling, dont be like him.
+  - I sell good stuff too you know.
+  - I don't do buy one get one free...
+  - Don't go to the evil area, its quite scary this time of year.
+  - I'll give you a discount if you kick Matthew's butt.
+  - What are we some kind of casino royale?
+  - I actually use some of these myself.
+  buyLines:
+  - You're really going to buy that?
+  - I hope your luck is good enough.
+  - Discount on the next purchase! 0% off!
+  - I can finally feed my kids.
+  - You know that item is worthless right?
+  - 6767676767676767676767
+  - Manolo could've used that a while back.
+  brokeBoyLine: You don't have enough coins to purchase this!
+  typingSpeed: 0.07
+  voiceSound: {fileID: 8300000, guid: bbd2ebb9e61724a47af8c46afb7ced44, type: 3}
+  voicePitch: 0.8

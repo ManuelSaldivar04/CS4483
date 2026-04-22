@@ -7709,6 +7709,10 @@ PrefabInstance:
       propertyPath: playerInventory
       value: 
       objectReference: {fileID: 1151026951}
+    - target: {fileID: 4775755846570224609, guid: 17371de3baa015440adf81ff5c782d42, type: 3}
+      propertyPath: m_SortingOrder
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5126433853342527691, guid: 17371de3baa015440adf81ff5c782d42, type: 3}
       propertyPath: playerInventory
       value: 
@@ -7729,6 +7733,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: DontDestroy
       objectReference: {fileID: 0}
+    - target: {fileID: 7915023882138796154, guid: 17371de3baa015440adf81ff5c782d42, type: 3}
+      propertyPath: itemDatabase
+      value: 
+      objectReference: {fileID: 11400000, guid: 546c72ef9651d0a4d945129e393cfc69, type: 2}
+    - target: {fileID: 7915023882138796154, guid: 17371de3baa015440adf81ff5c782d42, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1151026951}
     - target: {fileID: 8330194621428295897, guid: 17371de3baa015440adf81ff5c782d42, type: 3}
       propertyPath: playerInventory
       value: 

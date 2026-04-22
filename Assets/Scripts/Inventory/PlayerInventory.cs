@@ -10,6 +10,22 @@ public class PlayerInventory : MonoBehaviour
     List<Item> items;
     Item[] equippedItems;
 
+    private Dictionary<string, string> exclusiveItems = new Dictionary<string, string>()
+    {
+        {"Armour +1", "Armour"},
+        {"Armour +2", "Armour +1"},
+        {"Armour +3", "Armour +2"},
+        {"Bet Slip +1", "Bet Slip"},
+        {"Bet Slip +2", "Bet Slip +1"},
+        {"Bet Slip +3", "Bet Slip +2"},
+        {"Gold Coin +1", "Gold Coin"},
+        {"Gold Coin +2", "Gold Coin +1"},
+        {"Gold Coin +3", "Gold Coin +2"},
+        {"Golden Chip +1", "Golden Chip"},
+        {"Golden Chip +2", "Golden Chip +1"},
+        {"Golden Chip +3", "Golden Chip +2"},
+    };
+
     public void Start()
     {
         items = new List<Item>();
@@ -29,6 +45,33 @@ public class PlayerInventory : MonoBehaviour
     public void AddItem(Item item)
     {
         items.Add(item);
+    }
+
+    public bool FindItem(string itemName)
+    {
+        foreach (Item item in items)
+        {
+            if (item.itemName == itemName)
+            {
+                Debug.Log("Found item: " + itemName);
+                return true;
+            }
+        }
+        Debug.Log("Item not found: " + itemName);
+        return false;
+    }
+
+    public bool CheckHasPrerequisite(string itemName)
+    {
+        if (exclusiveItems.ContainsKey(itemName))
+        {
+            if (!FindItem(exclusiveItems[itemName]))
+            {
+                Debug.Log("Missing prerequisite for " + itemName + ": " + exclusiveItems[itemName]);
+                return false;
+            }
+        }
+        return true;
     }
 
     public bool EquipItem(Item item)

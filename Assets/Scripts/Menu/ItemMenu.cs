@@ -53,7 +53,7 @@ public class ItemMenu : MonoBehaviour
 
 
             ItemNameText.GetComponent<TMPro.TextMeshProUGUI>().text = currentItem.itemName;
-            //ItemDescriptionText.GetComponent<TMPro.TextMeshProUGUI>().text = currentItem.description;
+            ItemDescriptionText.GetComponent<TMPro.TextMeshProUGUI>().text = currentItem.description;
             if (isInventoryMenu)
             {
                 Button1Text.GetComponent<TMPro.TextMeshProUGUI>().text = "Equip";

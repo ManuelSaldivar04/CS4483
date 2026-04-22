@@ -9,15 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f705a700042bfea458d27ea5c67a70c3, type: 3}
-  m_Name: MoneyPurse
+  m_Script: {fileID: 11500000, guid: 965679be47088e448b801ce0149a0d8c, type: 3}
+  m_Name: TutorialShop
   m_EditorClassIdentifier: 
-  id: 30
-  itemName: Money Purse
-  icon: {fileID: 0}
-  equippable: 0
-  description: Heal 100% of your health
-  bonusHealthChip: 0
-  bonusAttackChip: 0
-  regenAttackChip: 0
-  dmgReduction: 0
+  itemsForSale: []
+  shopDialogue: {fileID: 11400000, guid: 1560e1cfacdb70a479ddea014ba83ad2, type: 2}

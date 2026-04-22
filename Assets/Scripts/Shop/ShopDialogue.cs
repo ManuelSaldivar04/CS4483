@@ -8,6 +8,7 @@ public class ShopDialogue : ScriptableObject
     [Header("Shop Dialogue Lines")]
     public List<string> basicLines = new List<string>();
     public List<string> buyLines = new List<string>();
+    public string brokeBoyLine;
 
     [Header("Shop Dialogue Attributes")]
     public float typingSpeed = 0.05f;
