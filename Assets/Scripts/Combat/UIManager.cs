@@ -42,6 +42,9 @@ public class UIManager : MonoBehaviour
     public Sprite attackSprite;
     public Sprite blockSprite;
 
+    public TextMeshProUGUI cointText;
+
+
     public void Start()
     {
         gamePrompt.SetActive(true);
@@ -93,7 +96,7 @@ public class UIManager : MonoBehaviour
 
     public void checkWager(int wager)
     {
-        if (wager > GameManager.Instance.player.currentCombatChips || wager < 0)
+        if (wager > PlayerData.Instance.currentCombatChips || wager < 0)
         {
             errorObject.SetActive(true);
         }
@@ -180,7 +183,31 @@ public class UIManager : MonoBehaviour
 
     public void victoryScreen()
     {
+        switch (GameManager.Instance.enemy.id)
+        {
+            case 10:
+                cointText.text = "+ 50 COINS";
+                PlayerData.Instance.AddCoins(50);
+                break;
+
+            case 20:
+                cointText.text = "+ 100 COINS";
+                PlayerData.Instance.AddCoins(100);
+                break;
+
+            case 30:
+                cointText.text = "+ 150 COINS";
+                PlayerData.Instance.AddCoins(150);
+                break;
+
+            default:
+                int x = UnityEngine.Random.Range(1, 26);
+                cointText.text = "+ " + x + " COINS";
+                PlayerData.Instance.AddCoins(x);
+                break;
+        }
         victory.SetActive(true);
+        Debug.Log(PlayerData.Instance.coins);
     }
 
     public void defeatScreen()

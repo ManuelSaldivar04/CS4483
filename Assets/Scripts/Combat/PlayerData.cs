@@ -2,34 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class PlayerData
+public class PlayerData : MonoBehaviour
 {
+    public static PlayerData Instance;
 
-    public int[] items;
-    public int maxHP = 100;
-    public int currentHP = 100;
 
-    public int maxCombatChips = 100;
-    public int currentCombatChips = 100;
+    public int[] items = { 1, 6, 2, 26};
+    public int maxHP;
+    public int currentHP;
+
+    public int maxCombatChips;
+    public int currentCombatChips;
+    public int combatChipRegen;
 
     public int shield;
 
-    public int coins = 0;
+    public int armour;
+
+    public int coins;
 
     public int bonusMaxHP = 0;
     public int bonusMaxChips = 0;
+    public int bonusChipRegen = 0;
 
+
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void InitializeRun()
     {
         // apply any permanent upgrades at the start of a run
         maxHP = 100 + bonusMaxHP;
-        maxCombatChips = 100 + bonusMaxChips;
+        maxCombatChips = 50 + bonusMaxChips;
 
         // reset to full for new run
         currentHP = maxHP;
         currentCombatChips = maxCombatChips;
+
+        coins = 0;
+
+        armour = 0;
+
+        combatChipRegen = 10 + bonusChipRegen;
     }
 
     public void InitializeBattle()
@@ -109,6 +133,16 @@ public class PlayerData
     public void GainCombatChips(int amount)
     {
         currentCombatChips = Mathf.Min(maxCombatChips, currentCombatChips + amount);
+    }
+
+    public void addCombatChipRegen(int x)
+    {
+        combatChipRegen += x;
+    }
+
+    public void setArmour(int x)
+    {
+        armour = x;
     }
 
     public bool isDead()
