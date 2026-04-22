@@ -22292,12 +22292,12 @@ GameObject:
   - component: {fileID: 1171919177}
   - component: {fileID: 1171919176}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Particle System-Sandstorm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!199 &1171919176
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -28288,6 +28288,7 @@ MonoBehaviour:
   dialogueText: {fileID: 715141809}
   nameText: {fileID: 988514323}
   portraitImage: {fileID: 1737937707}
+  npcID: 
 --- !u!61 &1673516967
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -31267,6 +31268,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1882375270}
   nameText: {fileID: 1951033385}
   portraitImage: {fileID: 772011160}
+  npcID: 
 --- !u!61 &2100052185
 BoxCollider2D:
   m_ObjectHideFlags: 0

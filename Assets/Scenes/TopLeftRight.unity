@@ -578,7 +578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4794197622582281258, guid: fb56c133414d17a41a9bb72ac2f17643, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8751005154826790409, guid: fb56c133414d17a41a9bb72ac2f17643, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5421,7 +5421,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2953405817880383351, guid: edd63936e190b2e43b469fb5acf5d8e2, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5031729515913464367, guid: edd63936e190b2e43b469fb5acf5d8e2, type: 3}
       propertyPath: soundEffectLibrary
@@ -12344,6 +12344,7 @@ MonoBehaviour:
   dialogueText: {fileID: 564096161}
   nameText: {fileID: 1435459520}
   portraitImage: {fileID: 789023826}
+  npcID: EggBoy-TopLeftRight
 --- !u!114 &818361889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36520,6 +36521,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1415367801}
   nameText: {fileID: 1454153850}
   portraitImage: {fileID: 98981387}
+  npcID: Hunter-TopLeftRight
 --- !u!114 &1820680527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36906,6 +36908,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1744727863}
   nameText: {fileID: 554043201}
   portraitImage: {fileID: 310810515}
+  npcID: 
 --- !u!114 &1916355986
 MonoBehaviour:
   m_ObjectHideFlags: 0

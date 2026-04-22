@@ -47,7 +47,7 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -55,9 +55,34 @@ public class GameManager : MonoBehaviour
         }
     }
     // Start is called before the first frame update
-    void Start()
+    public void Start()
     {
         if(CombatData.pendingEnemy != null)
+        {
+            Debug.Log($"Using pending enemy: {CombatData.pendingEnemy.name}");
+            SetEnemy(CombatData.pendingEnemy);
+            CombatData.pendingEnemy = null;
+        }
+        else
+        {
+            getEnemy(61);
+        }
+        player.InitializeBattle();
+        enemy.InitializeBattle();
+        playerBars.setHealth(player.currentHP, player.maxHP);
+        playerBars.setCombat(player.currentCombatChips, player.maxCombatChips);
+        enemyBars.setHealth(enemy.currentHP, enemy.maxHP);
+        enemyBars.setCombat(enemy.currentCombatChips, enemy.maxCombatChips);
+        intent.declareIntent(enemy.currentCombatChips);
+        updateEnemyShield();
+        updatePlayerShield();
+        enemyDice.gameObject.SetActive(false);
+        enemyDiceText.gameObject.SetActive(false);
+    }
+
+    public void StartCombat()
+    {
+        if (CombatData.pendingEnemy != null)
         {
             Debug.Log($"Using pending enemy: {CombatData.pendingEnemy.name}");
             SetEnemy(CombatData.pendingEnemy);
@@ -340,14 +365,42 @@ public class GameManager : MonoBehaviour
         resultText.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.75f);
         enemySprite.transform.Rotate(0, 0, 270);
+
+        ///////////return to overworld here///////////
+        //ADD SOME DELAY OR ELSE IT IMMEDIATLY CLOSES SCENE
+
+        //Mark the NPC as defeated
+        if (!string.IsNullOrEmpty(CombatData.sourceNPCID))
+        {
+            NPC.MarkDefeated(CombatData.sourceNPCID);
+            CombatData.sourceNPCID = null; //clear
+        }
+        //return to overworld
+        LevelLoader ll = FindObjectOfType<LevelLoader>();
+        if (ll != null)
+            ll.LoadReturnScene();
+        else
+            Debug.LogError("No LevelLoader found to return to overworld!");
+
+       /////////// END OF STUFF ///////////////
     }
 
     IEnumerator defeat()
     {
-        Debug.Log("Defeat");
+        print("Defeat");
         resultText.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.75f);
         playerSprite.transform.Rotate(0, 0, 90);
+
+        ////// SPAWN PLAYER BACK TO SCENE WHEN LOSE-DON'T MARK ENEMY AS DEFEATED /////
+        //ADD SOME DELAY OR ELSE IT IMMEDIATLY CLOSES SCENE
+
+        //return to overworld
+        LevelLoader ll = FindObjectOfType<LevelLoader>();
+        if (ll != null)
+            ll.LoadReturnScene();
+        else
+            Debug.LogError("No LevelLoader found to return to overworld");
     }
 
     public void setGame(int g)
