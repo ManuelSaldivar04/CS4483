@@ -7,19 +7,23 @@ public class PlayerData : MonoBehaviour
     public static PlayerData Instance;
 
 
-    public int[] items;
+    public int[] items = { 1, 6, 2, 26};
     public int maxHP;
     public int currentHP;
 
     public int maxCombatChips;
     public int currentCombatChips;
+    public int combatChipRegen;
 
     public int shield;
+
+    public int armour;
 
     public int coins;
 
     public int bonusMaxHP = 0;
     public int bonusMaxChips = 0;
+    public int bonusChipRegen = 0;
 
 
     void Awake()
@@ -44,6 +48,12 @@ public class PlayerData : MonoBehaviour
         // reset to full for new run
         currentHP = maxHP;
         currentCombatChips = maxCombatChips;
+
+        coins = 0;
+
+        armour = 0;
+
+        combatChipRegen = 10 + bonusChipRegen;
     }
 
     public void InitializeBattle()
@@ -123,6 +133,16 @@ public class PlayerData : MonoBehaviour
     public void GainCombatChips(int amount)
     {
         currentCombatChips = Mathf.Min(maxCombatChips, currentCombatChips + amount);
+    }
+
+    public void addCombatChipRegen(int x)
+    {
+        combatChipRegen += x;
+    }
+
+    public void setArmour(int x)
+    {
+        armour = x;
     }
 
     public bool isDead()

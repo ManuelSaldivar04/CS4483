@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI resultText;
 
+
     private int game;
     private int action;
     private int wager;
@@ -60,19 +61,18 @@ public class GameManager : MonoBehaviour
         {
             GameObject go = new GameObject("PlayerData");
             go.AddComponent<PlayerData>();
+            PlayerData.Instance.InitializeRun();
         }
 
         if (CombatData.pendingEnemy != null)
         {
-            Debug.Log($"Using pending enemy: {CombatData.pendingEnemy.name}");
             SetEnemy(CombatData.pendingEnemy);
             CombatData.pendingEnemy = null;
         }
         else
         {
-            getEnemy(61);
+            getEnemy(0);
         }
-        PlayerData.Instance.InitializeRun();
         PlayerData.Instance.InitializeBattle();
         enemy.InitializeBattle();
         playerBars.setHealth(PlayerData.Instance.currentHP, PlayerData.Instance.maxHP);
@@ -90,7 +90,6 @@ public class GameManager : MonoBehaviour
     {
         if (CombatData.pendingEnemy != null)
         {
-            Debug.Log($"Using pending enemy: {CombatData.pendingEnemy.name}");
             SetEnemy(CombatData.pendingEnemy);
             CombatData.pendingEnemy = null;
         }
@@ -98,6 +97,7 @@ public class GameManager : MonoBehaviour
         {
             getEnemy(0);
         }
+
         PlayerData.Instance.InitializeBattle();
         enemy.InitializeBattle();
         playerBars.setHealth(PlayerData.Instance.currentHP, PlayerData.Instance.maxHP);
@@ -298,7 +298,8 @@ public class GameManager : MonoBehaviour
         // apply result
         if (attackSucceeds)
         {
-            int damage = (int)(enemyWager * mult);
+            int damage = (int)((enemyWager * mult) * (1 - (PlayerData.Instance.armour / 100f)));
+            int shield = (int)(enemyWager * mult);
 
             if (enemyAction == 0)
             {
@@ -331,10 +332,10 @@ public class GameManager : MonoBehaviour
             else
             {
                 SoundEffectManager.Play("CombatGainShield");
-                resultText.text = "Enemy Gains " + damage + " Shield";
+                resultText.text = "Enemy Gains " + shield + " Shield";
                 resultText.gameObject.SetActive(true);
                 ui.StartCoroutine(ui.ShieldBlockEffect(1));
-                enemy.GainShield(damage);
+                enemy.GainShield(shield);
                 updateEnemyShield();
                 yield return new WaitForSeconds(2.5f);
                 resultText.gameObject.SetActive(false);
@@ -356,7 +357,7 @@ public class GameManager : MonoBehaviour
         if (PlayerData.Instance.currentHP > 0)
         {
             ui.newTurn();
-            PlayerData.Instance.GainCombatChips(10);
+            PlayerData.Instance.GainCombatChips(PlayerData.Instance.combatChipRegen);
             enemy.GainCombatChips(5);
             intent.declareIntent(enemy.currentCombatChips);
             updateEnemyBars();
@@ -371,7 +372,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.75f);
         enemySprite.transform.Rotate(0, 0, 270);
         yield return new WaitForSeconds(2f);
-        ui.victoryScreen();
+
+        if (enemy.id == 40)
+            SceneManager.LoadScene("VictoryScreen");
+
+        else
+            ui.victoryScreen();
         
     }
 
@@ -387,6 +393,7 @@ public class GameManager : MonoBehaviour
 
     public void returnToOverworld()
     {
+        
         //Mark the NPC as defeated
         if (!string.IsNullOrEmpty(CombatData.sourceNPCID))
         {
@@ -399,6 +406,7 @@ public class GameManager : MonoBehaviour
             ll.LoadReturnScene();
         else
             Debug.LogError("No LevelLoader found to return to overworld!");
+        
     }
 
     public void returnHome()

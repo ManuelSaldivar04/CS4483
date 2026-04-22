@@ -39,6 +39,8 @@ public class EnemyData : ScriptableObject
 
     public int shield;
 
+    public int id;
+
     public void InitializeBattle()
     {
         // reset chips at the start of each fight
