@@ -136,6 +136,13 @@ public class NPC : MonoBehaviour, IInteractable
 
         if (isTutorialNPC)
         {
+            if (PlayerData.Instance == null)
+            {
+                GameObject go = new GameObject("PlayerData");
+                go.AddComponent<PlayerData>();
+                
+            }
+            PlayerData.Instance.InitializeRun();
             SceneManager.LoadScene("Center");
         }
 
