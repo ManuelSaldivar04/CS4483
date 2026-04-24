@@ -8,6 +8,7 @@ public class PlayerData : MonoBehaviour
 
 
     public int[] items = {0, 0, 0, 0};
+
     public int maxHP;
     public int currentHP;
 
