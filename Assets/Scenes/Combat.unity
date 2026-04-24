@@ -5854,8 +5854,9 @@ MonoBehaviour:
   animator: {fileID: 422874265}
   wheelImage: {fileID: 422874262}
   idleSprite: {fileID: 21300000, guid: e27a04422662eb945912e87c0da38867, type: 3}
-  singleSpinDuration: 1.5
-  spinCycles: 3
+  spinDuration: 0.64
+  useAnimationClipLength: 1
+  spinStateName: WheelSpin
 --- !u!95 &422874265
 Animator:
   serializedVersion: 5

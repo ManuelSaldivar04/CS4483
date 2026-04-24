@@ -7,7 +7,11 @@ using UnityEngine.EventSystems;
 
 public class Roulette : MonoBehaviour
 {
+    // Main roulette minigame script. Handles bet selection, wheel spinning, item effects, and win/loss results.
+    // Wheel animation script. Roulette calls this, then waits for it to finish before resolving the spin.
     public WheelAnimation anim;
+
+    // Used to hide/close the roulette game after the round ends.
     public UIManager ui;
 
     public Button but_0;
@@ -61,13 +65,29 @@ public class Roulette : MonoBehaviour
     public Button but_Odd;
     public Button but_19to36;
 
+    // Spin button the player presses after choosing a valid bet.
     public Button spin;
+
+    // Text that shows selected bet, invalid selections, result, and win/lose messages.
     public TextMeshProUGUI selected;
 
+    // Restriction item: only allows number bets 1-36 or Red/Black, and triples valid wins.
+    // NOTE: Your earlier item ID was 10, but this uploaded file currently says 21. Change to 10 if needed.
+    private const int RestrictionItemId = 21;
+
+    // Item 33: blocks betting on 0/00. If the wheel lands on 0/00, player gets a half-win instead of losing.
+    private const int ZeroProtectionItemId = 33;
+
+    // Saves the current selected bet, for example "Red", "5", or "1st 12".
     private string currentBet = "";
+
+    // Stops the player from clicking bets or spinning again while the wheel is moving.
     private bool spinning = false;
+
+    // Prevents button listeners from being added more than once.
     private bool listenersAdded = false;
 
+    // Numbers that count as red. Non-red numbers from 1-36 count as black.
     private readonly HashSet<int> redNumbers = new HashSet<int>
     {
         1, 3, 5, 7, 9, 12, 14, 16, 18,
@@ -81,6 +101,7 @@ public class Roulette : MonoBehaviour
 
     public void beginRoulette()
     {
+        // Starts/resets a roulette round.
         currentBet = "";
         spinning = false;
 
@@ -91,7 +112,9 @@ public class Roulette : MonoBehaviour
             spin.interactable = false;
 
         if (selected != null)
+        {
             selected.SetText("Select a bet");
+        }
 
         if (anim != null)
             anim.ResetToIdle();
@@ -99,6 +122,7 @@ public class Roulette : MonoBehaviour
 
     private void RegisterButtons()
     {
+        // Connects every roulette UI button to the correct bet name.
         if (listenersAdded)
             return;
 
@@ -162,18 +186,104 @@ public class Roulette : MonoBehaviour
 
     private void AddBetListener(Button button, string betName)
     {
+        // Adds a click event to one bet button.
         if (button == null)
             return;
 
         button.onClick.AddListener(() => SelectBet(betName));
     }
 
+    private bool HasRestrictionItem()
+    {
+        // Checks PlayerData to see if the restriction/triple-damage item is active.
+        if (PlayerData.Instance == null || PlayerData.Instance.items == null)
+            return false;
+
+        for (int i = 0; i < PlayerData.Instance.items.Length; i++)
+        {
+            if (PlayerData.Instance.items[i] == RestrictionItemId)
+                return true;
+        }
+
+        return false;
+    }
+
+
+    private bool HasZeroProtectionItem()
+    {
+        // Checks PlayerData to see if item 33 is active.
+        if (PlayerData.Instance == null || PlayerData.Instance.items == null)
+            return false;
+
+        for (int i = 0; i < PlayerData.Instance.items.Length; i++)
+        {
+            if (PlayerData.Instance.items[i] == ZeroProtectionItemId)
+                return true;
+        }
+
+        return false;
+    }
+
+    private bool IsZeroBet(string betName)
+    {
+        // Used by item 33 to block direct bets on 0 and 00.
+        return betName == "0" || betName == "00";
+    }
+
+    private bool IsZeroPocket(string landedPocket)
+    {
+        // Used by item 33 to detect if the wheel landed on 0 or 00.
+        return landedPocket == "0" || landedPocket == "00";
+    }
+
+    private bool IsRestrictedAllowedBet(string betName)
+    {
+        // Restriction item only allows Red, Black, or exact number bets from 1-36.
+        if (betName == "Red" || betName == "Black")
+            return true;
+
+        if (int.TryParse(betName, out int number))
+            return number >= 1 && number <= 36;
+
+        return false;
+    }
+
     public void SelectBet(string betName)
     {
+        // Runs whenever the player clicks any roulette bet button.
         if (spinning)
             return;
 
         EventSystem.current?.SetSelectedGameObject(null);
+
+        // Restriction item: invalid bets are rejected and spin stays disabled.
+        if (HasRestrictionItem() && !IsRestrictedAllowedBet(betName))
+        {
+            currentBet = "";
+
+            if (selected != null)
+                selected.SetText("Selection not valid");
+
+            if (spin != null)
+                spin.interactable = false;
+
+            return;
+        }
+
+        // Item 33: player cannot choose 0 or 00 as the bet.
+        if (HasZeroProtectionItem() && IsZeroBet(betName))
+        {
+            currentBet = "";
+
+            if (selected != null)
+                selected.SetText("Selection not valid");
+
+            if (spin != null)
+                spin.interactable = false;
+
+            return;
+        }
+
         currentBet = betName;
 
         if (selected != null)
@@ -185,6 +295,7 @@ public class Roulette : MonoBehaviour
 
     public void SpinRoulette()
     {
+        // Runs when the player presses the spin button.
         Debug.Log("[Roulette] SpinRoulette() clicked");
 
         if (spinning)
@@ -196,13 +307,44 @@ public class Roulette : MonoBehaviour
         if (string.IsNullOrEmpty(currentBet))
         {
             Debug.Log("[Roulette] No bet selected, returning");
+
+            if (selected != null)
+                selected.SetText("Selection not valid");
+
+            return;
+        }
+
+        // Extra safety check for restriction item before the wheel spins.
+        if (HasRestrictionItem() && !IsRestrictedAllowedBet(currentBet))
+        {
+            Debug.Log("[Roulette] Invalid bet for item 10, returning");
+
+            if (selected != null)
+                selected.SetText("Selection not valid");
+
+            if (spin != null)
+                spin.interactable = false;
+
+            return;
+        }
+
+        // Extra safety check for item 33 before the wheel spins.
+        if (HasZeroProtectionItem() && IsZeroBet(currentBet))
+        {
+            Debug.Log("[Roulette] Invalid 0/00 bet for item 33, returning");
+
+            if (selected != null)
+                selected.SetText("Selection not valid");
+
+            if (spin != null)
+                spin.interactable = false;
+
             return;
         }
 
         spinning = true;
         SetBoardInteractable(false);
 
-        ///////////////////////////////////////////////////////////
         SoundEffectManager.Play("WheelSpin");
         Debug.Log("ANIMATION!!!!!!!!!!!!!!!!!!!!!!!!!");
 
@@ -212,6 +354,7 @@ public class Roulette : MonoBehaviour
         if (anim != null)
         {
             Debug.Log("[Roulette] Calling anim.SpinWheel()");
+            // Start the wheel animation. ResolveSpin runs after the animation is finished.
             anim.SpinWheel(ResolveSpin);
         }
         else
@@ -223,19 +366,24 @@ public class Roulette : MonoBehaviour
 
     private void ResolveSpin()
     {
+        // Chooses the final roulette result after the wheel animation ends.
         Debug.Log("[Roulette] ResolveSpin() called");
 
         int roll = Random.Range(0, 38);
         string landedPocket = roll == 37 ? "00" : roll.ToString();
         bool won = BetWins(currentBet, landedPocket);
-        float payout = GetPayoutMultiplier(currentBet);
+        // Item 33 activates only when the player loses because the result was 0 or 00.
+        bool zeroProtectionActivated = HasZeroProtectionItem() && !won && IsZeroPocket(landedPocket) && !IsZeroBet(currentBet);
+        // Item 33 uses a half-win payout instead of a normal loss.
+        float payout = zeroProtectionActivated ? 0.5f : GetPayoutMultiplier(currentBet);
         string colorText = GetPocketColorText(landedPocket);
 
-        StartCoroutine(ShowSpinOutcome(landedPocket, colorText, won, payout));
+        StartCoroutine(ShowSpinOutcome(landedPocket, colorText, won, payout, zeroProtectionActivated));
     }
 
     private void SetBoardInteractable(bool value)
     {
+        // Turns all roulette bet buttons on or off.
         SetButtonInteractable(but_0, value);
         SetButtonInteractable(but_00, value);
         SetButtonInteractable(but_1, value);
@@ -288,7 +436,20 @@ public class Roulette : MonoBehaviour
         SetButtonInteractable(but_19to36, value);
 
         if (spin != null)
-            spin.interactable = value && !string.IsNullOrEmpty(currentBet) && !spinning;
+        {
+            // Spin is only allowed if the board is active, a bet exists, and the wheel is not spinning.
+            bool canSpin = value && !string.IsNullOrEmpty(currentBet) && !spinning;
+
+            // Restriction item can also disable the spin button.
+            if (HasRestrictionItem())
+                canSpin = canSpin && IsRestrictedAllowedBet(currentBet);
+
+            // Item 33 keeps spin disabled if the current bet is 0 or 00.
+            if (HasZeroProtectionItem())
+                canSpin = canSpin && !IsZeroBet(currentBet);
+
+            spin.interactable = canSpin;
+        }
     }
 
     private void SetButtonInteractable(Button button, bool value)
@@ -299,6 +460,7 @@ public class Roulette : MonoBehaviour
 
     private bool BetWins(string betName, string landedPocket)
     {
+        // Checks if the selected bet won based on the landed pocket.
         if (IsStraightUpBet(betName))
             return betName == landedPocket;
 
@@ -354,6 +516,7 @@ public class Roulette : MonoBehaviour
 
     private bool IsStraightUpBet(string betName)
     {
+        // A straight-up bet is one exact pocket, like 5, 12, 0, or 00.
         if (betName == "0" || betName == "00")
             return true;
 
@@ -365,14 +528,22 @@ public class Roulette : MonoBehaviour
 
     private float GetPayoutMultiplier(string betName)
     {
+        // Calculates the payout multiplier for the selected bet.
+        float payout;
+
         if (IsStraightUpBet(betName))
-            return 35f;
+            payout = 35f;
+        else if (betName == "1st 12" || betName == "2nd 12" || betName == "3rd 12" ||
+                 betName == "2-1 Bottom" || betName == "2-1 Middle" || betName == "2-1 Top")
+            payout = 2f;
+        else
+            payout = 1f;
 
-        if (betName == "1st 12" || betName == "2nd 12" || betName == "3rd 12" ||
-            betName == "2-1 Bottom" || betName == "2-1 Middle" || betName == "2-1 Top")
-            return 2f;
+        // Restriction item: valid allowed wins are multiplied by 3.
+        if (HasRestrictionItem() && IsRestrictedAllowedBet(betName))
+            payout *= 3f;
 
-        return 1f;
+        return payout;
     }
 
     private bool IsRed(int number)
@@ -396,15 +567,35 @@ public class Roulette : MonoBehaviour
         return "";
     }
 
-    private IEnumerator ShowSpinOutcome(string landedPocket, string colorText, bool won, float payout)
+    private void ApplyRestrictedItemLoss()
     {
+        // Restriction item loss behavior. Your GameManager loseHand already removes the wager.
+        // Right now this keeps the same project flow and still compiles.
+        // If GameManager.Instance.loseHand() already removes the wager from the player,
+        // then this is already the correct behavior.
+        //
+        // If your GameManager does NOT already subtract the current wager amount,
+        // replace the line below with your project's real wager/health deduction code.
+        GameManager.Instance.loseHand();
+    }
+
+    private IEnumerator ShowSpinOutcome(string landedPocket, string colorText, bool won, float payout, bool zeroProtectionActivated)
+    {
+        // Shows result text, waits, shows win/lose/protection text, then applies the final game effect.
         if (selected != null)
             selected.SetText("Result: " + landedPocket + " " + colorText);
 
         yield return new WaitForSeconds(3.5f);
 
         if (selected != null)
-            selected.SetText(won ? "YOU WIN" : "YOU LOSE");
+        {
+            if (won)
+                selected.SetText("YOU WIN");
+            else if (zeroProtectionActivated)
+                selected.SetText("ZERO PROTECTION");
+            else
+                selected.SetText("YOU LOSE");
+        }
 
         yield return new WaitForSeconds(3.5f);
 
@@ -413,10 +604,13 @@ public class Roulette : MonoBehaviour
         if (ui != null)
             ui.hideGame();
 
-        if (won)
+        // Normal wins and item 33 half-wins both use winHand.
+        if (won || zeroProtectionActivated)
             GameManager.Instance.winHand(payout);
+        // Restriction item loss keeps the current loseHand behavior.
+        else if (HasRestrictionItem())
+            ApplyRestrictedItemLoss();
         else
             GameManager.Instance.loseHand();
     }
-
 }

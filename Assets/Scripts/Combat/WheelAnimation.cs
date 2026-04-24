@@ -8,8 +8,18 @@ public class WheelAnimation : MonoBehaviour
     public Image wheelImage;
     public Sprite idleSprite;
 
-    public float singleSpinDuration = 1.5f;
-    public int spinCycles = 1;
+    [Header("Spin Timing")]
+    // Put how long the spin should last in seconds.
+    // Example: 0.64f = less than 1 second.
+    // Example: 64f = 64 full seconds.
+    public float spinDuration = 278f;
+
+    // If this is true, the script tries to use the real length of the WheelSpin clip from Unity.
+    // If this is false, the script uses the spinDuration number above.
+    public bool useAnimationClipLength = true;
+
+    // This must match the animation state name inside your Animator.
+    public string spinStateName = "WheelSpin";
 
     private Coroutine currentSpin;
 
@@ -18,6 +28,7 @@ public class WheelAnimation : MonoBehaviour
         ResetToIdle();
     }
 
+    // Puts the wheel back to the normal still image.
     public void ResetToIdle()
     {
         if (animator == null)
@@ -33,6 +44,7 @@ public class WheelAnimation : MonoBehaviour
             wheelImage.sprite = idleSprite;
     }
 
+    // Roulette calls this when the player presses the spin button.
     public void SpinWheel(System.Action onComplete)
     {
         Debug.Log("[WheelAnimation] SpinWheel() was called");
@@ -40,12 +52,12 @@ public class WheelAnimation : MonoBehaviour
         if (currentSpin != null)
             StopCoroutine(currentSpin);
 
-        currentSpin = StartCoroutine(PlaySpin(onComplete));
+        currentSpin = StartCoroutine(PlaySpinOnce(onComplete));
     }
 
-    private IEnumerator PlaySpin(System.Action onComplete)
+    private IEnumerator PlaySpinOnce(System.Action onComplete)
     {
-        Debug.Log("[WheelAnimation] PlaySpin() started");
+        Debug.Log("[WheelAnimation] PlaySpinOnce() started");
 
         if (animator == null)
             animator = GetComponent<Animator>();
@@ -61,20 +73,29 @@ public class WheelAnimation : MonoBehaviour
             yield break;
         }
 
+        // Turn the Animator on and play the wheel spin animation from the start.
         animator.enabled = true;
+        animator.Play(spinStateName, 0, 0f);
 
-        for (int i = 0; i < spinCycles; i++)
+        // Wait one frame so Unity has time to enter the animation state.
+        yield return null;
+
+        float waitTime = spinDuration;
+
+        // If enabled, use the animation clip length from Unity instead of the manual number.
+        if (useAnimationClipLength)
         {
-            Debug.Log("[WheelAnimation] Playing spin cycle " + (i + 1));
-            animator.Play("WheelSpin", 0, 0f);
-            yield return new WaitForSeconds(singleSpinDuration);
+            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
+            waitTime = stateInfo.length;
         }
 
+        Debug.Log("[WheelAnimation] Waiting " + waitTime + " seconds for the spin animation");
 
-        animator.enabled = false;
+         //The animation plays only one time. No loop. No cycles.
+         yield return new WaitForSeconds(waitTime);
 
-        if (wheelImage != null && idleSprite != null)
-            wheelImage.sprite = idleSprite;
+         //Stop the Animator and return to the still wheel image.
+        ResetToIdle();
 
         Debug.Log("[WheelAnimation] Spin finished and reset to idle");
 
