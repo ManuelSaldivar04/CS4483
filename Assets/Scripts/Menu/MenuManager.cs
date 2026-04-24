@@ -37,7 +37,49 @@ public class MenuManager : MonoBehaviour
         }    
     }
 
-    public void OpenMenu(string menuName, bool stopTime, NPC shopNPC = null)
+    public void OpenMenu(string menuName, bool stopTime)
+    {
+        if (menus.TryGetValue(menuName, out MenuData menuData))
+        {
+            CloseAllMenus();
+            menuData.menu.SetActive(true);
+            menuData.isOpen = true;
+
+            if (stopTime)
+            {
+                timeManager.StopTime();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Menu not found: " + menuName);
+        }
+    }
+    public void OpenMenu(string menuName, bool stopTime, NPC shopNPC)
+    {
+        if (menus.TryGetValue(menuName, out MenuData menuData))
+        {
+            CloseAllMenus();
+            menuData.menu.SetActive(true);
+            menuData.isOpen = true;
+
+            if(menuName == "shopmenu")
+            {
+                OpenShopMenu(shopNPC);
+            }
+
+            if (stopTime)
+            {
+                timeManager.StopTime();
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Menu not found: " + menuName);
+        }
+    }
+
+    public void OpenMenu(string menuName, bool stopTime, TutorialNPC shopNPC)
     {
         if (menus.TryGetValue(menuName, out MenuData menuData))
         {
@@ -62,6 +104,11 @@ public class MenuManager : MonoBehaviour
     }
 
     public void OpenShopMenu(NPC shopNPC)
+    {
+        shopMenu.Initalize(shopNPC);
+    }
+
+    public void OpenShopMenu(TutorialNPC shopNPC)
     {
         shopMenu.Initalize(shopNPC);
     }

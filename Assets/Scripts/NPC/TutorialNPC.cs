@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class NPC : MonoBehaviour, IInteractable
+public class TutorialNPC : MonoBehaviour, IInteractable
 {
     [Header("NPC Information/display info")]
-    public NPCDialogue dialogueData;
+    public TutorialNPCDialogue dialogueData;
     public GameObject dialoguePanel;
     public TMP_Text dialogueText, nameText;
     public Image portraitImage;
@@ -18,16 +18,27 @@ public class NPC : MonoBehaviour, IInteractable
     private bool isTyping, isDialogueActive, isLoadingCombat;
 
     [Header("Shop info")]
-    public bool isShop;
     public Shop shopData;
 
-    private static HashSet<string> defeatedNPCs = new HashSet<string>();//keep list of all defeated NPCs
+    [Header("Tutorial Info")]
+    private bool foughtOnceTutorial;
+    private bool openedShopTutorial;
 
 
     private void Awake()
     {
         if(string.IsNullOrEmpty(npcID))
             npcID = gameObject.name;
+
+        if (GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.TutorialFirst)
+        {
+            foughtOnceTutorial = false;
+            openedShopTutorial = false;
+        } else
+        {
+            foughtOnceTutorial = true;
+            openedShopTutorial = false;
+        }
     }
 
     public bool CanInteract()
@@ -35,16 +46,6 @@ public class NPC : MonoBehaviour, IInteractable
         return !isDialogueActive && !isLoadingCombat;
     }
 
-    public static void MarkDefeated(string id)
-    {
-        if (!defeatedNPCs.Contains(id))
-            defeatedNPCs.Add(id);
-        Debug.Log($"NPC {id} marked as defeated");
-    }
-    public static void ResetDefeatedNPC()
-    {
-        defeatedNPCs.Clear();
-    }
     public void Interact()
     {
         //if no dialogue data of the game is paused and no dialogue is active
@@ -72,7 +73,7 @@ public class NPC : MonoBehaviour, IInteractable
         dialoguePanel.SetActive(true);
         //pause game
         TimeManager.PauseTime();
-        StartCoroutine(TypeLine());
+        StartCoroutine(TypeLine(GetLines()));
     }
 
     void NextLine()
@@ -80,14 +81,14 @@ public class NPC : MonoBehaviour, IInteractable
         if (isTyping)
         {
             StopAllCoroutines();
-            dialogueText.SetText(dialogueData.dialogueLines[dialogueIndex]);
+            dialogueText.SetText(GetLines()[dialogueIndex]);
             isTyping = false;
 
         }
-        else if(++dialogueIndex < dialogueData.dialogueLines.Length)
+        else if(++dialogueIndex < GetLines().Length)
         {
             //if another line, type next line
-            StartCoroutine(TypeLine());
+            StartCoroutine(TypeLine(GetLines()));
         }
         else
         {
@@ -95,12 +96,30 @@ public class NPC : MonoBehaviour, IInteractable
         }
     }
 
-    IEnumerator TypeLine()
+    string[] GetLines()
+    {
+        if (!foughtOnceTutorial)
+        {
+            return dialogueData.dialogueLines1;
+        } else if (GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.TutorialFirst)
+        {
+            return dialogueData.dialogueLines2;
+        } else if (!openedShopTutorial)
+        {
+            return dialogueData.dialogueLines3;
+        }
+        else
+        {
+            return dialogueData.dialogueLines4;
+        }
+    }
+
+    IEnumerator TypeLine(string[] lines)
     {
         isTyping = true;
         dialogueText.SetText("");
 
-        foreach(char letter in dialogueData.dialogueLines[dialogueIndex])
+        foreach(char letter in lines[dialogueIndex])
         {
             dialogueText.text += letter;
             SoundEffectManager.PlayVoice(dialogueData.voiceSound, dialogueData.voicePitch);
@@ -108,13 +127,6 @@ public class NPC : MonoBehaviour, IInteractable
         }
 
         isTyping = false;
-
-        if (dialogueData.autoProgressLines.Length > dialogueIndex && dialogueData.autoProgressLines[dialogueIndex])
-        {
-            yield return new WaitForSecondsRealtime(dialogueData.autoProgressDelay);
-            NextLine();
-
-        }
     }
 
     public void EndDialogue()
@@ -123,25 +135,23 @@ public class NPC : MonoBehaviour, IInteractable
         isDialogueActive = false;
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
-        
-        if (!dialogueData.CombatEnemy)
+        if (!foughtOnceTutorial)
         {
-            TimeManager.StartTime(); //only unpause for non-combat NPC's
-            if (isShop)
-            {
-                MenuManager.Instance.OpenMenu("shopmenu", true, this);
-            }
-        }
-
-        if (dialogueData.CombatEnemy && !isLoadingCombat && !defeatedNPCs.Contains(npcID))
+            LoadCombatAfterDelay();
+        } else if (foughtOnceTutorial && GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.TutorialFirst)
         {
-            StartCoroutine(LoadCombatAfterDelay());
-        }
-        else if(dialogueData.CombatEnemy && defeatedNPCs.Contains(npcID))
-        {
-            //already defeated - just unpause and do nothing else
+            GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.World;
+            SceneManager.LoadScene("Center");
             TimeManager.StartTime();
-            Debug.Log($"{npcID} already defeated -  no combat triggered");
+        } else if (!openedShopTutorial)
+        {
+            MenuManager.Instance.OpenMenu("shopmenu", true, this);
+            openedShopTutorial = true;
+        } else if (openedShopTutorial)
+        {
+            GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.World;
+            SceneManager.LoadScene("Center");
+            TimeManager.StartTime();
         }
        
     }
@@ -149,6 +159,7 @@ public class NPC : MonoBehaviour, IInteractable
     private IEnumerator LoadCombatAfterDelay()
     {
         isLoadingCombat = true;
+        Debug.Log("Loading Combat");
 
         //wait for configured delay (so player cna read the last line)
         yield return new WaitForSecondsRealtime(dialogueData.combatTransitionDelay);

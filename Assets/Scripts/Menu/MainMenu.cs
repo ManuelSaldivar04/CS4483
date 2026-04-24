@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour
         // Load the game from slot 1
         Debug.Log("Loading Slot 1...");
         levelLoader.LoadScene("Tutorial");
+        GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.TutorialFirst;
     }
 
     public void LoadSlot2()
@@ -35,6 +36,7 @@ public class MainMenu : MonoBehaviour
         // Load the game from slot 2
         Debug.Log("Loading Slot 2...");
         levelLoader.LoadScene("Tutorial");
+        GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.TutorialFirst;
     }
 
     public void LoadSlot3()
@@ -42,6 +44,7 @@ public class MainMenu : MonoBehaviour
         // Load the game from slot 3
         Debug.Log("Loading Slot 3...");
         levelLoader.LoadScene("Tutorial");
+        GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.TutorialFirst;
     }
 
     public void ExitGame()

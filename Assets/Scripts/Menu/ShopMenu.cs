@@ -12,6 +12,7 @@ public class ShopMenu : MonoBehaviour
     public ItemDatabase itemDatabase;
     public AlertMenu alertMenuScript;
     private NPC shopNPC;
+    private TutorialNPC tutorialShopNPC;
     private Shop shop;
     private TextMeshProUGUI dialogueText;
     private bool isTyping;
@@ -52,6 +53,31 @@ public class ShopMenu : MonoBehaviour
         }
 
         shopNPCIcon.GetComponent<UnityEngine.UI.Image>().sprite = shopNPC.dialogueData.npcPortrait;
+        shopNPCDialogue.GetComponent<TMPro.TextMeshProUGUI>().text = "TEMP TEXT";
+        dialogueText = shopNPCDialogue.GetComponent<TMPro.TextMeshProUGUI>();
+
+        testPlayer = PlayerDataSnapshot.CreateDefaultTest();
+
+        StartCoroutine(IdleDialogeLoop());
+    }
+
+    public void Initalize(TutorialNPC shopNPC)
+    {
+        this.tutorialShopNPC = shopNPC;
+        shop = shopNPC.shopData;
+        Transform shopPanel = shopMenu.transform.Find("ShopPanel");
+        shopBoxes = shopPanel.GetComponentsInChildren<ShopBox>();
+        for (int i = 0; i < shopBoxes.Length; i++)
+        {
+            if (i < shop.itemsForSale.Count)
+            {
+                shopBoxes[i].Item = shop.itemsForSale[i];
+                shopBoxes[i].Price = 10;
+                shopBoxes[i].Initalize(shopBoxes[i].Item, shopBoxes[i].Price);
+            }
+        }
+
+        shopNPCIcon.GetComponent<UnityEngine.UI.Image>().sprite = tutorialShopNPC.dialogueData.npcPortrait;
         shopNPCDialogue.GetComponent<TMPro.TextMeshProUGUI>().text = "TEMP TEXT";
         dialogueText = shopNPCDialogue.GetComponent<TMPro.TextMeshProUGUI>();
 

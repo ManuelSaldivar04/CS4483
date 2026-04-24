@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46d6a58b929ef1c4994391b565b17a74, type: 3}
+  m_Name: TutorialDialogue
+  m_EditorClassIdentifier: 
+  npcName: Old Man
+  npcPortrait: {fileID: 21300000, guid: d952a851392a84c4a8a1ed51430131fd, type: 3}
+  dialogueLines1:
+  - Come here young man....
+  - Long have I watched this land, and long have I waited for someone who can gamble
+    like you
+  - Long have I watched this land, and long have I waited for someone who can gamble
+    like you
+  - This world is not as simple as it seems. Where money talks, only those smart
+    enough to gamble their way to the top can survive
+  - But words alone mean little
+  - Show me....do you have the strength to walk this path?
+  dialogueLines2:
+  - You've proven yourself strong enough to take on the casinos.
+  - You need to bring balance to gambling by defeating the 4 casinos!
+  - Seek the casinos of ice, sand, grass, and evil.
+  - Forge your own path, some may be harder than others but that is for you to discover.
+  - You're the final hope, now BEGONE!
+  dialogueLines3:
+  - Welcome back promised one.
+  - It appears you've suffered a fatal blow.
+  - Fear not, this was expected.
+  - To help you in your journey I will grant you a portion of my strength, in exchange
+    of proofs of your triumphs.
+  - Seek strength young one.
+  dialogueLines4:
+  - Prepare yourself to face the casinos again, this time a little stronger than
+    before.
+  - Best of luck young one.
+  CombatEnemy: 1
+  combatTransitionDelay: 2
+  combatSceneName: Combat
+  enemyData: {fileID: 11400000, guid: 7884030489a33b940897295fe69dce69, type: 2}
+  typingSpeed: 0.06
+  voiceSound: {fileID: 8300000, guid: f4d17be0c8dab5540b0b324be40fae7b, type: 3}
+  voicePitch: 0.9
+  autoProgressDelay: 1.5
