@@ -21,7 +21,6 @@ public class TutorialNPC : MonoBehaviour, IInteractable
     public Shop shopData;
 
     [Header("Tutorial Info")]
-    private bool foughtOnceTutorial;
     private bool openedShopTutorial;
 
 
@@ -29,16 +28,6 @@ public class TutorialNPC : MonoBehaviour, IInteractable
     {
         if(string.IsNullOrEmpty(npcID))
             npcID = gameObject.name;
-
-        if (GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.TutorialFirst)
-        {
-            foughtOnceTutorial = false;
-            openedShopTutorial = false;
-        } else
-        {
-            foughtOnceTutorial = true;
-            openedShopTutorial = false;
-        }
     }
 
     public bool CanInteract()
@@ -98,10 +87,10 @@ public class TutorialNPC : MonoBehaviour, IInteractable
 
     string[] GetLines()
     {
-        if (!foughtOnceTutorial)
+        if (GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.TutorialFirst)
         {
             return dialogueData.dialogueLines1;
-        } else if (GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.TutorialFirst)
+        } else if (GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.TutorialAfterFight)
         {
             return dialogueData.dialogueLines2;
         } else if (!openedShopTutorial)
@@ -135,10 +124,11 @@ public class TutorialNPC : MonoBehaviour, IInteractable
         isDialogueActive = false;
         dialogueText.SetText("");
         dialoguePanel.SetActive(false);
-        if (!foughtOnceTutorial)
+        if (GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.TutorialFirst)
         {
-            LoadCombatAfterDelay();
-        } else if (foughtOnceTutorial && GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.TutorialFirst)
+            GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.TutorialAfterFight;
+            StartCoroutine(LoadCombatAfterDelay());
+        } else if (GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.TutorialAfterFight)
         {
             GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.World;
             SceneManager.LoadScene("Center");
@@ -159,7 +149,6 @@ public class TutorialNPC : MonoBehaviour, IInteractable
     private IEnumerator LoadCombatAfterDelay()
     {
         isLoadingCombat = true;
-        Debug.Log("Loading Combat");
 
         //wait for configured delay (so player cna read the last line)
         yield return new WaitForSecondsRealtime(dialogueData.combatTransitionDelay);

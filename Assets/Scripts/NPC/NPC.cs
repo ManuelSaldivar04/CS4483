@@ -135,6 +135,7 @@ public class NPC : MonoBehaviour, IInteractable
 
         if (dialogueData.CombatEnemy && !isLoadingCombat && !defeatedNPCs.Contains(npcID))
         {
+            GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.Combat;
             StartCoroutine(LoadCombatAfterDelay());
         }
         else if(dialogueData.CombatEnemy && defeatedNPCs.Contains(npcID))

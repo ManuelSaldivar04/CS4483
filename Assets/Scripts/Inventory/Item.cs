@@ -14,4 +14,5 @@ public class Item : ScriptableObject
     public int bonusAttackChip;
     public int regenAttackChip;
     public int bonusArmour;
+    public int price;
 }

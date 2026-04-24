@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEditor.Timeline.Actions;
 using UnityEngine;
 
@@ -31,14 +32,21 @@ public class MenuManager : MonoBehaviour
 
     void Start()
     {
-        foreach (MenuData menuData in menus.Values)
+        foreach (var entry in menus)
         {
-            menuData.menu.SetActive(false);
+            if (entry.Key == "alertmenu")
+                continue;
+            entry.Value.menu.SetActive(false);
+            entry.Value.isOpen = false;
         }    
     }
 
     public void OpenMenu(string menuName, bool stopTime)
     {
+        if (GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.MainMenu || GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.Combat)
+        {
+            return;
+        }
         if (menus.TryGetValue(menuName, out MenuData menuData))
         {
             CloseAllMenus();
@@ -57,6 +65,10 @@ public class MenuManager : MonoBehaviour
     }
     public void OpenMenu(string menuName, bool stopTime, NPC shopNPC)
     {
+        if (GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.MainMenu || GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.Combat)
+        {
+            return;
+        }
         if (menus.TryGetValue(menuName, out MenuData menuData))
         {
             CloseAllMenus();
@@ -81,6 +93,10 @@ public class MenuManager : MonoBehaviour
 
     public void OpenMenu(string menuName, bool stopTime, TutorialNPC shopNPC)
     {
+        if (GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.MainMenu || GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.Combat)
+        {
+            return;
+        }
         if (menus.TryGetValue(menuName, out MenuData menuData))
         {
             CloseAllMenus();

@@ -3,9 +3,23 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
+    public Scrollbar volumeSlider;
+    public GameObject musicManager;
+    private AudioSource musicSource;
+
+    void Start()
+    {
+        if (musicManager != null)
+        {
+            musicSource = musicManager.GetComponent<AudioSource>();
+        }
+        volumeSlider.value = musicSource.volume;
+        volumeSlider.onValueChanged.AddListener(ChangeVolume);
+    }
 
     void Update()
     {
@@ -14,6 +28,12 @@ public class PauseMenu : MonoBehaviour
                 MenuManager.Instance.CloseMenu("pausemenu", true);
             } else {
                 if (MenuManager.Instance.menus["controlmenu"].isOpen) {
+                    return;
+                } else if (MenuManager.Instance.menus["inventorymenu"].isOpen)
+                {
+                    return;
+                } else if (MenuManager.Instance.menus["shopmenu"].isOpen)
+                {
                     return;
                 }
                 MenuManager.Instance.OpenMenu("pausemenu", true);
@@ -41,5 +61,10 @@ public class PauseMenu : MonoBehaviour
     {
         MenuManager.Instance.CloseMenu("pausemenu", true);
         SceneManager.LoadScene("MainMenu");
+    }
+
+    void ChangeVolume(float value)
+    {
+        musicSource.volume = value;
     }
 }

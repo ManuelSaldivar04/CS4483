@@ -8,6 +8,7 @@ public class ShopMenu : MonoBehaviour
     public GameObject shopMenu;
     public GameObject shopNPCIcon;
     public GameObject shopNPCDialogue;
+    public GameObject playerCoinsText;
     public PlayerInventory playerInventory;
     public ItemDatabase itemDatabase;
     public AlertMenu alertMenuScript;
@@ -17,8 +18,6 @@ public class ShopMenu : MonoBehaviour
     private TextMeshProUGUI dialogueText;
     private bool isTyping;
     private Coroutine typingCoroutine;
-
-    private PlayerDataSnapshot testPlayer;
 
     void Update()
     {
@@ -47,7 +46,7 @@ public class ShopMenu : MonoBehaviour
             if (i < shop.itemsForSale.Count)
             {
                 shopBoxes[i].Item = shop.itemsForSale[i];
-                shopBoxes[i].Price = 10;
+                shopBoxes[i].Price = shopBoxes[i].Item.price;
                 shopBoxes[i].Initalize(shopBoxes[i].Item, shopBoxes[i].Price);
             }
         }
@@ -56,7 +55,13 @@ public class ShopMenu : MonoBehaviour
         shopNPCDialogue.GetComponent<TMPro.TextMeshProUGUI>().text = "TEMP TEXT";
         dialogueText = shopNPCDialogue.GetComponent<TMPro.TextMeshProUGUI>();
 
-        testPlayer = PlayerDataSnapshot.CreateDefaultTest();
+        if (PlayerData.Instance != null)
+        {
+            playerCoinsText.GetComponent<TMPro.TextMeshProUGUI>().text = "Your coins: " + PlayerData.Instance.coins;
+        } else
+        {
+            playerCoinsText.GetComponent<TMPro.TextMeshProUGUI>().text = "Your coins: ?";
+        }
 
         StartCoroutine(IdleDialogeLoop());
     }
@@ -72,7 +77,7 @@ public class ShopMenu : MonoBehaviour
             if (i < shop.itemsForSale.Count)
             {
                 shopBoxes[i].Item = shop.itemsForSale[i];
-                shopBoxes[i].Price = 10;
+                shopBoxes[i].Price = shopBoxes[i].Item.price;
                 shopBoxes[i].Initalize(shopBoxes[i].Item, shopBoxes[i].Price);
             }
         }
@@ -81,24 +86,29 @@ public class ShopMenu : MonoBehaviour
         shopNPCDialogue.GetComponent<TMPro.TextMeshProUGUI>().text = "TEMP TEXT";
         dialogueText = shopNPCDialogue.GetComponent<TMPro.TextMeshProUGUI>();
 
-        testPlayer = PlayerDataSnapshot.CreateDefaultTest();
+        if (PlayerData.Instance != null)
+        {
+            playerCoinsText.GetComponent<TMPro.TextMeshProUGUI>().text = "Your coins: " + PlayerData.Instance.coins;
+        } else
+        {
+            playerCoinsText.GetComponent<TMPro.TextMeshProUGUI>().text = "Your coins: ?";
+        }
 
         StartCoroutine(IdleDialogeLoop());
     }
 
     public void HandleBuy(ShopBox box)
     {
-
-        /*
-        if (!PlayerData.Instance.SpendCoins(box.Price))
+        if (PlayerData.Instance == null)
         {
-            TypeLine(shop.shopDialogue.brokeBoyLine);
+            StopAllCoroutines();
+            StartCoroutine(TypeLine(shop.shopDialogue.brokeBoyLine));
             return;
         }
-        */
-        if(testPlayer.coins < box.Price)
+        if (!PlayerData.Instance.SpendCoins(box.Price))
         {
-            TypeLine(shop.shopDialogue.brokeBoyLine);
+            StopAllCoroutines();
+            StartCoroutine(TypeLine(shop.shopDialogue.brokeBoyLine));
             return;
         }
 
@@ -138,33 +148,27 @@ public class ShopMenu : MonoBehaviour
             }
         } else if(box.Item.itemName == "Money Bag")
         {
-            //PlayerData.Instance.HealHP(PlayerData.Instance.maxHP/2);
-            testPlayer.currentHP = Mathf.Min(testPlayer.maxHP, testPlayer.currentHP + testPlayer.maxHP/2);
-            alertMessage = "You healed for " + testPlayer.maxHP/2 + " HP!";
+            PlayerData.Instance.HealHP(PlayerData.Instance.maxHP/2);
+            alertMessage = "You healed for " + PlayerData.Instance.maxHP/2 + " HP!";
         } else if (box.Item.itemName == "Money Chest")
         {
-            //PlayerData.Instance.HealHP(PlayerData.Instance.maxHP);
-            testPlayer.currentHP = testPlayer.maxHP;
-            alertMessage = "You healed for " + testPlayer.maxHP + " HP!";
+            PlayerData.Instance.HealHP(PlayerData.Instance.maxHP);
+            alertMessage = "You healed for " + PlayerData.Instance.maxHP + " HP!";
         } else if (box.Item.itemName == "Increase Attack")
         {
-            //PlayerData.Instance.bonusMaxChips += 50;
-            testPlayer.currentCombatChips += 50;
+            PlayerData.Instance.bonusMaxChips += 50;
             alertMessage = "Your attack chip count increased by 50!";
         } else if (box.Item.itemName == "Increase Health")
         {
-            //PlayerData.Instance.bonusMaxHP += 50;
-            testPlayer.maxHP += 50;
+            PlayerData.Instance.bonusMaxHP += 50;
             alertMessage = "Your maximum health chip count increased by 50!";
         } else if (box.Item.itemName == "Increase Attack Regen")
         {
-            //PlayerData.Instance.bonusChipRegen += 10;
-            testPlayer.combatChipRegen += 10;
+            PlayerData.Instance.bonusChipRegen += 10;
             alertMessage = "Your attack chip regeneration increased by 10!";
         } else if (box.Item.itemName == "Increase Shield")
         {
-            //PlayerData.Instance.armour += 5;
-            testPlayer.armour += 5;
+            PlayerData.Instance.armour += 5;
             alertMessage = "Your armour increased by 5!";
         }
         

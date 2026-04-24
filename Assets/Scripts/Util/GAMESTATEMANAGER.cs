@@ -11,6 +11,7 @@ public class GAMESTATEMANAGER : MonoBehaviour
     {
         MainMenu,
         TutorialFirst,
+        TutorialAfterFight,
         World,
         Combat
     }

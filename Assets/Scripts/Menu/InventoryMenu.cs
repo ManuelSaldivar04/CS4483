@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 public class InventoryMenu : MonoBehaviour
@@ -14,6 +15,7 @@ public class InventoryMenu : MonoBehaviour
 
     public PlayerInventory playerInventory;
 
+    public GameObject pageText;
     public static bool isInventoryOpen;
 
     private int currentPage = 0;
@@ -25,7 +27,7 @@ public class InventoryMenu : MonoBehaviour
         // Initialize inventory & equipment slots
         SetupInventorySlots();
         setupEquipmentSlots();
-
+        pageText.GetComponent<TextMeshProUGUI>().text = currentPage.ToString();
     }
 
     // Update is called once per frame
@@ -41,6 +43,10 @@ public class InventoryMenu : MonoBehaviour
             if(MenuManager.Instance.CheckOpen("inventorymenu")) {
                 MenuManager.Instance.CloseMenu("inventorymenu", true);
             } else {
+                if (MenuManager.Instance.CheckOpen("pausemenu"))
+                {
+                    return;
+                }
                 MenuManager.Instance.OpenMenu("inventorymenu", true);
             }
         }
@@ -131,6 +137,7 @@ public class InventoryMenu : MonoBehaviour
         if (currentPage < playerInventory.GetItems().Count / NUM_INVENTORY_SLOTS)
         {
             currentPage++;
+            pageText.GetComponent<TextMeshProUGUI>().text = currentPage.ToString();
             UpdateInventoryUI();
         }
     }
@@ -140,6 +147,7 @@ public class InventoryMenu : MonoBehaviour
         if (currentPage > 0)
         {
             currentPage--;
+            pageText.GetComponent<TextMeshProUGUI>().text = currentPage.ToString();
             UpdateInventoryUI();
         }
     }

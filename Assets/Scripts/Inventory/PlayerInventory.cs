@@ -100,6 +100,9 @@ public class PlayerInventory : MonoBehaviour
         {
             if (equippedItems[i] == null)
             {
+                if (PlayerData.Instance == null)
+                    continue;
+                    
                 equippedItems[i] = item;
                 if (PlayerData.Instance != null)
                 {

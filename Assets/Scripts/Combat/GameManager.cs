@@ -403,7 +403,10 @@ public class GameManager : MonoBehaviour
         //return to overworld
         LevelLoader ll = FindObjectOfType<LevelLoader>();
         if (ll != null)
+        {
+            GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.World;
             ll.LoadReturnScene();
+        }
         else
             Debug.LogError("No LevelLoader found to return to overworld!");
         

@@ -12,7 +12,7 @@ public class SoundEffectManager : MonoBehaviour
     private static AudioSource voiceAudioSource; //NPC audio sound
     private static AudioSource musicSource; //background music
     private static SoundEffectLibrary soundEffectLibrary;
-    [SerializeField] private Slider sfxSlider;
+    [SerializeField] private Scrollbar sfxSlider;
 
     private void Awake()
     {
