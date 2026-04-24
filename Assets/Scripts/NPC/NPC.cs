@@ -12,6 +12,7 @@ public class NPC : MonoBehaviour, IInteractable
     public GameObject dialoguePanel;
     public TMP_Text dialogueText, nameText;
     public Image portraitImage;
+    public string npcID; //
 
     private int dialogueIndex;
     private bool isTyping, isDialogueActive, isLoadingCombat;
@@ -24,7 +25,6 @@ public class NPC : MonoBehaviour, IInteractable
     public bool isTutorialNPC;
 
     private static HashSet<string> defeatedNPCs = new HashSet<string>();//keep list of all defeated NPCs
-    public string npcID; //
 
 
     private void Awake()
@@ -138,7 +138,7 @@ public class NPC : MonoBehaviour, IInteractable
             }
         }
 
-        if (isTutorialNPC)
+        if (isTutorialNPC && !isShop)
         {
             ResetDefeatedNPC(); //reset the combat NPCs if lose game and brought back to spawn
             SceneManager.LoadScene("Center");

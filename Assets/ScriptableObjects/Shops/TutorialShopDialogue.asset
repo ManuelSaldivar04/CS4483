@@ -12,8 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b637f7fc862584444a683dd81ba90fc0, type: 3}
   m_Name: TutorialShopDialogue
   m_EditorClassIdentifier: 
-  basicLines: []
-  buyLines: []
-  typingSpeed: 0.05
-  voiceSound: {fileID: 0}
-  voicePitch: 1
+  basicLines:
+  - These items will help your journey young one...
+  - Increasing your health is always a good idea.
+  - If you're struggling these will help.
+  - The journey is long and hard, do not be afraid of failure.
+  buyLines:
+  - Feel the power surge within.
+  brokeBoyLine: I cannot grant you these powers just yet...
+  typingSpeed: 0.06
+  voiceSound: {fileID: 8300000, guid: f4d17be0c8dab5540b0b324be40fae7b, type: 3}
+  voicePitch: 0.9

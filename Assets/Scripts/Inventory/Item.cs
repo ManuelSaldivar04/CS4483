@@ -12,6 +12,6 @@ public class Item : ScriptableObject
     public string description;
     public int bonusHealthChip;
     public int bonusAttackChip;
-    public float regenAttackChip;
-    public float dmgReduction;
+    public int regenAttackChip;
+    public int bonusArmour;
 }

@@ -11,6 +11,9 @@ public class PlayerDataSnapshot
     public int maxCombatChips;
     public int currentCombatChips;
     public int combatChipRegen;
+    public int bonusMaxHP;
+    public int bonusMaxChips;
+    public int bonusChipRegen;
     public int shield;
     public int armour;
     public int coins;

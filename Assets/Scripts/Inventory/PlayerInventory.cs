@@ -61,6 +61,20 @@ public class PlayerInventory : MonoBehaviour
         return false;
     }
 
+    private bool FindEquippedItem(string itemName)
+    {
+        foreach (Item item in equippedItems)
+        {
+            if (item != null && item.itemName == itemName)
+            {
+                Debug.Log("Found equipped item: " + itemName);
+                return true;
+            }
+        }
+        Debug.Log("Equipped item not found: " + itemName);
+        return false;
+    }
+
     public bool CheckHasPrerequisite(string itemName)
     {
         if (exclusiveItems.ContainsKey(itemName))
@@ -76,11 +90,33 @@ public class PlayerInventory : MonoBehaviour
 
     public bool EquipItem(Item item)
     {
+        if (FindEquippedItem(item.itemName))
+        {
+            Debug.Log("Item already equipped: " + item.itemName);
+            return false;
+        }
+
         for (int i = 0; i < MAX_EQUIPPED_ITEMS; i++)
         {
             if (equippedItems[i] == null)
             {
                 equippedItems[i] = item;
+                if (PlayerData.Instance != null)
+                {
+                    for (int j = 0; j < PlayerData.Instance.items.Length; j++)
+                    {
+                        if (PlayerData.Instance.items[j] == 0)
+                        {
+                            PlayerData.Instance.items[j] = item.id;
+                            PlayerData.Instance.bonusMaxHP += item.bonusHealthChip;
+                            PlayerData.Instance.bonusMaxChips += item.bonusAttackChip;
+                            PlayerData.Instance.bonusChipRegen += item.regenAttackChip;
+                            PlayerData.Instance.armour += item.bonusArmour;
+                            Debug.Log("Equipped item: " + item.itemName);
+                            break;
+                        }
+                    }
+                }
                 return true;
             }
         }
@@ -96,6 +132,22 @@ public class PlayerInventory : MonoBehaviour
             if (equippedItems[i] == item)
             {
                 equippedItems[i] = null;
+                if (PlayerData.Instance != null)
+                {
+                    for (int j = 0; j < PlayerData.Instance.items.Length; j++)
+                    {
+                        if (PlayerData.Instance.items[j] == item.id)
+                        {
+                            PlayerData.Instance.items[j] = 0;
+                            PlayerData.Instance.bonusMaxHP -= item.bonusHealthChip;
+                            PlayerData.Instance.bonusMaxChips -= item.bonusAttackChip;
+                            PlayerData.Instance.bonusChipRegen -= item.regenAttackChip;
+                            PlayerData.Instance.armour -= item.bonusArmour;
+                            Debug.Log("Unequipped item: " + item.itemName);
+                            return;
+                        }
+                    }
+                }
                 return;
             }
         }

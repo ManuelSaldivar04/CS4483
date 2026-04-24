@@ -7,7 +7,7 @@ public class PlayerData : MonoBehaviour
     public static PlayerData Instance;
 
 
-    public int[] items = {18};
+    public int[] items = {0, 0, 0, 0};
     public int maxHP;
     public int currentHP;
 

@@ -120,7 +120,28 @@ public class ShopMenu : MonoBehaviour
             //PlayerData.Instance.HealHP(PlayerData.Instance.maxHP);
             testPlayer.currentHP = testPlayer.maxHP;
             alertMessage = "You healed for " + testPlayer.maxHP + " HP!";
+        } else if (box.Item.itemName == "Increase Attack")
+        {
+            //PlayerData.Instance.bonusMaxChips += 50;
+            testPlayer.currentCombatChips += 50;
+            alertMessage = "Your attack chip count increased by 50!";
+        } else if (box.Item.itemName == "Increase Health")
+        {
+            //PlayerData.Instance.bonusMaxHP += 50;
+            testPlayer.maxHP += 50;
+            alertMessage = "Your maximum health chip count increased by 50!";
+        } else if (box.Item.itemName == "Increase Attack Regen")
+        {
+            //PlayerData.Instance.bonusChipRegen += 10;
+            testPlayer.combatChipRegen += 10;
+            alertMessage = "Your attack chip regeneration increased by 10!";
+        } else if (box.Item.itemName == "Increase Shield")
+        {
+            //PlayerData.Instance.armour += 5;
+            testPlayer.armour += 5;
+            alertMessage = "Your armour increased by 5!";
         }
+        
         alertMenuScript.ShowAlert(alertMessage);
         PlayBuyLine();
     }
