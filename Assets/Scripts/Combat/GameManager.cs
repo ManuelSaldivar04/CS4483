@@ -414,6 +414,7 @@ public class GameManager : MonoBehaviour
 
     public void returnHome()
     {
+        GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.World;
         SceneManager.LoadScene("Tutorial");
     }
 
