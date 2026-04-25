@@ -201,13 +201,12 @@ public class UIManager : MonoBehaviour
                 break;
 
             default:
-                int x = UnityEngine.Random.Range(1, 26);
+                int x = UnityEngine.Random.Range(20, 26);
                 cointText.text = "+ " + x + " COINS";
                 PlayerData.Instance.AddCoins(x);
                 break;
         }
         victory.SetActive(true);
-        Debug.Log(PlayerData.Instance.coins);
     }
 
     public void defeatScreen()

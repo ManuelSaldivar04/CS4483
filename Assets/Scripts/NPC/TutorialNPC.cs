@@ -130,6 +130,15 @@ public class TutorialNPC : MonoBehaviour, IInteractable
             StartCoroutine(LoadCombatAfterDelay());
         } else if (GAMESTATEMANAGER.Instance.currentGameState == GAMESTATEMANAGER.GameState.TutorialAfterFight)
         {
+            if (PlayerData.Instance == null)
+            {
+                GameObject go = new GameObject("PlayerData");
+                go.AddComponent<PlayerData>();
+                PlayerData.Instance.InitializeRun();
+            }
+            else
+                PlayerData.Instance.InitializeRun();
+
             GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.World;
             SceneManager.LoadScene("Center");
             TimeManager.StartTime();
@@ -139,6 +148,15 @@ public class TutorialNPC : MonoBehaviour, IInteractable
             openedShopTutorial = true;
         } else if (openedShopTutorial)
         {
+            if (PlayerData.Instance == null)
+            {
+                GameObject go = new GameObject("PlayerData");
+                go.AddComponent<PlayerData>();
+                PlayerData.Instance.InitializeRun();
+            }
+            else
+                PlayerData.Instance.InitializeRun();
+
             GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.World;
             SceneManager.LoadScene("Center");
             TimeManager.StartTime();

@@ -57,13 +57,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public void Start()
     {
-        if (PlayerData.Instance == null)
-        {
-            GameObject go = new GameObject("PlayerData");
-            go.AddComponent<PlayerData>();
-            PlayerData.Instance.InitializeRun();
-        }
-
+        
         if (CombatData.pendingEnemy != null)
         {
             SetEnemy(CombatData.pendingEnemy);
@@ -298,6 +292,7 @@ public class GameManager : MonoBehaviour
         // apply result
         if (attackSucceeds)
         {
+            Debug.Log(PlayerData.Instance.armour);
             int damage = (int)((enemyWager * mult) * (1 - (PlayerData.Instance.armour / 100f)));
             int shield = (int)(enemyWager * mult);
 

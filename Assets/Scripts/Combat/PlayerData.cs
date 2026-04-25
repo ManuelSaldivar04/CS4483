@@ -50,7 +50,6 @@ public class PlayerData : MonoBehaviour
         currentHP = maxHP;
         currentCombatChips = maxCombatChips;
 
-        armour = 0;
 
         combatChipRegen = 10 + bonusChipRegen;
     }
