@@ -19,6 +19,7 @@ public class TutorialNPC : MonoBehaviour, IInteractable
 
     [Header("Shop info")]
     public Shop shopData;
+    public PlayerInventory playerInventory;
 
     [Header("Tutorial Info")]
     private bool openedShopTutorial;
@@ -28,6 +29,18 @@ public class TutorialNPC : MonoBehaviour, IInteractable
     {
         if(string.IsNullOrEmpty(npcID))
             npcID = gameObject.name;
+        
+        GameObject characterManager = GameObject.Find("CHARACTERMANAGER");
+
+        if (characterManager != null)
+        {
+            playerInventory = characterManager.GetComponent<PlayerInventory>();
+        }
+
+        if (playerInventory == null)
+        {
+            Debug.LogError("PlayerInventory not found on CHARACTERMANAGER");
+        }
     }
 
     public bool CanInteract()
@@ -142,6 +155,7 @@ public class TutorialNPC : MonoBehaviour, IInteractable
             GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.World;
             SceneManager.LoadScene("Center");
             TimeManager.StartTime();
+            playerInventory.HandleInventoryReset();
         } else if (!openedShopTutorial)
         {
             MenuManager.Instance.OpenMenu("shopmenu", true, this);
@@ -160,6 +174,7 @@ public class TutorialNPC : MonoBehaviour, IInteractable
             GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.World;
             SceneManager.LoadScene("Center");
             TimeManager.StartTime();
+            playerInventory.HandleInventoryReset();
         }
        
     }

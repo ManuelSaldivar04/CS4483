@@ -112,6 +112,8 @@ public class ShopMenu : MonoBehaviour
             return;
         }
 
+        playerCoinsText.GetComponent<TMPro.TextMeshProUGUI>().text = "Your coins: " + PlayerData.Instance.coins;
+
         string alertMessage = "";
         if (box.Item.itemName == "Mystery Box")
         {
@@ -146,11 +148,11 @@ public class ShopMenu : MonoBehaviour
                     alertMessage = "You received a " + randomItem.itemName + "!";
                 }
             }
-        } else if(box.Item.itemName == "Money Bag")
+        } else if(box.Item.itemName == "Money Bag (Heal 50% Health)")
         {
             PlayerData.Instance.HealHP(PlayerData.Instance.maxHP/2);
             alertMessage = "You healed for " + PlayerData.Instance.maxHP/2 + " HP!";
-        } else if (box.Item.itemName == "Money Chest")
+        } else if (box.Item.itemName == "Money Chest (Heal 100% Health)")
         {
             PlayerData.Instance.HealHP(PlayerData.Instance.maxHP);
             alertMessage = "You healed for " + PlayerData.Instance.maxHP + " HP!";
@@ -205,6 +207,13 @@ public class ShopMenu : MonoBehaviour
         string line = shop.shopDialogue.buyLines[Random.Range(0, shop.shopDialogue.buyLines.Count)];
 
         StartTyping(line);
+    }
+
+    public void PlayPoorLine()
+    {
+        if (shop.shopDialogue.brokeBoyLine == null) return;
+
+        StartTyping(shop.shopDialogue.brokeBoyLine);
     }
 
     void StartTyping(string line)

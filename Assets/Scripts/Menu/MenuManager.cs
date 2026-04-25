@@ -34,8 +34,6 @@ public class MenuManager : MonoBehaviour
     {
         foreach (var entry in menus)
         {
-            if (entry.Key == "alertmenu")
-                continue;
             entry.Value.menu.SetActive(false);
             entry.Value.isOpen = false;
         }    

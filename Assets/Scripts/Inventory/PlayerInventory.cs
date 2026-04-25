@@ -47,6 +47,17 @@ public class PlayerInventory : MonoBehaviour
         items.Add(item);
     }
 
+    public void HandleInventoryReset()
+    {
+
+        for (int i = 0; i < MAX_EQUIPPED_ITEMS; i++)
+        {
+            if (equippedItems[i] != null)
+                UnequipItem(equippedItems[i]);
+        }
+        items.Clear();
+    }
+
     public bool FindItem(string itemName)
     {
         foreach (Item item in items)
