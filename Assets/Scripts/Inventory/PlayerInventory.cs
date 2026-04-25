@@ -122,9 +122,9 @@ public class PlayerInventory : MonoBehaviour
                         if (PlayerData.Instance.items[j] == 0)
                         {
                             PlayerData.Instance.items[j] = item.id;
-                            PlayerData.Instance.bonusMaxHP += item.bonusHealthChip;
-                            PlayerData.Instance.bonusMaxChips += item.bonusAttackChip;
-                            PlayerData.Instance.bonusChipRegen += item.regenAttackChip;
+                            PlayerData.Instance.gainMaxHP(item.bonusHealthChip);
+                            PlayerData.Instance.maxCombatChips += item.bonusAttackChip;
+                            PlayerData.Instance.addCombatChipRegen(item.regenAttackChip);
                             PlayerData.Instance.armour += item.bonusArmour;
                             Debug.Log("Equipped item: " + item.itemName);
                             break;
@@ -153,9 +153,9 @@ public class PlayerInventory : MonoBehaviour
                         if (PlayerData.Instance.items[j] == item.id)
                         {
                             PlayerData.Instance.items[j] = 0;
-                            PlayerData.Instance.bonusMaxHP -= item.bonusHealthChip;
-                            PlayerData.Instance.bonusMaxChips -= item.bonusAttackChip;
-                            PlayerData.Instance.bonusChipRegen -= item.regenAttackChip;
+                            PlayerData.Instance.maxHP -= item.bonusHealthChip;
+                            PlayerData.Instance.maxCombatChips -= item.bonusAttackChip;
+                            PlayerData.Instance.combatChipRegen -= item.regenAttackChip;
                             PlayerData.Instance.armour -= item.bonusArmour;
                             Debug.Log("Unequipped item: " + item.itemName);
                             return;
