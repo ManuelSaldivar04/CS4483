@@ -296,17 +296,14 @@ public class Roulette : MonoBehaviour
     public void SpinRoulette()
     {
         // Runs when the player presses the spin button.
-        Debug.Log("[Roulette] SpinRoulette() clicked");
 
         if (spinning)
         {
-            Debug.Log("[Roulette] Already spinning, returning");
             return;
         }
 
         if (string.IsNullOrEmpty(currentBet))
         {
-            Debug.Log("[Roulette] No bet selected, returning");
 
             if (selected != null)
                 selected.SetText("Selection not valid");
@@ -317,7 +314,6 @@ public class Roulette : MonoBehaviour
         // Extra safety check for restriction item before the wheel spins.
         if (HasRestrictionItem() && !IsRestrictedAllowedBet(currentBet))
         {
-            Debug.Log("[Roulette] Invalid bet for item 10, returning");
 
             if (selected != null)
                 selected.SetText("Selection not valid");
@@ -331,7 +327,6 @@ public class Roulette : MonoBehaviour
         // Extra safety check for item 33 before the wheel spins.
         if (HasZeroProtectionItem() && IsZeroBet(currentBet))
         {
-            Debug.Log("[Roulette] Invalid 0/00 bet for item 33, returning");
 
             if (selected != null)
                 selected.SetText("Selection not valid");
@@ -346,20 +341,17 @@ public class Roulette : MonoBehaviour
         SetBoardInteractable(false);
 
         SoundEffectManager.Play("WheelSpin");
-        Debug.Log("ANIMATION!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         if (selected != null)
             selected.SetText("Spinning...");
 
         if (anim != null)
         {
-            Debug.Log("[Roulette] Calling anim.SpinWheel()");
             // Start the wheel animation. ResolveSpin runs after the animation is finished.
             anim.SpinWheel(ResolveSpin);
         }
         else
         {
-            Debug.LogError("[Roulette] anim is NULL");
             ResolveSpin();
         }
     }
@@ -367,7 +359,6 @@ public class Roulette : MonoBehaviour
     private void ResolveSpin()
     {
         // Chooses the final roulette result after the wheel animation ends.
-        Debug.Log("[Roulette] ResolveSpin() called");
 
         int roll = Random.Range(0, 38);
         string landedPocket = roll == 37 ? "00" : roll.ToString();

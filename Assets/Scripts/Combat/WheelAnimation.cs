@@ -47,7 +47,6 @@ public class WheelAnimation : MonoBehaviour
     // Roulette calls this when the player presses the spin button.
     public void SpinWheel(System.Action onComplete)
     {
-        Debug.Log("[WheelAnimation] SpinWheel() was called");
 
         if (currentSpin != null)
             StopCoroutine(currentSpin);
@@ -57,7 +56,6 @@ public class WheelAnimation : MonoBehaviour
 
     private IEnumerator PlaySpinOnce(System.Action onComplete)
     {
-        Debug.Log("[WheelAnimation] PlaySpinOnce() started");
 
         if (animator == null)
             animator = GetComponent<Animator>();
@@ -67,7 +65,6 @@ public class WheelAnimation : MonoBehaviour
 
         if (animator == null)
         {
-            Debug.LogError("[WheelAnimation] Animator is NULL");
             ResetToIdle();
             onComplete?.Invoke();
             yield break;
@@ -89,7 +86,6 @@ public class WheelAnimation : MonoBehaviour
             waitTime = stateInfo.length;
         }
 
-        Debug.Log("[WheelAnimation] Waiting " + waitTime + " seconds for the spin animation");
 
          //The animation plays only one time. No loop. No cycles.
          yield return new WaitForSeconds(waitTime);
@@ -97,7 +93,6 @@ public class WheelAnimation : MonoBehaviour
          //Stop the Animator and return to the still wheel image.
         ResetToIdle();
 
-        Debug.Log("[WheelAnimation] Spin finished and reset to idle");
 
         currentSpin = null;
         onComplete?.Invoke();
