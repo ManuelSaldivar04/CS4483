@@ -46,8 +46,8 @@ public class AlertMenu : MonoBehaviour
         tmp.text = text;
         SetAlpha(1f);
         alertText.SetActive(true);
-
-        yield return new WaitForSeconds(displayTime);
+        
+        yield return new WaitForSecondsRealtime(displayTime);   
 
         float elapsed = 0f;
         while (elapsed < fadeTime)
@@ -69,7 +69,7 @@ public class AlertMenu : MonoBehaviour
         alertText.SetActive(true);
 
         // Wait for display time
-        yield return new WaitForSeconds(displayTime);
+        yield return new WaitForSecondsRealtime(displayTime);
 
         // Fade out
         float elapsed = 0f;

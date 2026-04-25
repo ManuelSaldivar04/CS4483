@@ -152,10 +152,10 @@ public class TutorialNPC : MonoBehaviour, IInteractable
             else
                 PlayerData.Instance.InitializeRun();
 
+            playerInventory.HandleInventoryReset();
             GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.World;
             SceneManager.LoadScene("Center");
             TimeManager.StartTime();
-            playerInventory.HandleInventoryReset();
         } else if (!openedShopTutorial)
         {
             MenuManager.Instance.OpenMenu("shopmenu", true, this);
@@ -171,10 +171,10 @@ public class TutorialNPC : MonoBehaviour, IInteractable
             else
                 PlayerData.Instance.InitializeRun();
 
+            playerInventory.HandleInventoryReset();
             GAMESTATEMANAGER.Instance.currentGameState = GAMESTATEMANAGER.GameState.World;
             SceneManager.LoadScene("Center");
             TimeManager.StartTime();
-            playerInventory.HandleInventoryReset();
         }
        
     }
