@@ -292,7 +292,6 @@ public class GameManager : MonoBehaviour
         // apply result
         if (attackSucceeds)
         {
-            Debug.Log(PlayerData.Instance.armour);
             int damage = (int)((enemyWager * mult) * (1 - (PlayerData.Instance.armour / 100f)));
             int shield = (int)(enemyWager * mult);
 

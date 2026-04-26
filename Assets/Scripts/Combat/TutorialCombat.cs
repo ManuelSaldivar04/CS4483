@@ -19,13 +19,16 @@ public class TutorialCombat : MonoBehaviour
 
     public void nextSlide()
     {
-        slides[x].SetActive(false);
         x++;
-
         if (x == 14)
             SceneManager.LoadScene("Tutorial");
         else
+        {
+            x--;
+            slides[x].SetActive(false);
+            x++;
             slides[x].SetActive(true);
+        }
     }
     
 }

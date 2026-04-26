@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using TMPro;
-using UnityEditor.ShaderGraph.Serialization;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -201,7 +200,7 @@ public class UIManager : MonoBehaviour
                 break;
 
             default:
-                int x = UnityEngine.Random.Range(20, 26);
+                int x = UnityEngine.Random.Range(10, 26);
                 cointText.text = "+ " + x + " COINS";
                 PlayerData.Instance.AddCoins(x);
                 break;
